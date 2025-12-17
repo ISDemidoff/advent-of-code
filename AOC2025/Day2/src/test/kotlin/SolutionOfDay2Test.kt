@@ -1,8 +1,14 @@
-import org.junit.jupiter.api.Test
+import TestConstants.INPUT_FILE_NAME
+import TestConstants.SAMPLE_FILE_NAME
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 
-class SolutionOfDay2Test {
-    @Test
-    fun showAnswer() {
-        println(solveForFileName("input.txt"))
+class SolutionOfDay2Test : StringSpec({
+    "Sample check" {
+        solveForFileName(SAMPLE_FILE_NAME) shouldBe 1227775554
     }
-}
+
+    "My result" {
+        println(solveForFileName(INPUT_FILE_NAME))
+    }
+})

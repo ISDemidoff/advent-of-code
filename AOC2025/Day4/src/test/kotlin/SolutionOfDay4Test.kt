@@ -3,9 +3,9 @@ import TestConstants.SAMPLE_FILE_NAME
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class SolutionOfDay3Test : StringSpec({
+class SolutionOfDay4Test : StringSpec({
     "Sample check" {
-        solveForFileName(SAMPLE_FILE_NAME) shouldBe 357
+        solveForFileName(SAMPLE_FILE_NAME) shouldBe 13
     }
 
     "My result" {
