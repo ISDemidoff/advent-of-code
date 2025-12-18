@@ -1,5 +1,7 @@
+package isdemidoff.utility.input
+
 fun readLines(fileName: String): List<String> = (object {}).javaClass
-    .getResourceAsStream(fileName)!!
+    .getResourceAsStream("/$fileName")!!
     .bufferedReader()
     .readLines()
 

@@ -1,3 +1,5 @@
+import isdemidoff.utility.input.readLines
+
 fun solveForFileName(fileName: String): Int {
     var position = 50
     var result = 0
@@ -12,5 +14,5 @@ fun solveForFileName(fileName: String): Int {
             if (position % 100 == 0) result++
         }
 
-    return result;
+    return result
 }

@@ -1,4 +1,8 @@
 import Problem.Companion.makeOperation
+import isdemidoff.utility.toLongsListList
+import isdemidoff.utility.input.readLines
+import isdemidoff.utility.parseWhitespaceDelimitedInputList
+import isdemidoff.utility.takeFirstChars
 
 @ConsistentCopyVisibility
 data class Problem private constructor(
@@ -26,10 +30,10 @@ data class Problem private constructor(
 }
 
 fun solveForFileName(fileName: String) = readLines(fileName)
-    .parseWhitespaceDelimetedInputList()
-    .let { it.last().takeFirstChars() to it.dropLast(1).convertToLongsListList() }
+    .parseWhitespaceDelimitedInputList()
+    .let { it.last().takeFirstChars() to it.dropLast(1).toLongsListList() }
     .let { (operations, elements) -> transposeProblems(operations, elements) }
     .sumOf { it.calculate() }
 
-fun transposeProblems(operations: List<Char>, elements: List<List<Long>>) =
+private fun transposeProblems(operations: List<Char>, elements: List<List<Long>>) =
     operations.mapIndexed { index, op -> op.makeOperation(elements.map { it[index] }) }

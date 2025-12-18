@@ -1,5 +1,7 @@
-fun solveForFileName(fileName: String) = readTwoBlocks(fileName)
-    .let { (ranges, ids) -> ranges.map { it.toLongRange() } to ids.map { it.toLong() } }
-    .let { (ranges, ids) -> ids.count { id -> ranges.any { id in it } } }
+import isdemidoff.utility.toLongsList
+import isdemidoff.utility.input.readTwoBlocks
+import isdemidoff.utility.toLongRanges
 
-fun String.toLongRange() = this.split("-").let { it.first().toLong()..it.last().toLong() }
+fun solveForFileName(fileName: String) = readTwoBlocks(fileName)
+    .let { (ranges, ids) -> ranges.toLongRanges() to ids.toLongsList() }
+    .let { (ranges, ids) -> ids.count { id -> ranges.any { id in it } } }

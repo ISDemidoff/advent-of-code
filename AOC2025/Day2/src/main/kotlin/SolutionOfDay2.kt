@@ -1,12 +1,13 @@
+import isdemidoff.utility.input.readSingleLine
+import isdemidoff.utility.toLongRanges
+
 fun solveForFileName(fileName: String) = readSingleLine(fileName)
     .split(",")
-    .map { it.split("-") }
-    .map { it[0].toLong() to it[1].toLong() }
-    .sumOf { getSumOfSillyPatterns(it) }
+    .toLongRanges()
+    .sumOf { it.getSumOfSillyPatterns() }
 
-fun getSumOfSillyPatterns(interval: Pair<Long, Long>) =
-    (interval.first..interval.second).sumOf { if (it.isSillyNumber()) it else 0 }
+private fun LongRange.getSumOfSillyPatterns() = filter { it.isSillyNumber() }.sum()
 
-fun Long.isSillyNumber() = toString()
+private fun Long.isSillyNumber() = toString()
     .takeIf { it.length % 2 == 0 }
     ?.takeIf { it.take(it.length / 2) == it.takeLast(it.length / 2) } != null

@@ -1,5 +1,5 @@
-import TestConstants.INPUT_FILE_NAME
-import TestConstants.SAMPLE_FILE_NAME
+import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
+import isdemidoff.utility.test.TestConstants.SAMPLE_FILE_NAME
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
