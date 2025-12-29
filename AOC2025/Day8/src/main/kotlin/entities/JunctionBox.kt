@@ -19,9 +19,9 @@ data class JunctionBox(
     }
 
     companion object {
-        fun fromCoordinates(coordinates: List<Long>): JunctionBox {
-            require(coordinates.size == 3) { "Expected 3 coordinates, got ${coordinates.size}." }
-            return JunctionBox(coordinates[0], coordinates[1], coordinates[2])
+        fun List<Long>.toJunctionBox(): JunctionBox {
+            require(this.size == 3) { "Expected 3 this, got ${this.size}." }
+            return JunctionBox(this[0], this[1], this[2])
         }
     }
 }
