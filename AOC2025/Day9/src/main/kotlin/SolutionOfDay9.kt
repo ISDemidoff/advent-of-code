@@ -18,7 +18,7 @@ data class Point(val x: Long, val y: Long) {
 fun sideLength(first: Long, second: Long) = (first - second).absoluteValue + 1
 
 fun solveForFileName(fileName: String) = readLines(fileName)
-    .parseUnescapedCsvInputLines { it.toLong() }
+    .parseUnescapedCsvInputLines { it.toString().toLong() }
     .map { it.toPoint() }
     .let { findMapRectangleSize(it) }
 

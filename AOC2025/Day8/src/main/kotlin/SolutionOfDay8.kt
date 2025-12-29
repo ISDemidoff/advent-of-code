@@ -3,7 +3,7 @@ import isdemidoff.utility.input.readLines
 import isdemidoff.utility.parseUnescapedCsvInputLines
 
 fun solveForFileName(fileName: String, numConnections: Int) = readLines(fileName)
-    .parseUnescapedCsvInputLines { it.toLong() }
+    .parseUnescapedCsvInputLines { it.toString().toLong() }
     .map { it.toJunctionBox() }
     .let { it to makeConnectionsGrid(it) }
     .also { (_, connections) -> connectClosest(connections, numConnections) }
