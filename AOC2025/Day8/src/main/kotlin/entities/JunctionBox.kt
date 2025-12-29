@@ -1,10 +1,12 @@
 package entities
 
+import isdemidoff.utility.graphs.Node
+
 data class JunctionBox(
     val x: Long,
     val y: Long,
     val z: Long,
-) {
+) : Node<JunctionBox> {
     val connections: MutableSet<JunctionBox> = mutableSetOf<JunctionBox>()
 
     fun coordinatesAsList() = listOf(x, y, z)
@@ -17,6 +19,8 @@ data class JunctionBox(
         this.connections += otherBox
         otherBox.connections += this
     }
+
+    override fun getConnectedNodes() = connections.toList()
 
     companion object {
         fun List<Long>.toJunctionBox(): JunctionBox {
