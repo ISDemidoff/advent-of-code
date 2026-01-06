@@ -13,6 +13,10 @@ import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
 import isdemidoff.year2015.day4.Day4Solution
 import isdemidoff.year2015.day4.Day4SolutionBuilder
+import isdemidoff.year2015.day5.Day5Solution
+import isdemidoff.year2015.day5.Day5SolutionBuilder
+import isdemidoff.year2015.day6.Day6SolutionBuilder
+import isdemidoff.year2015.day7.Day7SolutionBuilder
 
 class Year2015Test : FreeSpec({
     "Day 1" - {
@@ -84,12 +88,63 @@ class Year2015Test : FreeSpec({
 
         createTargetShowingTest { Day4SolutionBuilder("day4") }
     }
+
+    "Day 5" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "ugknbfddgicrmopn" to true,
+                "aaa" to true,
+                "uuuuuuu" to true,
+                "jchzalrnumimnmhp" to false,
+                "haegwjzuvuyypxyu" to false,
+                "dvszwmarrgswjxmb" to false,
+            ).forEach { (input, result) ->
+                "\"$input\" results to $result" {
+                    Day5Solution(input).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest { Day5SolutionBuilder("day5") }
+    }
+
+    "Day 6" - {
+        val builder = Day6SolutionBuilder("day6")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 998000
+        }
+
+        createTargetShowingTest() { builder }
+    }
+
+    "Day 7" - {
+        val builder = Day7SolutionBuilder("day7")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME {
+            val completedCircuit = builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME)
+            completedCircuit.getValue("d") shouldBe 72.toUShort()
+            completedCircuit.getValue("e") shouldBe 507.toUShort()
+            completedCircuit.getValue("f") shouldBe 492.toUShort()
+            completedCircuit.getValue("g") shouldBe 114.toUShort()
+            completedCircuit.getValue("h") shouldBe 65412.toUShort()
+            completedCircuit.getValue("i") shouldBe 65079.toUShort()
+            completedCircuit.getValue("x") shouldBe 123.toUShort()
+            completedCircuit.getValue("y") shouldBe 456.toUShort()
+        }
+
+        createTargetShowingTest({ it.getValue("a") }) { builder }
+    }
 }) {
     companion object {
-        inline fun showTargetAnswer(solutionBuilderSupplier: () -> SolutionBuilder<*>) =
-            shouldNotThrow<Throwable> { println(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
+        inline fun <I : Any> showTargetAnswer(
+            resultExtractor: (I) -> Any = { it },
+            solutionBuilderSupplier: () -> SolutionBuilder<I>,
+        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME))) }
 
-        suspend inline fun FreeSpecContainerScope.createTargetShowingTest(crossinline solutionBuilderSupplier: () -> SolutionBuilder<*>)
-            = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(solutionBuilderSupplier) }
+        suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
+            crossinline resultExtractor: (I) -> Any = { it },
+            crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
+        ) = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
     }
 }
