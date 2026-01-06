@@ -2,13 +2,17 @@ package isdemidoff.year2015
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
+import isdemidoff.SolutionBuilder
 import isdemidoff.utility.test.TestConstants
 import isdemidoff.year2015.day1.Day1Solution
 import isdemidoff.year2015.day1.Day1SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
+import isdemidoff.year2015.day4.Day4Solution
+import isdemidoff.year2015.day4.Day4SolutionBuilder
 
 class Year2015Test : FreeSpec({
     "Day 1" - {
@@ -30,10 +34,7 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            val builder = Day1SolutionBuilder("day1")
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { Day1SolutionBuilder("day1") }
     }
 
     "Day 2" - {
@@ -50,9 +51,7 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 3" - {
@@ -68,9 +67,29 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            val builder = Day3SolutionBuilder("day3")
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { Day3SolutionBuilder("day3") }
     }
-})
+
+    "Day 4" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "abcdef" to 609043,
+                "pqrstuv" to 1048970,
+            ).forEach { (input, result) ->
+                "\"$input\" results to $result" {
+                    Day4Solution(input).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest { Day4SolutionBuilder("day4") }
+    }
+}) {
+    companion object {
+        inline fun showTargetAnswer(solutionBuilderSupplier: () -> SolutionBuilder<*>) =
+            shouldNotThrow<Throwable> { println(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
+
+        suspend inline fun FreeSpecContainerScope.createTargetShowingTest(crossinline solutionBuilderSupplier: () -> SolutionBuilder<*>)
+            = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(solutionBuilderSupplier) }
+    }
+}

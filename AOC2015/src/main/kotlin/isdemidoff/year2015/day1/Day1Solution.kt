@@ -2,7 +2,7 @@ package isdemidoff.year2015.day1
 
 import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.Solution
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.input.readSingleLine
 
 class Day1Solution(val input: String) : Solution<Int> {
     override fun solve(): Int {
@@ -18,6 +18,6 @@ class Day1Solution(val input: String) : Solution<Int> {
 
 class Day1SolutionBuilder(day1Path: String) : SimpleSolutionBuilder<Int, String>(
     day1Path,
-    { readLines(it).first() },
+    { readSingleLine(it) },
     { Day1Solution(it).solve() },
 )

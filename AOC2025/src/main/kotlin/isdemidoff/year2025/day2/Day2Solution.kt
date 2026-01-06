@@ -1,7 +1,7 @@
 package isdemidoff.year2025.day2
 
 import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.input.readSingleLine
 import isdemidoff.utility.parseUnescapedCsvInputLine
 import isdemidoff.utility.toLongRange
 
@@ -14,8 +14,7 @@ private fun LongRange.getSumOfSillyPatterns() = filter { it.isSillyNumber() }.su
 class Day2SolutionBuilder(day2Path: String) : SimpleSolutionBuilder<Long, List<LongRange>>(
     day2Path,
     { filename ->
-        readLines(filename)
-            .single()
+        readSingleLine(filename)
             .parseUnescapedCsvInputLine { it.toLongRange() }
     },
     { it.sumOf { it.getSumOfSillyPatterns() } },

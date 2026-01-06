@@ -42,7 +42,7 @@ fun List<CharSequence>.parseUnescapedCsvInputLines(delimiter: Char = ',') = pars
 /**
  * Converts a string like a "1-10" or "23-412" to a standard LongRange with inclusive end.
  */
-fun CharSequence.toLongRange(): LongRange = this.split("-").let { it.first().toLong()..it.last().toLong() }
+fun CharSequence.toLongRange(): LongRange = this.split("-").also { check(it.size == 2) { "Range must be set with exactly two boundaries" } }.let { it.first().toLong()..it.last().toLong() }
 
 /**
  * Map list of string with [toLongRange] function.
