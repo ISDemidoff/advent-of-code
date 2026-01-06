@@ -8,6 +8,8 @@ import isdemidoff.SolutionBuilder
 import isdemidoff.utility.test.TestConstants
 import isdemidoff.year2015.day1.Day1Solution
 import isdemidoff.year2015.day1.Day1SolutionBuilder
+import isdemidoff.year2015.day10.Day10SolutionBuilder
+import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -17,6 +19,9 @@ import isdemidoff.year2015.day5.Day5Solution
 import isdemidoff.year2015.day5.Day5SolutionBuilder
 import isdemidoff.year2015.day6.Day6SolutionBuilder
 import isdemidoff.year2015.day7.Day7SolutionBuilder
+import isdemidoff.year2015.day8.Day8Solution
+import isdemidoff.year2015.day8.Day8SolutionBuilder
+import isdemidoff.year2015.day9.Day9SolutionBuilder
 
 class Year2015Test : FreeSpec({
     "Day 1" - {
@@ -134,6 +139,62 @@ class Year2015Test : FreeSpec({
         }
 
         createTargetShowingTest({ it.getValue("a") }) { builder }
+    }
+
+    "Day 8" - {
+        val builder = Day8SolutionBuilder("day8")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            "From sample file" {
+                builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 12
+            }
+
+            "Just texts" - {
+                listOf(
+                    """""""" to 2,
+                    """"abc"""" to 2,
+                    """"aaa\"aaa"""" to 3,
+                    """"\x27"""" to 5,
+                    """"\\\xa6"""" to 6,
+                    """"p\"zqyw"""" to 3,
+                    """"\\\\"""" to 4,
+                ).forEach { (input, result) ->
+                    "$input results to $result" {
+                        Day8Solution(input).solve() shouldBe result
+                    }
+                }
+            }
+        }
+
+        createTargetShowingTest { builder }
+    }
+
+    "Day 9" - {
+        val builder = Day9SolutionBuilder("day9")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 605
+        }
+
+        createTargetShowingTest { builder }
+    }
+
+    "Day 10" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "1" to "11",
+                "11" to "21",
+                "21" to "1211",
+                "1211" to "111221",
+                "111221" to "312211",
+            ).forEach { (input, result) ->
+                "\"$input\" iterates to \"$result\"" {
+                    input.nextApply() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest { Day10SolutionBuilder("day10") }
     }
 }) {
     companion object {

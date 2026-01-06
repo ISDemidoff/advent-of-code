@@ -2,7 +2,9 @@ package isdemidoff.year2025
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
+import isdemidoff.SolutionBuilder
 import isdemidoff.utility.test.TestConstants
 import isdemidoff.year2025.day1.Day1SolutionBuilder
 import isdemidoff.year2025.day10.Day10SolutionBuilder
@@ -17,7 +19,7 @@ import isdemidoff.year2025.day7.Day7SolutionBuilder
 import isdemidoff.year2025.day8.Day8SolutionBuilder
 import isdemidoff.year2025.day9.Day9SolutionBuilder
 
-class Year2025Test: FreeSpec({
+class Year2025Test : FreeSpec({
     "Day 1" - {
         val builder = Day1SolutionBuilder("day1")
 
@@ -25,9 +27,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 3
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 2" - {
@@ -37,9 +37,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 1227775554
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 3" - {
@@ -49,9 +47,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 357
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 4" - {
@@ -61,9 +57,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 13
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 5" - {
@@ -73,9 +67,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 3
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 6" - {
@@ -85,9 +77,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 4277556
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 7" - {
@@ -97,9 +87,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 21
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 8" - {
@@ -109,9 +97,7 @@ class Year2025Test: FreeSpec({
             builder.forNumConnections(10).buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 40
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.forNumConnections(1000).buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder.forNumConnections(1000) }
     }
 
     "Day 9" - {
@@ -121,9 +107,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 50
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 10" - {
@@ -133,9 +117,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 7
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 11" - {
@@ -145,9 +127,7 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 5
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 12" - {
@@ -157,8 +137,18 @@ class Year2025Test: FreeSpec({
             builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 2
         }
 
-        TestConstants.TARGET_CHECK_TEST_NAME {
-            shouldNotThrow<Throwable> { println(builder.buildAndSolve(TestConstants.INPUT_FILE_NAME)) }
-        }
+        createTargetShowingTest { builder }
     }
-})
+}) {
+    companion object {
+        inline fun <I : Any> showTargetAnswer(
+            resultExtractor: (I) -> Any = { it },
+            solutionBuilderSupplier: () -> SolutionBuilder<I>,
+        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME))) }
+
+        suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
+            crossinline resultExtractor: (I) -> Any = { it },
+            crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
+        ) = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
+    }
+}

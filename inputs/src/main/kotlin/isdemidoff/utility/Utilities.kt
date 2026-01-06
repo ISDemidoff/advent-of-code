@@ -59,3 +59,9 @@ fun <A, B> cartesianProduct(a: List<A>, b: List<B>): List<Pair<A, B>> =
 
 fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -> R): List<R> =
     a.flatMap { aElem -> b.map { bElem -> transform(aElem to bElem) } }
+
+/**
+ * Create all permutations of a given list. Note that complexity is n factorial, so time spent is huge.
+ */
+fun <E> List<E>.permutations(prevSeq: List<E> = listOf()): List<List<E>> =
+    if (isEmpty()) listOf(prevSeq) else flatMap { (this - it).permutations(prevSeq + it) }
