@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day8
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
+import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SingleLineSolution
 import isdemidoff.utility.input.readLines
 
 private fun String.inMemorySize(): Int {
@@ -19,12 +19,13 @@ private fun String.inMemorySize(): Int {
     return internalString.length - 3 * asciiCodesCount + backslashesCount + quotesCount
 }
 
-class Day8Solution(private val input: String) : Solution<Int> {
-    override fun solve() = input.length - input.inMemorySize()
-}
+class Day8Solution(input: String) : SingleLineSolution<Int>(
+    input = input,
+    solution = { it.length - it.inMemorySize() },
+)
 
-class Day8SolutionBuilder(day8Path: String) : SimpleSolutionBuilder<Int, List<String>>(
-    day8Path,
-    { readLines(it) },
-    { it.sumOf { Day8Solution(it).solve() } },
+class Day8SolutionBuilder(day8Path: String) : RealSimpleSolutionBuilder<Int, List<String>>(
+    inputsDir = day8Path,
+    inputParser = { readLines(it) },
+    solver = { it.sumOf { Day8Solution(it).solve() } },
 )

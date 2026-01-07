@@ -13,6 +13,8 @@ import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day11.Day11Solution
 import isdemidoff.year2015.day11.Day11SolutionBuilder
 import isdemidoff.year2015.day11.isValidPassword
+import isdemidoff.year2015.day12.Day12Solution
+import isdemidoff.year2015.day12.Day12SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -217,6 +219,27 @@ class Year2015Test : FreeSpec({
         }
 
         createTargetShowingTest { Day11SolutionBuilder("day11") }
+    }
+
+    "Day 12" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "[1,2,3]" to 6,
+                """{"a":2,"b":4}""" to 6,
+                "[[[3]]]" to 3,
+                """{"a":{"b":4},"c":-1}""" to 3,
+                """{"a":[-1,1]}""" to 0,
+                """[-1,{"a":1}]""" to 0,
+                "[]" to 0,
+                "{}" to 0,
+            ).forEach { (input, result) ->
+                "\"$input\" has sum of $result" {
+                    Day12Solution(input).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest { Day12SolutionBuilder("day12") }
     }
 }) {
     companion object {

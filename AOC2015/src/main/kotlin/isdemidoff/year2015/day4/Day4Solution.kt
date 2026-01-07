@@ -1,28 +1,22 @@
 package isdemidoff.year2015.day4
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
-import isdemidoff.utility.input.readSingleLine
+import isdemidoff.SingleLineSolution
+import isdemidoff.SingleLineSolutionBuilder
 import java.security.MessageDigest
 
-class Day4Solution(private val input: String) : Solution<Int> {
-    override fun solve() = generateSequence(1) { it + 1 }
-        .first { candidate ->
-            makeMd5Hash(candidate)
-                .startsWith("00000")
-        }
+private fun String.md5hex(): String = MessageDigest.getInstance("MD5")
+    .digest(this.toByteArray(Charsets.UTF_8))
+    .toHexString()
 
-    private fun makeMd5Hash(suffix: Int) =
-        MessageDigest.getInstance("MD5")
-            .digest(
-                (input + suffix)
-                    .toByteArray(Charsets.UTF_8)
-            )
-            .toHexString()
-}
+class Day4Solution(input: String) : SingleLineSolution<Int>(
+    input = input,
+    solution = { str ->
+        generateSequence(1) { it + 1 }
+            .first { (str + it).md5hex().startsWith("00000") }
+    }
+)
 
-class Day4SolutionBuilder(day4Path: String) : SimpleSolutionBuilder<Int, String>(
-    day4Path,
-    { readSingleLine(it) },
-    { Day4Solution(it).solve() }
+class Day4SolutionBuilder(day4Path: String) : SingleLineSolutionBuilder<Int>(
+    inputsDir = day4Path,
+    solutionSupplier = { Day4Solution(it) }
 )

@@ -1,7 +1,6 @@
 package isdemidoff.year2015.day10
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.utility.input.readSingleLine
+import isdemidoff.SingleLineSolutionBuilder
 
 internal fun String.nextApply(): String {
     require(this.matches("""[0-9]+""".toRegex())) { "Invalid input: $this" }
@@ -28,10 +27,9 @@ internal fun String.nextApply(): String {
     return output.toString()
 }
 
-class Day10SolutionBuilder(day10Path: String) : SimpleSolutionBuilder<Int, String>(
-    day10Path,
-    { readSingleLine(it) },
-    {
+class Day10SolutionBuilder(day10Path: String) : SingleLineSolutionBuilder<Int>(
+    inputsDir = day10Path,
+    solver = {
         var result = it
         repeat(40) { result = result.nextApply() }
         result.length

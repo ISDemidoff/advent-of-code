@@ -1,6 +1,6 @@
 package isdemidoff.year2025.day1
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.RealSimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2025.day1.entity.Rotation
 import isdemidoff.year2025.day1.entity.Rotation.Direction
@@ -12,13 +12,13 @@ private infix fun Int.rotate(rotation: Rotation): Int = when (rotation.direction
     Direction.COUNTERCLOCKWISE -> this - rotation.angle
 }
 
-class Day1SolutionBuilder(day1Path: String) : SimpleSolutionBuilder<Int, List<Rotation>>(
-    day1Path,
-    { filename ->
+class Day1SolutionBuilder(day1Path: String) : RealSimpleSolutionBuilder<Int, List<Rotation>>(
+    inputsDir = day1Path,
+    inputParser = { filename ->
         readLines(filename)
             .map { Rotation(it[0], it.drop(1).toInt()) }
     },
-    { rotations ->
+    solver = { rotations ->
         var position = 50
         var result = 0
         rotations.forEach {

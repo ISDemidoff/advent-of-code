@@ -1,7 +1,7 @@
 package isdemidoff.year2025.day8
 
+import isdemidoff.RealSimpleSolutionBuilder
 import isdemidoff.Solution
-import isdemidoff.SolutionBuilder
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
 import isdemidoff.utility.input.readLines
@@ -23,13 +23,9 @@ private fun connectClosest(connections: Set<JunctionBoxConnection>, numConnectio
 
 
 class Day8Solution(
-    val filename: String,
+    val boxes: List<JunctionBox>,
     val numConnections: Int,
 ) : Solution<Int> {
-    fun parseInput(): List<JunctionBox> = readLines(filename)
-        .parseUnescapedCsvInputLines { it.toString().toLong() }
-        .map { it.toJunctionBox() }
-
     fun solveForParsedInput(parsedInput: List<JunctionBox>): Int {
         val connectionsGrid = makeConnectionsGrid(parsedInput)
         connectClosest(connectionsGrid, numConnections)
@@ -41,13 +37,20 @@ class Day8Solution(
             .reduce(Int::times)
     }
 
-    override fun solve() = solveForParsedInput(parseInput())
+    override fun solve() = solveForParsedInput(boxes)
 }
 
 class Day8SolutionBuilder(
     val day8Path: String,
     val numConnections: Int = 0,
-) : SolutionBuilder<Int> {
+) : RealSimpleSolutionBuilder<Int, List<JunctionBox>>(
+    inputsDir = day8Path,
+    inputParser = {
+        readLines(it)
+            .parseUnescapedCsvInputLines { it.toString().toLong() }
+            .map { it.toJunctionBox() }
+    },
+    solutionSupplier = { Day8Solution(it, numConnections) },
+) {
     fun forNumConnections(numConnections: Int): Day8SolutionBuilder = Day8SolutionBuilder(day8Path, numConnections)
-    override fun build(filename: String): Solution<Int> = Day8Solution("${this.day8Path}/$filename", this.numConnections)
 }

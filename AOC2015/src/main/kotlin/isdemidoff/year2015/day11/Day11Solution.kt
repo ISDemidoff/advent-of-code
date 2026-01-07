@@ -1,8 +1,7 @@
 package isdemidoff.year2015.day11
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
-import isdemidoff.utility.input.readSingleLine
+import isdemidoff.SingleLineSolution
+import isdemidoff.SingleLineSolutionBuilder
 
 internal fun String.isValidPassword(): Boolean {
     return this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()
@@ -34,12 +33,12 @@ fun String.increment(): String {
     return if (last == 'z') withoutLast.increment() + 'a' else withoutLast + (last + 1)
 }
 
-class Day11Solution(private val input: String) : Solution<String> {
-    override fun solve() = generateSequence(input.increment()) { it.increment() }.first { it.isValidPassword() }
-}
+class Day11Solution(private val input: String) : SingleLineSolution<String>(
+    input = input,
+    solution = { generateSequence(input.increment()) { it.increment() }.first { it.isValidPassword() } }
+)
 
-class Day11SolutionBuilder(day11Path: String) : SimpleSolutionBuilder<String, String>(
-    day11Path,
-    { readSingleLine(it) },
-    { Day11Solution(it).solve() },
+class Day11SolutionBuilder(day11Path: String) : SingleLineSolutionBuilder<String>(
+    inputsDir = day11Path,
+    solutionSupplier = { Day11Solution(it) },
 )

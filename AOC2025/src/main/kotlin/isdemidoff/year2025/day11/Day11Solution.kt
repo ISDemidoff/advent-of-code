@@ -1,6 +1,6 @@
 package isdemidoff.year2025.day11
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.RealSimpleSolutionBuilder
 import isdemidoff.utility.graphs.findCountOfPaths
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2025.day11.entity.MachineNode
@@ -14,10 +14,10 @@ private fun findCountOfPaths(allNodes: Map<String, MachineNode>, fromNodeId: Str
     )
 }
 
-class Day11SolutionBuilder(day11Path: String) : SimpleSolutionBuilder<Int, List<MachineNode>>(
-    day11Path,
-    { readLines(it).map { it.toNode() } },
-    { parsedInput ->
+class Day11SolutionBuilder(day11Path: String) : RealSimpleSolutionBuilder<Int, List<MachineNode>>(
+    inputsDir = day11Path,
+    inputParser = { readLines(it).map { it.toNode() } },
+    solver = { parsedInput ->
         parsedInput.associateByTo(mutableMapOf()) { it.id }
             .also { it.computeIfAbsent(TO_NODE_ID) { MachineNode(id = it, outputNames = listOf()) } }
             .also { allNodes -> allNodes.values.forEach { it.assignOutputs(allNodes) } }

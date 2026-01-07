@@ -1,13 +1,13 @@
 package isdemidoff.year2025.day7
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.RealSimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.utility.isInvalidPosition
 
-class Day7SolutionBuilder(day7Path: String) : SimpleSolutionBuilder<Int, List<String>>(
-    day7Path,
-    { readLines(it) },
-    { lines ->
+class Day7SolutionBuilder(day7Path: String) : RealSimpleSolutionBuilder<Int, List<String>>(
+    inputsDir = day7Path,
+    inputParser = { readLines(it) },
+    solver = { lines ->
         var splitsCount = 0
         val beams = lines.first().map { it == 'S' }.toMutableList()
         lines.drop(1).forEach { line ->
