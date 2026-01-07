@@ -31,7 +31,9 @@ import isdemidoff.year2015.day4.Day4Solution
 import isdemidoff.year2015.day4.Day4SolutionBuilder
 import isdemidoff.year2015.day5.Day5Solution
 import isdemidoff.year2015.day5.Day5SolutionBuilder
+import isdemidoff.year2015.day5.RulesSet
 import isdemidoff.year2015.day6.Day6SolutionBuilder
+import isdemidoff.year2015.day6.entity.BrightnessLight
 import isdemidoff.year2015.day7.Day7SolutionBuilder
 import isdemidoff.year2015.day8.Day8Solution
 import isdemidoff.year2015.day8.Day8SolutionBuilder
@@ -51,7 +53,7 @@ class Year2015Test : FreeSpec({
                 ")))" to -3,
                 ")())())" to -3,
             ).forEach { (input, result) ->
-                "\"$input\" results to $result" {
+                "\"$input\" leads to $result floor" {
                     Day1Solution(input).solve() shouldBe result
                 }
             }
@@ -68,7 +70,7 @@ class Year2015Test : FreeSpec({
                 "sample1.txt" to (58 to 34),
                 "sample2.txt" to (43 to 14),
             ).forEach { (filename, result) ->
-                "file $filename results to $result" {
+                "file $filename results to ${result.first} wrapping and ${result.second} ribbon" {
                     builder.buildAndSolve(filename) shouldBe result
                 }
             }
@@ -86,7 +88,7 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 4,
                 "^v^v^v^v^v" to 2,
             ).forEach { (input, result) ->
-                "\"$input\" results to $result" {
+                "instruction \"$input\" results to $result houses visited" {
                     Day3Solution(input).solve() shouldBe result
                 }
             }
@@ -100,31 +102,36 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 3,
                 "^v^v^v^v^v" to 11,
             ).forEach { (input, result) ->
-                "\"$input\" results to $result" {
+                "instruction \"$input\" results to $result houses visited by 2 couriers" {
                     Day3Solution(input, 2).solve() shouldBe result
                 }
             }
         }
 
-        createTargetShowingTest(PART_TWO_SUFFIX) { builder.forNumberOfCouriers(2) }
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.forNumberOfCouriers(2) }
     }
 
     "Day 4" - {
+        val builder = Day4SolutionBuilder("day4")
+
         SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "abcdef" to 609043,
                 "pqrstuv" to 1048970,
             ).forEach { (input, result) ->
-                "\"$input\" results to $result" {
+                "\"$input\" has $result as least prefix to get 5 leading zeros" {
                     Day4Solution(input).solve() shouldBe result
                 }
             }
         }
 
-        createTargetShowingTest { Day4SolutionBuilder("day4") }
+        createTargetShowingTest { builder }
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withStartingPattern("0".repeat(6)) }
     }
 
     "Day 5" - {
+        val builder = Day5SolutionBuilder("day5")
+
         SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "ugknbfddgicrmopn" to true,
@@ -134,13 +141,28 @@ class Year2015Test : FreeSpec({
                 "haegwjzuvuyypxyu" to false,
                 "dvszwmarrgswjxmb" to false,
             ).forEach { (input, result) ->
-                "\"$input\" results to $result" {
+                "\"$input\" is ${if(result) "nice" else "naughty"}" {
                     Day5Solution(input).solve() shouldBe result
                 }
             }
         }
 
-        createTargetShowingTest { Day5SolutionBuilder("day5") }
+        createTargetShowingTest { builder }
+
+        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
+            listOf(
+                "qjhvhtzxzqqjkmpb" to true,
+                "xxyxx" to true,
+                "uurcxstgmygtbstg" to false,
+                "ieodomkazucvgmuy" to false,
+            ).forEach { (input, result) ->
+                "\"$input\" is ${if(result) "nice" else "naughty"}" {
+                    Day5Solution(input, RulesSet.PART_TWO).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.forRulesSet(RulesSet.PART_TWO) }
     }
 
     "Day 6" - {
@@ -150,7 +172,8 @@ class Year2015Test : FreeSpec({
             builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 998000
         }
 
-        createTargetShowingTest() { builder }
+        createTargetShowingTest { builder }
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withLightGenerator { BrightnessLight() } }
     }
 
     "Day 7" - {

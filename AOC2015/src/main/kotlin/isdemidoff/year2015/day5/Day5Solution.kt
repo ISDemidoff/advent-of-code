@@ -13,20 +13,45 @@ private fun String.containsDoubleLetter() =
 private fun String.containsForbiddenSubstring() =
     """(ab)|(cd)|(pq)|(xy)""".toRegex().find(this) != null
 
-class Day5Solution(input: String) : SingleLineSolution<Boolean>(
+private fun String.containsTwoRepeatingPairs() =
+    this.zipWithNext().any { (l, r) -> """$l$r""".toRegex().findAll(this).count() > 1 }
+
+private fun String.containsInfixedDoubleLetter() =
+    this.zipWithNext().zipWithNext().any { (leftPair, rightPair) -> leftPair.first == rightPair.second }
+
+enum class RulesSet(vararg val rules: (String) -> Boolean) {
+    PART_ONE(
+        { it.containsThreeVowels() },
+        { it.containsDoubleLetter() },
+        { !it.containsForbiddenSubstring() },
+    ),
+
+    PART_TWO(
+        { it.containsTwoRepeatingPairs() },
+        { it.containsInfixedDoubleLetter() }
+    ),
+}
+
+infix fun String.satisfies(rulesSet: RulesSet) = rulesSet.rules.all { it(this) }
+
+class Day5Solution(
+    input: String,
+    private val rulesSet: RulesSet = RulesSet.PART_ONE,
+) : SingleLineSolution<Boolean>(
     input = input,
-    solution = {
-        it.containsThreeVowels()
-                && it.containsDoubleLetter()
-                && !it.containsForbiddenSubstring()
-    },
+    solution = { it satisfies rulesSet },
 )
 
 /**
  * [Day 5: Doesn't He Have Intern-Elves For This?](https://adventofcode.com/2015/day/5).
  */
-class Day5SolutionBuilder(day5Path: String) : SimpleSolutionBuilder<Int, List<String>>(
+class Day5SolutionBuilder(
+    private val day5Path: String,
+    private val rulesSet: RulesSet = RulesSet.PART_ONE,
+) : SimpleSolutionBuilder<Int, List<String>>(
     inputsDir = day5Path,
     inputParser = { readLines(it) },
-    solver = { it.count { Day5Solution(it).solve() } },
-)
+    solver = { it.count { Day5Solution(it, rulesSet).solve() } },
+) {
+    fun forRulesSet(newRulesSet: RulesSet) = Day5SolutionBuilder(day5Path, newRulesSet)
+}
