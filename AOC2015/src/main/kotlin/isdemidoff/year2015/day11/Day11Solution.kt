@@ -38,6 +38,9 @@ class Day11Solution(private val input: String) : SingleLineSolution<String>(
     solution = { generateSequence(input.increment()) { it.increment() }.first { it.isValidPassword() } }
 )
 
+/**
+ * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11)
+ */
 class Day11SolutionBuilder(day11Path: String) : SingleLineSolutionBuilder<String>(
     inputsDir = day11Path,
     solutionSupplier = { Day11Solution(it) },

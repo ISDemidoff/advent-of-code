@@ -1,10 +1,10 @@
 package isdemidoff.year2025.day7
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.utility.isInvalidPosition
 
-class Day7SolutionBuilder(day7Path: String) : RealSimpleSolutionBuilder<Int, List<String>>(
+class Day7SolutionBuilder(day7Path: String) : SimpleSolutionBuilder<Int, List<String>>(
     inputsDir = day7Path,
     inputParser = { readLines(it) },
     solver = { lines ->

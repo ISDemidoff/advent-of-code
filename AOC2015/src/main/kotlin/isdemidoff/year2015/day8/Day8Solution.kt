@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day8
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.SingleLineSolution
 import isdemidoff.utility.input.readLines
 
@@ -24,7 +24,10 @@ class Day8Solution(input: String) : SingleLineSolution<Int>(
     solution = { it.length - it.inMemorySize() },
 )
 
-class Day8SolutionBuilder(day8Path: String) : RealSimpleSolutionBuilder<Int, List<String>>(
+/**
+ * [Day 8: Matchsticks](https://adventofcode.com/2015/day/8).
+ */
+class Day8SolutionBuilder(day8Path: String) : SimpleSolutionBuilder<Int, List<String>>(
     inputsDir = day8Path,
     inputParser = { readLines(it) },
     solver = { it.sumOf { Day8Solution(it).solve() } },

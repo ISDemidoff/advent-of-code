@@ -5,7 +5,7 @@ data class City(
 ) {
     private val distances = mutableMapOf<City, Int>()
 
-    fun distanceTo(other: City) = distances.getOrDefault(other, 10000)
+    infix fun distanceTo(other: City) = distances.getOrDefault(other, 10000)
 
     internal fun assignDistance(other: City, distance: Int) {
         distances[other] = distance

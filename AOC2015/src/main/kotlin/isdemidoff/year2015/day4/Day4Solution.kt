@@ -16,6 +16,9 @@ class Day4Solution(input: String) : SingleLineSolution<Int>(
     }
 )
 
+/**
+ * [Day 4: The Ideal Stocking Stuffer](https://adventofcode.com/2015/day/4).
+ */
 class Day4SolutionBuilder(day4Path: String) : SingleLineSolutionBuilder<Int>(
     inputsDir = day4Path,
     solutionSupplier = { Day4Solution(it) }

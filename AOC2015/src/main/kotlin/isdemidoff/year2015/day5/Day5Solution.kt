@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day5
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.SingleLineSolution
 import isdemidoff.utility.input.readLines
 
@@ -22,7 +22,10 @@ class Day5Solution(input: String) : SingleLineSolution<Boolean>(
     },
 )
 
-class Day5SolutionBuilder(day5Path: String) : RealSimpleSolutionBuilder<Int, List<String>>(
+/**
+ * [Day 5: Doesn't He Have Intern-Elves For This?](https://adventofcode.com/2015/day/5).
+ */
+class Day5SolutionBuilder(day5Path: String) : SimpleSolutionBuilder<Int, List<String>>(
     inputsDir = day5Path,
     inputParser = { readLines(it) },
     solver = { it.count { Day5Solution(it).solve() } },

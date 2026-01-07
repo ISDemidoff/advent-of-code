@@ -1,6 +1,6 @@
 package isdemidoff.year2025.day8
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.Solution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
@@ -43,7 +43,7 @@ class Day8Solution(
 class Day8SolutionBuilder(
     val day8Path: String,
     val numConnections: Int = 0,
-) : RealSimpleSolutionBuilder<Int, List<JunctionBox>>(
+) : SimpleSolutionBuilder<Int, List<JunctionBox>>(
     inputsDir = day8Path,
     inputParser = {
         readLines(it)

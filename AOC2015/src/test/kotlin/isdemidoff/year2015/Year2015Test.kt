@@ -5,6 +5,7 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
 import isdemidoff.SolutionBuilder
+import isdemidoff.utility.getCombinations
 import isdemidoff.utility.test.TestConstants
 import isdemidoff.year2015.day1.Day1Solution
 import isdemidoff.year2015.day1.Day1SolutionBuilder
@@ -15,6 +16,11 @@ import isdemidoff.year2015.day11.Day11SolutionBuilder
 import isdemidoff.year2015.day11.isValidPassword
 import isdemidoff.year2015.day12.Day12Solution
 import isdemidoff.year2015.day12.Day12SolutionBuilder
+import isdemidoff.year2015.day13.Day13SolutionBuilder
+import isdemidoff.year2015.day14.Day14Solution
+import isdemidoff.year2015.day14.Day14SolutionBuilder
+import isdemidoff.year2015.day14.entity.createReindeer
+import isdemidoff.year2015.day15.Day15SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -240,6 +246,41 @@ class Year2015Test : FreeSpec({
         }
 
         createTargetShowingTest { Day12SolutionBuilder("day12") }
+    }
+
+    "Day 13" - {
+        val builder = Day13SolutionBuilder("day13")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 330
+        }
+
+        createTargetShowingTest { builder }
+    }
+
+    "Day 14" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds." to 1120,
+                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds." to 1056,
+            ).forEach { (input, result) ->
+                "${input.substringBefore(' ')} has result of $result km after 1000 seconds" {
+                    Day14Solution(input.createReindeer(), 1000).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest { Day14SolutionBuilder("day14").forSeconds(2503) }
+    }
+
+    "Day 15" - {
+        val builder = Day15SolutionBuilder("day15")
+
+        TestConstants.SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 62842880
+        }
+
+        createTargetShowingTest { builder }
     }
 }) {
     companion object {

@@ -27,6 +27,9 @@ internal fun String.nextApply(): String {
     return output.toString()
 }
 
+/**
+ * [Day 10: Elves Look, Elves Say](https://adventofcode.com/2015/day/10).
+ */
 class Day10SolutionBuilder(day10Path: String) : SingleLineSolutionBuilder<Int>(
     inputsDir = day10Path,
     solver = {

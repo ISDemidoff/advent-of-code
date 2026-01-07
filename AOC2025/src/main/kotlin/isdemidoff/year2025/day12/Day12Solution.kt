@@ -1,13 +1,13 @@
 package isdemidoff.year2025.day12
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2025.day12.entity.GiftBox
 import isdemidoff.year2025.day12.entity.GiftRegion
 import isdemidoff.year2025.day12.entity.toGiftBoxExtendedInput
 import isdemidoff.year2025.day12.entity.toGiftRegion
 
-class Day12SolutionBuilder(day12Path: String) : RealSimpleSolutionBuilder<Int, Pair<List<GiftBox>, List<GiftRegion>>>(
+class Day12SolutionBuilder(day12Path: String) : SimpleSolutionBuilder<Int, Pair<List<GiftBox>, List<GiftRegion>>>(
     inputsDir = day12Path,
     inputParser = { filename ->
         readLines(filename)

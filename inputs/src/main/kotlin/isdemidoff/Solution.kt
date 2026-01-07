@@ -14,7 +14,7 @@ interface Solution<RESULT> {
 open class SingleLineSolution<RESULT>(
     input: String,
     solution: (String) -> RESULT,
-) : RealSimpleSolution<RESULT, String>(
+) : SimpleSolution<RESULT, String>(
     input = input,
     solver = solution,
 )
@@ -23,14 +23,14 @@ open class SingleLineSolutionBuilder<RESULT>(
     inputsDir: String,
     solver: ((String) -> RESULT)? = null,
     solutionSupplier: ((String) -> Solution<RESULT>)? = null,
-) : RealSimpleSolutionBuilder<RESULT, String>(
+) : SimpleSolutionBuilder<RESULT, String>(
     inputsDir = inputsDir,
     inputParser = { readSingleLine(it) },
     solver = solver,
     solutionSupplier = solutionSupplier,
 )
 
-open class RealSimpleSolutionBuilder<RESULT, PARSED_INPUT>(
+open class SimpleSolutionBuilder<RESULT, PARSED_INPUT>(
     private val inputsDir: String,
     private val inputParser: (filename: String) -> PARSED_INPUT,
     private val solver: ((parsedInput: PARSED_INPUT) -> RESULT)? = null,
@@ -43,14 +43,14 @@ open class RealSimpleSolutionBuilder<RESULT, PARSED_INPUT>(
     override fun build(filename: String): Solution<RESULT> =
         inputParser(filename inDir inputsDir).let {
             when {
-                solver != null -> RealSimpleSolution(it, solver)
+                solver != null -> SimpleSolution(it, solver)
                 solutionSupplier != null -> solutionSupplier(it)
                 else -> error("No solution found (never happens)")
             }
         }
 }
 
-open class RealSimpleSolution<RESULT, PARSED_INPUT>(
+open class SimpleSolution<RESULT, PARSED_INPUT>(
     private val input: PARSED_INPUT,
     private val solver: (parsedInput: PARSED_INPUT) -> RESULT,
 ) : Solution<RESULT> {

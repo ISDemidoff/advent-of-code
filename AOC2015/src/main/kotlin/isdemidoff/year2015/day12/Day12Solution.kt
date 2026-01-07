@@ -16,6 +16,9 @@ class Day12Solution(private val input: String) : SingleLineSolution<Int>(
     solution = { Json.parseToJsonElement(input).calculateTotalSum() },
 )
 
+/**
+ * [Day 12: JSAbacusFramework.io](https://adventofcode.com/2015/day/12).
+ */
 class Day12SolutionBuilder(day12Path: String) : SingleLineSolutionBuilder<Int>(
     inputsDir = day12Path,
     solutionSupplier = { Day12Solution(it) },

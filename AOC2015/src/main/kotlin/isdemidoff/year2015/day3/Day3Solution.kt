@@ -13,6 +13,9 @@ class Day3Solution(input: String) : SingleLineSolution<Int>(
     },
 )
 
+/**
+ * [Day 3: Perfectly Spherical Houses in a Vacuum](https://adventofcode.com/2015/day/3).
+ */
 class Day3SolutionBuilder(day3Path: String) : SingleLineSolutionBuilder<Int>(
     inputsDir = day3Path,
     solutionSupplier = { Day3Solution(it) },

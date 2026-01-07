@@ -65,3 +65,20 @@ fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -
  */
 fun <E> List<E>.permutations(prevSeq: List<E> = listOf()): List<List<E>> =
     if (isEmpty()) listOf(prevSeq) else flatMap { (this - it).permutations(prevSeq + it) }
+
+fun <E> List<E>.getCombinations(
+    totalSum: Int,
+    alreadyCombined: Map<E, Int> = mapOf(),
+) : List<Map<E, Int>> {
+    check(this.isNotEmpty()) { "Cannot combine empty list." }
+
+    if (size == 1) return listOf(alreadyCombined + mapOf(this.single() to totalSum))
+
+    val nextElement = this.first()
+    return (0..totalSum).flatMap {
+        (this - nextElement).getCombinations(
+            totalSum = totalSum - it,
+            alreadyCombined = alreadyCombined + (nextElement to it),
+        )
+    }
+}

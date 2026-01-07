@@ -1,6 +1,6 @@
 package isdemidoff.year2025.day6
 
-import isdemidoff.RealSimpleSolutionBuilder
+import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.utility.parseWhitespaceDelimitedInputList
 import isdemidoff.utility.takeFirstChars
@@ -8,7 +8,7 @@ import isdemidoff.utility.toLongsListList
 import isdemidoff.year2025.day6.entity.Problem
 import isdemidoff.year2025.day6.entity.makeProblemOf
 
-class Day6SolutionBuilder(day6Path: String) : RealSimpleSolutionBuilder<Long, List<Problem>>(
+class Day6SolutionBuilder(day6Path: String) : SimpleSolutionBuilder<Long, List<Problem>>(
     inputsDir = day6Path,
     inputParser = { filename ->
         readLines(filename).parseWhitespaceDelimitedInputList()
