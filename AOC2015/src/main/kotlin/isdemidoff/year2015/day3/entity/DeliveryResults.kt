@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day3.entity
 
 class DeliveryResults {
-    private val visitedPoints = mutableSetOf(Point(0, 0))
+    val visitedPoints = mutableSetOf(Point(0, 0))
     private var currentPoint: Point = Point(0, 0)
 
     fun traversePath(input: String) {
@@ -15,6 +15,7 @@ class DeliveryResults {
             }.also { visitedPoints.add(it) }
         }
     }
-
-    fun getNumberOfVisitedPoints() = visitedPoints.size
 }
+
+fun Iterable<DeliveryResults>.totalVisitedPoints() =
+    this.flatMap { it.visitedPoints }.toSet().size

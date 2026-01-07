@@ -5,8 +5,11 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
 import isdemidoff.SolutionBuilder
-import isdemidoff.utility.getCombinations
-import isdemidoff.utility.test.TestConstants
+import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
+import isdemidoff.utility.test.TestConstants.PART_TWO_SUFFIX
+import isdemidoff.utility.test.TestConstants.SAMPLE_CHECK_TEST_NAME
+import isdemidoff.utility.test.TestConstants.SAMPLE_FILE_NAME
+import isdemidoff.utility.test.TestConstants.TARGET_CHECK_TEST_NAME
 import isdemidoff.year2015.day1.Day1Solution
 import isdemidoff.year2015.day1.Day1SolutionBuilder
 import isdemidoff.year2015.day10.Day10SolutionBuilder
@@ -36,7 +39,7 @@ import isdemidoff.year2015.day9.Day9SolutionBuilder
 
 class Year2015Test : FreeSpec({
     "Day 1" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "(())" to 0,
                 "()()" to 0,
@@ -60,10 +63,10 @@ class Year2015Test : FreeSpec({
     "Day 2" - {
         val builder = Day2SolutionBuilder("day2")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
-                "sample1.txt" to 58,
-                "sample2.txt" to 43,
+                "sample1.txt" to (58 to 34),
+                "sample2.txt" to (43 to 14),
             ).forEach { (filename, result) ->
                 "file $filename results to $result" {
                     builder.buildAndSolve(filename) shouldBe result
@@ -75,7 +78,9 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 3" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        val builder = Day3SolutionBuilder("day3")
+
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 ">" to 2,
                 "^>v<" to 4,
@@ -87,11 +92,25 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        createTargetShowingTest { Day3SolutionBuilder("day3") }
+        createTargetShowingTest { builder }
+
+        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
+            listOf(
+                "^v" to 3,
+                "^>v<" to 3,
+                "^v^v^v^v^v" to 11,
+            ).forEach { (input, result) ->
+                "\"$input\" results to $result" {
+                    Day3Solution(input, 2).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest(PART_TWO_SUFFIX) { builder.forNumberOfCouriers(2) }
     }
 
     "Day 4" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "abcdef" to 609043,
                 "pqrstuv" to 1048970,
@@ -106,7 +125,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 5" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "ugknbfddgicrmopn" to true,
                 "aaa" to true,
@@ -127,8 +146,8 @@ class Year2015Test : FreeSpec({
     "Day 6" - {
         val builder = Day6SolutionBuilder("day6")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 998000
+        SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 998000
         }
 
         createTargetShowingTest() { builder }
@@ -137,8 +156,8 @@ class Year2015Test : FreeSpec({
     "Day 7" - {
         val builder = Day7SolutionBuilder("day7")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME {
-            val completedCircuit = builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME)
+        SAMPLE_CHECK_TEST_NAME {
+            val completedCircuit = builder.buildAndSolve(SAMPLE_FILE_NAME)
             completedCircuit.getValue("d") shouldBe 72.toUShort()
             completedCircuit.getValue("e") shouldBe 507.toUShort()
             completedCircuit.getValue("f") shouldBe 492.toUShort()
@@ -149,15 +168,15 @@ class Year2015Test : FreeSpec({
             completedCircuit.getValue("y") shouldBe 456.toUShort()
         }
 
-        createTargetShowingTest({ it.getValue("a") }) { builder }
+        createTargetShowingTest(resultExtractor = { it.getValue("a") }) { builder }
     }
 
     "Day 8" - {
         val builder = Day8SolutionBuilder("day8")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             "From sample file" {
-                builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 12
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 12
             }
 
             "Just texts" - {
@@ -183,15 +202,15 @@ class Year2015Test : FreeSpec({
     "Day 9" - {
         val builder = Day9SolutionBuilder("day9")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 605
+        SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 605
         }
 
         createTargetShowingTest { builder }
     }
 
     "Day 10" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "1" to "11",
                 "11" to "21",
@@ -209,7 +228,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 11" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "abcdefgh" to "abcdffaa",
                 "ghijklmn" to "ghjaabcc",
@@ -228,7 +247,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 12" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "[1,2,3]" to 6,
                 """{"a":2,"b":4}""" to 6,
@@ -251,15 +270,15 @@ class Year2015Test : FreeSpec({
     "Day 13" - {
         val builder = Day13SolutionBuilder("day13")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 330
+        SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 330
         }
 
         createTargetShowingTest { builder }
     }
 
     "Day 14" - {
-        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+        SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds." to 1120,
                 "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds." to 1056,
@@ -276,8 +295,8 @@ class Year2015Test : FreeSpec({
     "Day 15" - {
         val builder = Day15SolutionBuilder("day15")
 
-        TestConstants.SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(TestConstants.SAMPLE_FILE_NAME) shouldBe 62842880
+        SAMPLE_CHECK_TEST_NAME {
+            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 62842880
         }
 
         createTargetShowingTest { builder }
@@ -287,11 +306,12 @@ class Year2015Test : FreeSpec({
         inline fun <I : Any> showTargetAnswer(
             resultExtractor: (I) -> Any = { it },
             solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME))) }
+        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(INPUT_FILE_NAME))) }
 
         suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
+            testNameSuffix: String = "",
             crossinline resultExtractor: (I) -> Any = { it },
             crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
+        ) = ("$TARGET_CHECK_TEST_NAME $testNameSuffix") { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
     }
 }

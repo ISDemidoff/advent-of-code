@@ -6,18 +6,23 @@ import isdemidoff.SingleLineSolutionBuilder
 class Day1Solution(input: String) : SingleLineSolution<Int>(
     input = input,
     solution = {
-        it.sumOf {
+        it.map {
             when(it) {
                 '(' -> 1
                 ')' -> -1
                 else -> throw IllegalArgumentException("Only parenthesis expected in input string")
             }
+        }.reduceIndexed { index, acc, i ->
+            (acc + i).also { if (it == -1) println("Entered a basement on index ${index + 1}") }
         }
     },
 )
 
 /**
  * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).
+ *
+ * There is still a bug: if input string starts with `)`
+ * then it will not show that we entered a basement on index 1.
  */
 class Day1SolutionBuilder(day1Path: String) : SingleLineSolutionBuilder<Int>(
     inputsDir = day1Path,
