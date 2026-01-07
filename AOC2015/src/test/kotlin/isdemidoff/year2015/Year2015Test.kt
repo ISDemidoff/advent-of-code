@@ -10,6 +10,9 @@ import isdemidoff.year2015.day1.Day1Solution
 import isdemidoff.year2015.day1.Day1SolutionBuilder
 import isdemidoff.year2015.day10.Day10SolutionBuilder
 import isdemidoff.year2015.day10.nextApply
+import isdemidoff.year2015.day11.Day11Solution
+import isdemidoff.year2015.day11.Day11SolutionBuilder
+import isdemidoff.year2015.day11.isValidPassword
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -195,6 +198,25 @@ class Year2015Test : FreeSpec({
         }
 
         createTargetShowingTest { Day10SolutionBuilder("day10") }
+    }
+
+    "Day 11" - {
+        TestConstants.SAMPLE_CHECK_TEST_NAME - {
+            listOf(
+                "abcdefgh" to "abcdffaa",
+                "ghijklmn" to "ghjaabcc",
+            ).forEach { (input, result) ->
+                "Next password after \"$input\" is \"$result\"" {
+                    Day11Solution(input).solve() shouldBe result
+                }
+            }
+
+            "Helper functions check" {
+                "abcdffaa".isValidPassword() shouldBe true
+            }
+        }
+
+        createTargetShowingTest { Day11SolutionBuilder("day11") }
     }
 }) {
     companion object {
