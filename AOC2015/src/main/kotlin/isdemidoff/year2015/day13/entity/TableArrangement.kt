@@ -4,6 +4,7 @@ import isdemidoff.utility.permutations
 
 class TableArrangement(
     peopleRaw: List<String>,
+    addIgnorantMan: Boolean,
 ) {
     private val people = mutableMapOf<String, Man>()
 
@@ -27,6 +28,16 @@ class TableArrangement(
 
             (createMan(from) to createMan(to)) to happiness
         }.forEach { (connection, happiness) -> connection.first.assignHappiness(connection.second, happiness) }
+
+        if (addIgnorantMan) {
+            val allPeople = people.values.toList()
+            val newMan = createMan("Ignorant man")
+
+            allPeople.forEach {
+                it.assignHappiness(newMan, 0)
+                newMan.assignHappiness(it, 0)
+            }
+        }
     }
 
     private fun createMan(name: String) = people.computeIfAbsent(name) { Man(name) }

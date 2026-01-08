@@ -7,8 +7,13 @@ import isdemidoff.year2015.day13.entity.TableArrangement
 /**
  * [Day 13: Knights of the Dinner Table](https://adventofcode.com/2015/day/13).
  */
-class Day13SolutionBuilder(day13Path: String) : SimpleSolutionBuilder<Int, TableArrangement>(
+class Day13SolutionBuilder(
+    private val day13Path: String,
+    private val addIgnorantMan: Boolean = false,
+) : SimpleSolutionBuilder<Int, TableArrangement>(
     inputsDir = day13Path,
-    inputParser = { TableArrangement(readLines(it)) },
+    inputParser = { TableArrangement(readLines(it), addIgnorantMan) },
     solver = { it.findBestSetup() },
-)
+) {
+    fun shouldAddIgnorantMan(add: Boolean) = Day13SolutionBuilder(day13Path, add)
+}

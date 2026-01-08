@@ -17,6 +17,7 @@ import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day11.Day11Solution
 import isdemidoff.year2015.day11.Day11SolutionBuilder
 import isdemidoff.year2015.day11.isValidPassword
+import isdemidoff.year2015.day12.CountingRules
 import isdemidoff.year2015.day12.Day12Solution
 import isdemidoff.year2015.day12.Day12SolutionBuilder
 import isdemidoff.year2015.day13.Day13SolutionBuilder
@@ -199,20 +200,20 @@ class Year2015Test : FreeSpec({
 
         SAMPLE_CHECK_TEST_NAME - {
             "From sample file" {
-                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 12
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe (12 to 19)
             }
 
             "Just texts" - {
                 listOf(
-                    """""""" to 2,
-                    """"abc"""" to 2,
-                    """"aaa\"aaa"""" to 3,
-                    """"\x27"""" to 5,
-                    """"\\\xa6"""" to 6,
-                    """"p\"zqyw"""" to 3,
-                    """"\\\\"""" to 4,
+                    """""""" to (2 to 4),
+                    """"abc"""" to (2 to 4),
+                    """"aaa\"aaa"""" to (3 to 6),
+                    """"\x27"""" to (5 to 5),
+                    """"\\\xa6"""" to (6 to 7),
+                    """"p\"zqyw"""" to (3 to 6),
+                    """"\\\\"""" to (4 to 8),
                 ).forEach { (input, result) ->
-                    "$input results to $result" {
+                    "$input has $result as a result" {
                         Day8Solution(input).solve() shouldBe result
                     }
                 }
@@ -226,7 +227,7 @@ class Year2015Test : FreeSpec({
         val builder = Day9SolutionBuilder("day9")
 
         SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 605
+            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe (605 to 982)
         }
 
         createTargetShowingTest { builder }
@@ -247,7 +248,10 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        createTargetShowingTest { Day10SolutionBuilder("day10") }
+        val builder = Day10SolutionBuilder("day10")
+
+        createTargetShowingTest { builder }
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withRepetitions(50) }
     }
 
     "Day 11" - {
@@ -266,14 +270,29 @@ class Year2015Test : FreeSpec({
             }
         }
 
-        createTargetShowingTest { Day11SolutionBuilder("day11") }
+        val builder = Day11SolutionBuilder("day11")
+
+        val resultPart1 = builder.buildAndSolve(INPUT_FILE_NAME)
+
+        TARGET_CHECK_TEST_NAME {
+            println(resultPart1)
+        }
+
+        val resultPart2 = Day11Solution(resultPart1).solve()
+
+        "$TARGET_CHECK_TEST_NAME $PART_TWO_SUFFIX" {
+            println(resultPart2)
+        }
     }
 
     "Day 12" - {
+        val builder = Day12SolutionBuilder("day12")
+
         SAMPLE_CHECK_TEST_NAME - {
             listOf(
                 "[1,2,3]" to 6,
                 """{"a":2,"b":4}""" to 6,
+                """[1,{"c":"red","b":2},3]""" to 6,
                 "[[[3]]]" to 3,
                 """{"a":{"b":4},"c":-1}""" to 3,
                 """{"a":[-1,1]}""" to 0,
@@ -282,12 +301,33 @@ class Year2015Test : FreeSpec({
                 "{}" to 0,
             ).forEach { (input, result) ->
                 "\"$input\" has sum of $result" {
-                    Day12Solution(input).solve() shouldBe result
+                    Day12Solution(input, CountingRules.COUNT_ALL).solve() shouldBe result
                 }
             }
         }
 
-        createTargetShowingTest { Day12SolutionBuilder("day12") }
+        createTargetShowingTest { builder }
+
+        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
+            listOf(
+                "[1,2,3]" to 6,
+                """[1,{"c":"red","b":2},3]""" to 4,
+                "[[[3]]]" to 3,
+                """{"a":{"b":4},"c":-1}""" to 3,
+                """{"d":"red","e":[1,2,3,4],"f":5}""" to 0,
+                """{"a":[-1,1]}""" to 0,
+                """[-1,{"a":1}]""" to 0,
+                """[1,"red",5]""" to 6,
+                "[]" to 0,
+                "{}" to 0,
+            ).forEach { (input, result) ->
+                "\"$input\" has sum of $result" {
+                    Day12Solution(input, CountingRules.EXCEPT_RED).solve() shouldBe result
+                }
+            }
+        }
+
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withCountingRules(CountingRules.EXCEPT_RED) }
     }
 
     "Day 13" - {
@@ -298,6 +338,7 @@ class Year2015Test : FreeSpec({
         }
 
         createTargetShowingTest { builder }
+        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.shouldAddIgnorantMan(true) }
     }
 
     "Day 14" - {

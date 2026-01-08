@@ -39,7 +39,9 @@ class Day11Solution(private val input: String) : SingleLineSolution<String>(
 )
 
 /**
- * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11)
+ * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11).
+ *
+ * Part 2 is just repeat solution with another input.
  */
 class Day11SolutionBuilder(day11Path: String) : SingleLineSolutionBuilder<String>(
     inputsDir = day11Path,

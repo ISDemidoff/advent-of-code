@@ -30,11 +30,16 @@ internal fun String.nextApply(): String {
 /**
  * [Day 10: Elves Look, Elves Say](https://adventofcode.com/2015/day/10).
  */
-class Day10SolutionBuilder(day10Path: String) : SingleLineSolutionBuilder<Int>(
+class Day10SolutionBuilder(
+    private val day10Path: String,
+    private val repetitions: Int = 40,
+) : SingleLineSolutionBuilder<Int>(
     inputsDir = day10Path,
     solver = {
         var result = it
-        repeat(40) { result = result.nextApply() }
+        repeat(repetitions) { result = result.nextApply() }
         result.length
     },
-)
+) {
+    fun withRepetitions(rep: Int) = Day10SolutionBuilder(day10Path, rep)
+}
