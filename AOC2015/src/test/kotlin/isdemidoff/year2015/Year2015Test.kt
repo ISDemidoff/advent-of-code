@@ -6,7 +6,8 @@ import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
 import isdemidoff.SolutionBuilder
 import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
-import isdemidoff.utility.test.TestConstants.PART_TWO_SUFFIX
+import isdemidoff.utility.test.TestConstants.PART_ONE
+import isdemidoff.utility.test.TestConstants.PART_TWO
 import isdemidoff.utility.test.TestConstants.SAMPLE_CHECK_TEST_NAME
 import isdemidoff.utility.test.TestConstants.SAMPLE_FILE_NAME
 import isdemidoff.utility.test.TestConstants.TARGET_CHECK_TEST_NAME
@@ -21,9 +22,9 @@ import isdemidoff.year2015.day12.CountingRules
 import isdemidoff.year2015.day12.Day12Solution
 import isdemidoff.year2015.day12.Day12SolutionBuilder
 import isdemidoff.year2015.day13.Day13SolutionBuilder
-import isdemidoff.year2015.day14.Day14Solution
 import isdemidoff.year2015.day14.Day14SolutionBuilder
-import isdemidoff.year2015.day14.entity.createReindeer
+import isdemidoff.year2015.day14.entity.RaceConditions
+import isdemidoff.year2015.day14.entity.Reindeer
 import isdemidoff.year2015.day15.Day15SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
@@ -83,98 +84,116 @@ class Year2015Test : FreeSpec({
     "Day 3" - {
         val builder = Day3SolutionBuilder("day3")
 
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                ">" to 2,
-                "^>v<" to 4,
-                "^v^v^v^v^v" to 2,
-            ).forEach { (input, result) ->
-                "instruction \"$input\" results to $result houses visited" {
-                    Day3Solution(input).solve() shouldBe result
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    ">" to 2,
+                    "^>v<" to 4,
+                    "^v^v^v^v^v" to 2,
+                ).forEach { (input, result) ->
+                    "instruction \"$input\" results to $result houses visited" {
+                        Day3Solution(input).solve() shouldBe result
+                    }
                 }
             }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-
-        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
-            listOf(
-                "^v" to 3,
-                "^>v<" to 3,
-                "^v^v^v^v^v" to 11,
-            ).forEach { (input, result) ->
-                "instruction \"$input\" results to $result houses visited by 2 couriers" {
-                    Day3Solution(input, 2).solve() shouldBe result
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "^v" to 3,
+                    "^>v<" to 3,
+                    "^v^v^v^v^v" to 11,
+                ).forEach { (input, result) ->
+                    "instruction \"$input\" results to $result houses visited by 2 couriers" {
+                        Day3Solution(input, 2).solve() shouldBe result
+                    }
                 }
             }
-        }
 
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.forNumberOfCouriers(2) }
+            createTargetShowingTest { builder.forNumberOfCouriers(2) }
+        }
     }
 
     "Day 4" - {
         val builder = Day4SolutionBuilder("day4")
 
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "abcdef" to 609043,
-                "pqrstuv" to 1048970,
-            ).forEach { (input, result) ->
-                "\"$input\" has $result as least prefix to get 5 leading zeros" {
-                    Day4Solution(input).solve() shouldBe result
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "abcdef" to 609043,
+                    "pqrstuv" to 1048970,
+                ).forEach { (input, result) ->
+                    "\"$input\" has $result as least prefix to get 5 leading zeros" {
+                        Day4Solution(input).solve() shouldBe result
+                    }
                 }
             }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withStartingPattern("0".repeat(6)) }
+        PART_TWO - {
+            createTargetShowingTest { builder.withStartingPattern("0".repeat(6)) }
+        }
     }
 
     "Day 5" - {
         val builder = Day5SolutionBuilder("day5")
 
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "ugknbfddgicrmopn" to true,
-                "aaa" to true,
-                "uuuuuuu" to true,
-                "jchzalrnumimnmhp" to false,
-                "haegwjzuvuyypxyu" to false,
-                "dvszwmarrgswjxmb" to false,
-            ).forEach { (input, result) ->
-                "\"$input\" is ${if(result) "nice" else "naughty"}" {
-                    Day5Solution(input).solve() shouldBe result
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "ugknbfddgicrmopn" to true,
+                    "aaa" to true,
+                    "uuuuuuu" to true,
+                    "jchzalrnumimnmhp" to false,
+                    "haegwjzuvuyypxyu" to false,
+                    "dvszwmarrgswjxmb" to false,
+                ).forEach { (input, result) ->
+                    "\"$input\" is ${if(result) "nice" else "naughty"}" {
+                        Day5Solution(input).solve() shouldBe result
+                    }
                 }
             }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-
-        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
-            listOf(
-                "qjhvhtzxzqqjkmpb" to true,
-                "xxyxx" to true,
-                "uurcxstgmygtbstg" to false,
-                "ieodomkazucvgmuy" to false,
-            ).forEach { (input, result) ->
-                "\"$input\" is ${if(result) "nice" else "naughty"}" {
-                    Day5Solution(input, RulesSet.PART_TWO).solve() shouldBe result
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "qjhvhtzxzqqjkmpb" to true,
+                    "xxyxx" to true,
+                    "uurcxstgmygtbstg" to false,
+                    "ieodomkazucvgmuy" to false,
+                ).forEach { (input, result) ->
+                    "\"$input\" is ${if(result) "nice" else "naughty"}" {
+                        Day5Solution(input, RulesSet.PART_TWO).solve() shouldBe result
+                    }
                 }
             }
-        }
 
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.forRulesSet(RulesSet.PART_TWO) }
+            createTargetShowingTest { builder.forRulesSet(RulesSet.PART_TWO) }
+        }
     }
 
     "Day 6" - {
         val builder = Day6SolutionBuilder("day6")
 
-        SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 998000
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 998000
+            }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withLightGenerator { BrightnessLight() } }
+        PART_TWO - {
+            createTargetShowingTest { builder.withLightGenerator { BrightnessLight() } }
+        }
     }
 
     "Day 7" - {
@@ -234,126 +253,162 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 10" - {
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "1" to "11",
-                "11" to "21",
-                "21" to "1211",
-                "1211" to "111221",
-                "111221" to "312211",
-            ).forEach { (input, result) ->
-                "\"$input\" iterates to \"$result\"" {
-                    input.nextApply() shouldBe result
-                }
-            }
-        }
-
         val builder = Day10SolutionBuilder("day10")
 
-        createTargetShowingTest { builder }
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withRepetitions(50) }
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "1" to "11",
+                    "11" to "21",
+                    "21" to "1211",
+                    "1211" to "111221",
+                    "111221" to "312211",
+                ).forEach { (input, result) ->
+                    "\"$input\" iterates to \"$result\"" {
+                        input.nextApply() shouldBe result
+                    }
+                }
+            }
+
+            createTargetShowingTest { builder }
+        }
+
+        PART_TWO - {
+            createTargetShowingTest { builder.withRepetitions(50) }
+        }
     }
 
     "Day 11" - {
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "abcdefgh" to "abcdffaa",
-                "ghijklmn" to "ghjaabcc",
-            ).forEach { (input, result) ->
-                "Next password after \"$input\" is \"$result\"" {
-                    Day11Solution(input).solve() shouldBe result
+        val builder = Day11SolutionBuilder("day11")
+
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "abcdefgh" to "abcdffaa",
+                    "ghijklmn" to "ghjaabcc",
+                ).forEach { (input, result) ->
+                    "Next password after \"$input\" is \"$result\"" {
+                        Day11Solution(input).solve() shouldBe result
+                    }
                 }
             }
 
-            "Helper functions check" {
-                "abcdffaa".isValidPassword() shouldBe true
-            }
+            createTargetShowingTest { builder }
         }
 
-        val builder = Day11SolutionBuilder("day11")
-
-        val resultPart1 = builder.buildAndSolve(INPUT_FILE_NAME)
-
-        TARGET_CHECK_TEST_NAME {
-            println(resultPart1)
-        }
-
-        val resultPart2 = Day11Solution(resultPart1).solve()
-
-        "$TARGET_CHECK_TEST_NAME $PART_TWO_SUFFIX" {
-            println(resultPart2)
+        PART_TWO - {
+            createTargetShowingTest { builder.searchingPosition(2) }
         }
     }
 
     "Day 12" - {
         val builder = Day12SolutionBuilder("day12")
 
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "[1,2,3]" to 6,
-                """{"a":2,"b":4}""" to 6,
-                """[1,{"c":"red","b":2},3]""" to 6,
-                "[[[3]]]" to 3,
-                """{"a":{"b":4},"c":-1}""" to 3,
-                """{"a":[-1,1]}""" to 0,
-                """[-1,{"a":1}]""" to 0,
-                "[]" to 0,
-                "{}" to 0,
-            ).forEach { (input, result) ->
-                "\"$input\" has sum of $result" {
-                    Day12Solution(input, CountingRules.COUNT_ALL).solve() shouldBe result
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                listOf(
+                    "[1,2,3]" to 6,
+                    """{"a":2,"b":4}""" to 6,
+                    """[1,{"c":"red","b":2},3]""" to 6,
+                    "[[[3]]]" to 3,
+                    """{"a":{"b":4},"c":-1}""" to 3,
+                    """{"a":[-1,1]}""" to 0,
+                    """[-1,{"a":1}]""" to 0,
+                    "[]" to 0,
+                    "{}" to 0,
+                ).forEach { (input, result) ->
+                    "\"$input\" has sum of $result" {
+                        Day12Solution(input, CountingRules.COUNT_ALL).solve() shouldBe result
+                    }
                 }
             }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-
-        "$SAMPLE_CHECK_TEST_NAME $PART_TWO_SUFFIX" - {
-            listOf(
-                "[1,2,3]" to 6,
-                """[1,{"c":"red","b":2},3]""" to 4,
-                "[[[3]]]" to 3,
-                """{"a":{"b":4},"c":-1}""" to 3,
-                """{"d":"red","e":[1,2,3,4],"f":5}""" to 0,
-                """{"a":[-1,1]}""" to 0,
-                """[-1,{"a":1}]""" to 0,
-                """[1,"red",5]""" to 6,
-                "[]" to 0,
-                "{}" to 0,
-            ).forEach { (input, result) ->
-                "\"$input\" has sum of $result" {
-                    Day12Solution(input, CountingRules.EXCEPT_RED).solve() shouldBe result
+        PART_TWO - {
+            "$SAMPLE_CHECK_TEST_NAME $PART_TWO" - {
+                listOf(
+                    "[1,2,3]" to 6,
+                    """[1,{"c":"red","b":2},3]""" to 4,
+                    "[[[3]]]" to 3,
+                    """{"a":{"b":4},"c":-1}""" to 3,
+                    """{"d":"red","e":[1,2,3,4],"f":5}""" to 0,
+                    """{"a":[-1,1]}""" to 0,
+                    """[-1,{"a":1}]""" to 0,
+                    """[1,"red",5]""" to 6,
+                    "[]" to 0,
+                    "{}" to 0,
+                ).forEach { (input, result) ->
+                    "\"$input\" has sum of $result when counting all except red objects" {
+                        Day12Solution(input, CountingRules.EXCEPT_RED).solve() shouldBe result
+                    }
                 }
             }
-        }
 
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.withCountingRules(CountingRules.EXCEPT_RED) }
+            createTargetShowingTest { builder.withCountingRules(CountingRules.EXCEPT_RED) }
+        }
     }
 
     "Day 13" - {
         val builder = Day13SolutionBuilder("day13")
 
-        SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 330
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 330
+            }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
-        createTargetShowingTest(testNameSuffix = PART_TWO_SUFFIX) { builder.shouldAddIgnorantMan(true) }
+        PART_TWO - {
+            createTargetShowingTest { builder.shouldAddIgnorantMan(true) }
+        }
     }
 
     "Day 14" - {
-        SAMPLE_CHECK_TEST_NAME - {
-            listOf(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds." to 1120,
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds." to 1056,
-            ).forEach { (input, result) ->
-                "${input.substringBefore(' ')} has result of $result km after 1000 seconds" {
-                    Day14Solution(input.createReindeer(), 1000).solve() shouldBe result
+        var builder = Day14SolutionBuilder("day14")
+        val sampleRaceDuration = 1000
+        val targetRaceDuration = 2503
+
+        fun Map<Reindeer, Int>.findReindeerResults(name: String) = this.filterKeys { it.name == name }.values.single()
+        fun Map<Reindeer, Int>.findBestScore() = this.maxOf { it.value }
+
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME - {
+                val raceResults = builder.forSeconds(sampleRaceDuration).buildAndSolve(SAMPLE_FILE_NAME)
+
+                listOf(
+                    "Comet" to 1120,
+                    "Dancer" to 1056,
+                ).forEach { (reindeer, result) ->
+                    "$reindeer has result of $result km after $sampleRaceDuration seconds" {
+                        raceResults.findReindeerResults(reindeer) shouldBe result
+                    }
                 }
             }
+
+            createTargetShowingTest(resultExtractor = { it.findBestScore() }) { builder.forSeconds(targetRaceDuration) }
         }
 
-        createTargetShowingTest { Day14SolutionBuilder("day14").forSeconds(2503) }
+        builder = builder.withRaceConditions(RaceConditions.TOTAL_LEAD_TIME)
+
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME - {
+                val raceResults = builder.forSeconds(sampleRaceDuration).buildAndSolve(SAMPLE_FILE_NAME)
+
+                listOf(
+                    "Comet" to 312,
+                    "Dancer" to 689,
+                ).forEach { (reindeer, result) ->
+                    "$reindeer has result of $result points after $sampleRaceDuration seconds" {
+                        raceResults.findReindeerResults(reindeer) shouldBe result
+                    }
+                }
+            }
+
+            createTargetShowingTest(resultExtractor = { it.findBestScore() }) { builder.forSeconds(targetRaceDuration) }
+        }
     }
 
     "Day 15" - {
@@ -373,9 +428,8 @@ class Year2015Test : FreeSpec({
         ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(INPUT_FILE_NAME))) }
 
         suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
-            testNameSuffix: String = "",
             crossinline resultExtractor: (I) -> Any = { it },
             crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = ("$TARGET_CHECK_TEST_NAME $testNameSuffix") { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
+        ) = TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
     }
 }

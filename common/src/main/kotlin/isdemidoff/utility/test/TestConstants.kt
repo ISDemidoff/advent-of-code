@@ -6,5 +6,7 @@ object TestConstants {
 
     const val SAMPLE_CHECK_TEST_NAME = "sample check"
     const val TARGET_CHECK_TEST_NAME = "target check"
-    const val PART_TWO_SUFFIX = "part two"
+
+    const val PART_ONE = "part one"
+    const val PART_TWO = "part two"
 }

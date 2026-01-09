@@ -33,17 +33,27 @@ fun String.increment(): String {
     return if (last == 'z') withoutLast.increment() + 'a' else withoutLast + (last + 1)
 }
 
-class Day11Solution(private val input: String) : SingleLineSolution<String>(
+fun String.getNextValidPassword() =
+    generateSequence(this.increment()) { it.increment() }
+        .first { it.isValidPassword() }
+
+class Day11Solution(
+    input: String,
+    private val position: Int = 1,
+) : SingleLineSolution<String>(
     input = input,
-    solution = { generateSequence(input.increment()) { it.increment() }.first { it.isValidPassword() } }
+    solution = { generateSequence(it) { it.getNextValidPassword() }.drop(position).first() }
 )
 
 /**
  * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11).
- *
- * Part 2 is just repeat solution with another input.
  */
-class Day11SolutionBuilder(day11Path: String) : SingleLineSolutionBuilder<String>(
+class Day11SolutionBuilder(
+    private val day11Path: String,
+    private val position: Int = 1,
+) : SingleLineSolutionBuilder<String>(
     inputsDir = day11Path,
-    solutionSupplier = { Day11Solution(it) },
-)
+    solutionSupplier = { Day11Solution(it, position) },
+) {
+    fun searchingPosition(pos: Int) = Day11SolutionBuilder(day11Path, pos)
+}

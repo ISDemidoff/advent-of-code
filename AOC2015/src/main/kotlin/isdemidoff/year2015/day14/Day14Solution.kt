@@ -3,15 +3,17 @@ package isdemidoff.year2015.day14
 import isdemidoff.SimpleSolution
 import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.utility.input.readLines
+import isdemidoff.year2015.day14.entity.RaceConditions
 import isdemidoff.year2015.day14.entity.Reindeer
 import isdemidoff.year2015.day14.entity.createReindeer
 
 class Day14Solution(
-    reindeer: Reindeer,
+    reindeer: List<Reindeer>,
     private val secondsToPass: Int,
-) : SimpleSolution<Int, Reindeer>(
+    private val raceConditions: RaceConditions = RaceConditions.DISTANCE_TRAVELLED,
+) : SimpleSolution<Map<Reindeer, Int>, List<Reindeer>>(
     input = reindeer,
-    solver = { it.distanceAfter(secondsToPass) },
+    solver = { raceConditions.raceGenerator(it).getRaceResults(secondsToPass) },
 )
 
 /**
@@ -20,10 +22,12 @@ class Day14Solution(
 class Day14SolutionBuilder(
     private val day14Path: String,
     private val secondsToPass: Int = 0,
-) : SimpleSolutionBuilder<Int, List<Reindeer>>(
+    private val raceConditions: RaceConditions = RaceConditions.DISTANCE_TRAVELLED,
+) : SimpleSolutionBuilder<Map<Reindeer, Int>, List<Reindeer>>(
     inputsDir = day14Path,
     inputParser = { readLines(it).map { it.createReindeer() } },
-    solver = { it.maxOf { Day14Solution(it, secondsToPass).solve() } },
+    solver = { Day14Solution(it, secondsToPass, raceConditions).solve() },
 ) {
-    fun forSeconds(seconds: Int) = Day14SolutionBuilder(day14Path, seconds)
+    fun withRaceConditions(conditions: RaceConditions) = Day14SolutionBuilder(day14Path, secondsToPass, conditions)
+    fun forSeconds(seconds: Int) = Day14SolutionBuilder(day14Path, seconds, raceConditions)
 }
