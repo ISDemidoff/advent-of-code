@@ -17,7 +17,6 @@ import isdemidoff.year2015.day10.Day10SolutionBuilder
 import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day11.Day11Solution
 import isdemidoff.year2015.day11.Day11SolutionBuilder
-import isdemidoff.year2015.day11.isValidPassword
 import isdemidoff.year2015.day12.CountingRules
 import isdemidoff.year2015.day12.Day12Solution
 import isdemidoff.year2015.day12.Day12SolutionBuilder
@@ -26,6 +25,9 @@ import isdemidoff.year2015.day14.Day14SolutionBuilder
 import isdemidoff.year2015.day14.entity.RaceConditions
 import isdemidoff.year2015.day14.entity.Reindeer
 import isdemidoff.year2015.day15.Day15SolutionBuilder
+import isdemidoff.year2015.day15.entity.calculateCalories
+import isdemidoff.year2015.day16.Day16SolutionBuilder
+import isdemidoff.year2015.day16.entity.ComparingRules
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -412,13 +414,37 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 15" - {
-        val builder = Day15SolutionBuilder("day15")
+        var builder = Day15SolutionBuilder("day15")
 
-        SAMPLE_CHECK_TEST_NAME {
-            builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 62842880
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 62842880
+            }
+
+            createTargetShowingTest { builder }
         }
 
-        createTargetShowingTest { builder }
+        builder = builder.withCombinationsFilter { it.calculateCalories() == 500L }
+
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.buildAndSolve(SAMPLE_FILE_NAME) shouldBe 57600000
+            }
+
+            createTargetShowingTest { builder }
+        }
+    }
+
+    "Day 16" - {
+        val builder = Day16SolutionBuilder("day16")
+
+        PART_ONE - {
+            createTargetShowingTest { builder }
+        }
+
+        PART_TWO - {
+            createTargetShowingTest { builder.withComparingRules(ComparingRules.COMPLICATED) }
+        }
     }
 }) {
     companion object {

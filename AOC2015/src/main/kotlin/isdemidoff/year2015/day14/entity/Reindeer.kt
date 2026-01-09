@@ -17,13 +17,12 @@ data class Reindeer(
 internal fun String.createReindeer() =
     """(.*) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds\.""".toRegex()
         .matchEntire(this)
-        .let { requireNotNull(it) { "Input string must match regexp" } }
-        .groups
+        .let { requireNotNull(it?.destructured) { "Input string must match regexp" } }
         .let {
             Reindeer(
-                name = it[1]!!.value,
-                speed = it[2]!!.value.toInt(),
-                flyingTime = it[3]!!.value.toInt(),
-                restingTime = it[4]!!.value.toInt(),
+                name = it.component1(),
+                speed = it.component2().toInt(),
+                flyingTime = it.component3().toInt(),
+                restingTime = it.component4().toInt(),
             )
         }
