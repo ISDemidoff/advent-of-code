@@ -29,6 +29,7 @@ import isdemidoff.year2015.day15.entity.calculateCalories
 import isdemidoff.year2015.day16.Day16SolutionBuilder
 import isdemidoff.year2015.day16.entity.ComparingRules
 import isdemidoff.year2015.day17.Day17SolutionBuilder
+import isdemidoff.year2015.day18.Day18SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -466,6 +467,36 @@ class Year2015Test : FreeSpec({
             }
 
             createTargetShowingTest(resultExtractor = { it.filterSmallest().size }) { builder }
+        }
+    }
+
+    "Day 18" - {
+        var builder = Day18SolutionBuilder("day18")
+
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.forNumberOfIterations(1).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 11
+                builder.forNumberOfIterations(2).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 8
+                builder.forNumberOfIterations(3).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 4
+                builder.forNumberOfIterations(4).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 4
+                builder.forNumberOfIterations(5).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 4
+            }
+
+            createTargetShowingTest { builder }
+        }
+
+        builder = builder.withCornersOverride(true)
+
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.forNumberOfIterations(1).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 18
+                builder.forNumberOfIterations(2).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 18
+                builder.forNumberOfIterations(3).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 18
+                builder.forNumberOfIterations(4).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 14
+                builder.forNumberOfIterations(5).buildAndSolve(SAMPLE_FILE_NAME) shouldBe 17
+            }
+
+            createTargetShowingTest { builder }
         }
     }
 }) {
