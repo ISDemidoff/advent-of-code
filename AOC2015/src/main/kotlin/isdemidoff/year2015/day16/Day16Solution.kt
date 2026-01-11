@@ -7,6 +7,9 @@ import isdemidoff.year2015.day16.entity.ComparingRules
 import isdemidoff.year2015.day16.entity.analysis
 import isdemidoff.year2015.day16.entity.rememberAuntSue
 
+/**
+ * [Day 16: Aunt Sue](https://adventofcode.com/2015/day/16).
+ */
 class Day16SolutionBuilder(
     private val day16Path: String,
     private val comparingRules: ComparingRules = ComparingRules.DEFAULT,

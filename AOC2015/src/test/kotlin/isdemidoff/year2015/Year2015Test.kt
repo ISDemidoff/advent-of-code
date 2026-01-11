@@ -28,6 +28,7 @@ import isdemidoff.year2015.day15.Day15SolutionBuilder
 import isdemidoff.year2015.day15.entity.calculateCalories
 import isdemidoff.year2015.day16.Day16SolutionBuilder
 import isdemidoff.year2015.day16.entity.ComparingRules
+import isdemidoff.year2015.day17.Day17SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -444,6 +445,27 @@ class Year2015Test : FreeSpec({
 
         PART_TWO - {
             createTargetShowingTest { builder.withComparingRules(ComparingRules.COMPLICATED) }
+        }
+    }
+
+    "Day 17" - {
+        val builder = Day17SolutionBuilder("day17")
+        fun List<List<Int>>.filterSmallest() = this.minOf { it.size }.let { minSize -> this.filter { it.size == minSize } }
+
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.forTotalSum(25).buildAndSolve(SAMPLE_FILE_NAME).size shouldBe 4
+            }
+
+            createTargetShowingTest(resultExtractor = { it.size }) { builder }
+        }
+
+        PART_TWO - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.forTotalSum(25).buildAndSolve(SAMPLE_FILE_NAME).filterSmallest().size shouldBe 3
+            }
+
+            createTargetShowingTest(resultExtractor = { it.filterSmallest().size }) { builder }
         }
     }
 }) {
