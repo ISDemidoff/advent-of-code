@@ -7,7 +7,7 @@ data class JunctionBoxConnection(
     val singular: Boolean = first == second
 
     fun enableConnection() {
-        println("Connecting $first and $second")
+//        println("Connecting $first and $second")
         first connectTo second
     }
 

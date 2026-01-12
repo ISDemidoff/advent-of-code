@@ -6,6 +6,7 @@ import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.shouldBe
 import isdemidoff.SolutionBuilder
 import isdemidoff.utility.test.TestConstants
+import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
 import isdemidoff.year2025.day1.Day1SolutionBuilder
 import isdemidoff.year2025.day10.Day10SolutionBuilder
 import isdemidoff.year2025.day11.Day11SolutionBuilder
@@ -141,14 +142,8 @@ class Year2025Test : FreeSpec({
     }
 }) {
     companion object {
-        inline fun <I : Any> showTargetAnswer(
-            resultExtractor: (I) -> Any = { it },
-            solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(TestConstants.INPUT_FILE_NAME))) }
-
         suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
-            crossinline resultExtractor: (I) -> Any = { it },
             crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = TestConstants.TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
+        ) = TestConstants.TARGET_CHECK_TEST_NAME { solutionBuilderSupplier().revealResult(INPUT_FILE_NAME) }
     }
 }

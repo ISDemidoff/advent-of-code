@@ -28,6 +28,10 @@ class Day14SolutionBuilder(
     inputParser = { readLines(it).map { it.createReindeer() } },
     solver = { Day14Solution(it, secondsToPass, raceConditions).solve() },
 ) {
+    fun Map<Reindeer, Int>.findBestScore() = this.maxOf { it.value }
+
+    override fun formatResult(result: Map<Reindeer, Int>): String = "Best score after $secondsToPass seconds is ${result.findBestScore()}"
+
     fun withRaceConditions(conditions: RaceConditions) = Day14SolutionBuilder(day14Path, secondsToPass, conditions)
     fun forSeconds(seconds: Int) = Day14SolutionBuilder(day14Path, seconds, raceConditions)
 }

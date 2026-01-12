@@ -5,6 +5,7 @@ import isdemidoff.utility.input.readSingleLine
 interface SolutionBuilder<RESULT> {
     fun build(filename: String): Solution<RESULT>
     fun buildAndSolve(filename: String) = build(filename).solve()
+    fun revealResult(filename: String)
 }
 
 interface Solution<RESULT> {
@@ -19,7 +20,7 @@ open class SingleLineSolution<RESULT>(
     solver = solution,
 )
 
-open class SingleLineSolutionBuilder<RESULT>(
+abstract class SingleLineSolutionBuilder<RESULT>(
     inputsDir: String,
     solver: ((String) -> RESULT)? = null,
     solutionSupplier: ((String) -> Solution<RESULT>)? = null,
@@ -30,7 +31,7 @@ open class SingleLineSolutionBuilder<RESULT>(
     solutionSupplier = solutionSupplier,
 )
 
-open class SimpleSolutionBuilder<RESULT, PARSED_INPUT>(
+abstract class SimpleSolutionBuilder<RESULT, PARSED_INPUT>(
     private val inputsDir: String,
     private val inputParser: (filename: String) -> PARSED_INPUT,
     private val solver: ((parsedInput: PARSED_INPUT) -> RESULT)? = null,
@@ -48,6 +49,12 @@ open class SimpleSolutionBuilder<RESULT, PARSED_INPUT>(
                 else -> error("No solution found (never happens)")
             }
         }
+
+    open fun formatResult(result: RESULT): String = result.toString()
+
+    override fun revealResult(filename: String) {
+        println("${filename inDir inputsDir} located result: ${formatResult(buildAndSolve(filename))}")
+    }
 }
 
 open class SimpleSolution<RESULT, PARSED_INPUT>(

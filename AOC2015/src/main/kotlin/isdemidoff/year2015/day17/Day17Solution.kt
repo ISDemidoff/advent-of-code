@@ -3,6 +3,7 @@ package isdemidoff.year2015.day17
 import isdemidoff.SimpleSolutionBuilder
 import isdemidoff.Solution
 import isdemidoff.utility.input.readLines
+import kotlin.collections.minOf
 
 class Day17Solution(
     ints: List<Int>,
@@ -48,5 +49,11 @@ class Day17SolutionBuilder(
     inputParser = { readLines(it).map { it.toInt() } },
     solutionSupplier = { Day17Solution(it, totalSum) }
 ) {
+    override fun formatResult(result: List<List<Int>>): String {
+        val minSize = result.minOf { it.size }
+        val countSmallest = result.count { it.size == minSize }
+        return "Total combinations are ${result.size}, whilst minimal terms involved in $totalSum are $minSize and there is $countSmallest"
+    }
+
     fun forTotalSum(newSum: Int) = Day17SolutionBuilder(day17Path, newSum)
 }

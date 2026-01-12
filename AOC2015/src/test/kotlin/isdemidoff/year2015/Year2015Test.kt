@@ -3,8 +3,11 @@ package isdemidoff.year2015
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
+import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import isdemidoff.SolutionBuilder
+import isdemidoff.utility.test.TestConstants
 import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
 import isdemidoff.utility.test.TestConstants.PART_ONE
 import isdemidoff.utility.test.TestConstants.PART_TWO
@@ -30,6 +33,7 @@ import isdemidoff.year2015.day16.Day16SolutionBuilder
 import isdemidoff.year2015.day16.entity.ComparingRules
 import isdemidoff.year2015.day17.Day17SolutionBuilder
 import isdemidoff.year2015.day18.Day18SolutionBuilder
+import isdemidoff.year2015.day19.Day19SolutionBuilder
 import isdemidoff.year2015.day2.Day2SolutionBuilder
 import isdemidoff.year2015.day3.Day3Solution
 import isdemidoff.year2015.day3.Day3SolutionBuilder
@@ -215,7 +219,7 @@ class Year2015Test : FreeSpec({
             completedCircuit.getValue("y") shouldBe 456.toUShort()
         }
 
-        createTargetShowingTest(resultExtractor = { it.getValue("a") }) { builder }
+        createTargetShowingTest { builder }
     }
 
     "Day 8" - {
@@ -376,7 +380,6 @@ class Year2015Test : FreeSpec({
         val targetRaceDuration = 2503
 
         fun Map<Reindeer, Int>.findReindeerResults(name: String) = this.filterKeys { it.name == name }.values.single()
-        fun Map<Reindeer, Int>.findBestScore() = this.maxOf { it.value }
 
         PART_ONE - {
             SAMPLE_CHECK_TEST_NAME - {
@@ -392,7 +395,7 @@ class Year2015Test : FreeSpec({
                 }
             }
 
-            createTargetShowingTest(resultExtractor = { it.findBestScore() }) { builder.forSeconds(targetRaceDuration) }
+            createTargetShowingTest { builder.forSeconds(targetRaceDuration) }
         }
 
         builder = builder.withRaceConditions(RaceConditions.TOTAL_LEAD_TIME)
@@ -411,7 +414,7 @@ class Year2015Test : FreeSpec({
                 }
             }
 
-            createTargetShowingTest(resultExtractor = { it.findBestScore() }) { builder.forSeconds(targetRaceDuration) }
+            createTargetShowingTest { builder.forSeconds(targetRaceDuration) }
         }
     }
 
@@ -451,23 +454,14 @@ class Year2015Test : FreeSpec({
 
     "Day 17" - {
         val builder = Day17SolutionBuilder("day17")
-        fun List<List<Int>>.filterSmallest() = this.minOf { it.size }.let { minSize -> this.filter { it.size == minSize } }
 
-        PART_ONE - {
-            SAMPLE_CHECK_TEST_NAME {
-                builder.forTotalSum(25).buildAndSolve(SAMPLE_FILE_NAME).size shouldBe 4
-            }
-
-            createTargetShowingTest(resultExtractor = { it.size }) { builder }
+        SAMPLE_CHECK_TEST_NAME {
+            val result = builder.forTotalSum(25).solveSample() shouldHaveSize 4
+            val minSize = result.minOf { it.size } shouldBe 2
+            result.count { it.size == minSize } shouldBe 3
         }
 
-        PART_TWO - {
-            SAMPLE_CHECK_TEST_NAME {
-                builder.forTotalSum(25).buildAndSolve(SAMPLE_FILE_NAME).filterSmallest().size shouldBe 3
-            }
-
-            createTargetShowingTest(resultExtractor = { it.filterSmallest().size }) { builder }
-        }
+        createTargetShowingTest { builder }
     }
 
     "Day 18" - {
@@ -499,16 +493,27 @@ class Year2015Test : FreeSpec({
             createTargetShowingTest { builder }
         }
     }
+
+    "Day 19: Medicine for Rudolph" - {
+        val builder = Day19SolutionBuilder("day19")
+
+        PART_ONE - {
+            SAMPLE_CHECK_TEST_NAME {
+                builder.buildAndSolve(SAMPLE_FILE_NAME).let {
+                    it shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")
+                    it shouldHaveSize 4
+                }
+            }
+
+            createTargetShowingTest { builder }
+        }
+    }
 }) {
     companion object {
-        inline fun <I : Any> showTargetAnswer(
-            resultExtractor: (I) -> Any = { it },
-            solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = shouldNotThrow<Throwable> { println(resultExtractor(solutionBuilderSupplier().buildAndSolve(INPUT_FILE_NAME))) }
-
         suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
-            crossinline resultExtractor: (I) -> Any = { it },
             crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = TARGET_CHECK_TEST_NAME { showTargetAnswer(resultExtractor, solutionBuilderSupplier) }
+        ) = TARGET_CHECK_TEST_NAME { solutionBuilderSupplier().revealResult(INPUT_FILE_NAME) }
+
+        fun <I : Any> SolutionBuilder<I>.solveSample() = this.buildAndSolve(SAMPLE_FILE_NAME)
     }
 }

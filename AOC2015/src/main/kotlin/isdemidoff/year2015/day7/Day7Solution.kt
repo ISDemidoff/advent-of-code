@@ -15,4 +15,6 @@ class Day7SolutionBuilder(day7Path: String) : SimpleSolutionBuilder<LogicalCircu
     inputsDir = day7Path,
     inputParser = { readLines(it).map { it.createLogicalWire() } },
     solver = { wires -> LogicalCircuit().apply { importWires(wires) } },
-)
+) {
+    override fun formatResult(result: LogicalCircuit): String = "Value at wire 'a' is ${result.getValue("a")}"
+}
