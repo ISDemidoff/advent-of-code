@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day15
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.combinations
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2015.day15.entity.Ingredient
@@ -16,7 +16,7 @@ class Day15SolutionBuilder(
     private val day15Path: String,
     private val totalSpoons: Int = 100,
     private val combinationsFilter: (Map<Ingredient, Int>) -> Boolean = { true },
-) : SimpleSolutionBuilder<Long, List<Ingredient>>(
+) : SimpleDeprecatedSolutionBuilder<Long, List<Ingredient>>(
     inputsDir = day15Path,
     inputParser = { readLines(it).map { it.parseIngredient() } },
     solver = { it.combinations(totalSpoons).filter(combinationsFilter).maxOf { it.calculateScore() } },

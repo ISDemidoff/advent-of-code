@@ -1,14 +1,14 @@
 package isdemidoff.year2015.day17
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
+import isdemidoff.SimpleDeprecatedSolutionBuilder
+import isdemidoff.DeprecatedSolution
 import isdemidoff.utility.input.readLines
 import kotlin.collections.minOf
 
 class Day17Solution(
     ints: List<Int>,
     private val totalSum: Int,
-) : Solution<List<List<Int>>> {
+) : DeprecatedSolution<List<List<Int>>> {
     private val terms = ints.sorted()
 
     override fun solve(): List<List<Int>> {
@@ -44,10 +44,10 @@ class Day17Solution(
 class Day17SolutionBuilder(
     private val day17Path: String,
     private val totalSum: Int = 150,
-) : SimpleSolutionBuilder<List<List<Int>>, List<Int>>(
+) : SimpleDeprecatedSolutionBuilder<List<List<Int>>, List<Int>>(
     inputsDir = day17Path,
     inputParser = { readLines(it).map { it.toInt() } },
-    solutionSupplier = { Day17Solution(it, totalSum) }
+    deprecatedSolutionSupplier = { Day17Solution(it, totalSum) }
 ) {
     override fun formatResult(result: List<List<Int>>): String {
         val minSize = result.minOf { it.size }

@@ -1,11 +1,11 @@
 package isdemidoff.year2015.day3
 
-import isdemidoff.SingleLineSolution
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 import isdemidoff.year2015.day3.entity.DeliveryResults
 import isdemidoff.year2015.day3.entity.totalVisitedPoints
 
-class Day3Solution(input: String, numberOfCouriers: Int = 1) : SingleLineSolution<Int>(
+class Day3Solution(input: String, numberOfCouriers: Int = 1) : SingleLineDeprecatedSolution<Int>(
     input = input,
     solution = { instruction ->
         (0..<numberOfCouriers).map { courierIndex ->
@@ -25,9 +25,9 @@ class Day3Solution(input: String, numberOfCouriers: Int = 1) : SingleLineSolutio
 class Day3SolutionBuilder(
     private val day3Path: String,
     private val numberOfCouriers: Int = 1,
-) : SingleLineSolutionBuilder<Int>(
+) : SingleLineDeprecatedSolutionBuilder<Int>(
     inputsDir = day3Path,
-    solutionSupplier = { Day3Solution(it, numberOfCouriers) },
+    deprecatedSolutionSupplier = { Day3Solution(it, numberOfCouriers) },
 ) {
     init {
         require(numberOfCouriers > 0) { "Number of couriers must be a natural number" }

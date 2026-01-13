@@ -1,6 +1,6 @@
 ### My Custom ###
 **/src/test/resources/input.txt
-input.txt
+*input*.txt
 
 ### IntelliJ IDEA ###
 out/

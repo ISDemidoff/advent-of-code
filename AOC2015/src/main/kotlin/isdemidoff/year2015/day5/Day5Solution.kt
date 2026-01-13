@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day5
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.SingleLineSolution
+import isdemidoff.SimpleDeprecatedSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
 import isdemidoff.utility.input.readLines
 
 private fun String.containsThreeVowels() =
@@ -37,7 +37,7 @@ infix fun String.satisfies(rulesSet: RulesSet) = rulesSet.rules.all { it(this) }
 class Day5Solution(
     input: String,
     private val rulesSet: RulesSet = RulesSet.PART_ONE,
-) : SingleLineSolution<Boolean>(
+) : SingleLineDeprecatedSolution<Boolean>(
     input = input,
     solution = { it satisfies rulesSet },
 )
@@ -48,7 +48,7 @@ class Day5Solution(
 class Day5SolutionBuilder(
     private val day5Path: String,
     private val rulesSet: RulesSet = RulesSet.PART_ONE,
-) : SimpleSolutionBuilder<Int, List<String>>(
+) : SimpleDeprecatedSolutionBuilder<Int, List<String>>(
     inputsDir = day5Path,
     inputParser = { readLines(it) },
     solver = { it.count { Day5Solution(it, rulesSet).solve() } },

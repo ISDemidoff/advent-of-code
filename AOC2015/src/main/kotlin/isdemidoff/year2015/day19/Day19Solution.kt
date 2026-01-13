@@ -1,14 +1,14 @@
 package isdemidoff.year2015.day19
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
+import isdemidoff.SimpleDeprecatedSolutionBuilder
+import isdemidoff.DeprecatedSolution
 import isdemidoff.utility.input.readTwoBlocks
 import isdemidoff.utility.keyValue
 
 class Day19Solution(
     private val inputString: String,
     private val possibleReplacements: List<Pair<String, String>>,
-) : Solution<Set<String>> {
+) : DeprecatedSolution<Set<String>> {
     override fun solve(): Set<String> {
         val possibleOutcomes = mutableSetOf<String>()
 
@@ -28,7 +28,7 @@ class Day19Solution(
  */
 class Day19SolutionBuilder(
     day19Path: String,
-) : SimpleSolutionBuilder<Set<String>, Pair<List<Pair<String, String>>, String>>(
+) : SimpleDeprecatedSolutionBuilder<Set<String>, Pair<List<Pair<String, String>>, String>>(
     inputsDir = day19Path,
     inputParser = {
         readTwoBlocks(it)
@@ -36,7 +36,7 @@ class Day19SolutionBuilder(
                 firstBlock.map { it.keyValue(" => ") } to secondBlock.single()
             }
     },
-    solutionSupplier = { Day19Solution(it.second, it.first) },
+    deprecatedSolutionSupplier = { Day19Solution(it.second, it.first) },
 ) {
     override fun formatResult(result: Set<String>) = "Total of ${result.size} unique molecules."
 }

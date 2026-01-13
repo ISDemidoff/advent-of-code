@@ -1,13 +1,11 @@
 package isdemidoff.year2015
 
-import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.spec.style.scopes.FreeSpecContainerScope
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import isdemidoff.SolutionBuilder
-import isdemidoff.utility.test.TestConstants
+import isdemidoff.DeprecatedSolutionBuilder
 import isdemidoff.utility.test.TestConstants.INPUT_FILE_NAME
 import isdemidoff.utility.test.TestConstants.PART_ONE
 import isdemidoff.utility.test.TestConstants.PART_TWO
@@ -511,9 +509,9 @@ class Year2015Test : FreeSpec({
 }) {
     companion object {
         suspend inline fun <I : Any> FreeSpecContainerScope.createTargetShowingTest(
-            crossinline solutionBuilderSupplier: () -> SolutionBuilder<I>,
-        ) = TARGET_CHECK_TEST_NAME { solutionBuilderSupplier().revealResult(INPUT_FILE_NAME) }
+            crossinline deprecatedSolutionBuilderSupplier: () -> DeprecatedSolutionBuilder<I>,
+        ) = TARGET_CHECK_TEST_NAME { deprecatedSolutionBuilderSupplier().revealResult(INPUT_FILE_NAME) }
 
-        fun <I : Any> SolutionBuilder<I>.solveSample() = this.buildAndSolve(SAMPLE_FILE_NAME)
+        fun <I : Any> DeprecatedSolutionBuilder<I>.solveSample() = this.buildAndSolve(SAMPLE_FILE_NAME)
     }
 }

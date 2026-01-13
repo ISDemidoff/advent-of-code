@@ -11,3 +11,22 @@ fun readSingleLine(fileName: String): String = readLines(fileName).single()
 fun readTwoBlocks(fileName: String): Pair<List<String>, List<String>> = readLines(fileName).let {
     it.takeWhile { it.isNotBlank() } to it.takeLastWhile { it.isNotBlank() }
 }
+
+fun readBlocks(filename: String): List<List<String>> = readLines(filename).let { allLines ->
+    val result = mutableListOf<List<String>>()
+    var intermediateList = mutableListOf<String>()
+
+    fun pushIntoResult() = intermediateList.takeUnless { it.isEmpty() }?.let { result.add(it) }
+
+    allLines.forEach {
+        if (it.isBlank()) {
+            pushIntoResult()
+            intermediateList = mutableListOf()
+        } else {
+            intermediateList.add(it)
+        }
+    }
+    // add last block if it is not empty
+    pushIntoResult()
+    return@let result
+}

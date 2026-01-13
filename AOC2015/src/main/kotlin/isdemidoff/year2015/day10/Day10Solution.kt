@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day10
 
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 
 internal fun String.nextApply(): String {
     require(this.matches("""[0-9]+""".toRegex())) { "Invalid input: $this" }
@@ -33,7 +33,7 @@ internal fun String.nextApply(): String {
 class Day10SolutionBuilder(
     private val day10Path: String,
     private val repetitions: Int = 40,
-) : SingleLineSolutionBuilder<Int>(
+) : SingleLineDeprecatedSolutionBuilder<Int>(
     inputsDir = day10Path,
     solver = {
         var result = it

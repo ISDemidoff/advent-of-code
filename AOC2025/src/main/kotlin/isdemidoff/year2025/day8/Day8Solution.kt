@@ -1,7 +1,7 @@
 package isdemidoff.year2025.day8
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.Solution
+import isdemidoff.SimpleDeprecatedSolutionBuilder
+import isdemidoff.DeprecatedSolution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
 import isdemidoff.utility.input.readLines
@@ -25,7 +25,7 @@ private fun connectClosest(connections: Set<JunctionBoxConnection>, numConnectio
 class Day8Solution(
     val boxes: List<JunctionBox>,
     val numConnections: Int,
-) : Solution<Int> {
+) : DeprecatedSolution<Int> {
     fun solveForParsedInput(parsedInput: List<JunctionBox>): Int {
         val connectionsGrid = makeConnectionsGrid(parsedInput)
         connectClosest(connectionsGrid, numConnections)
@@ -43,14 +43,14 @@ class Day8Solution(
 class Day8SolutionBuilder(
     val day8Path: String,
     val numConnections: Int = 0,
-) : SimpleSolutionBuilder<Int, List<JunctionBox>>(
+) : SimpleDeprecatedSolutionBuilder<Int, List<JunctionBox>>(
     inputsDir = day8Path,
     inputParser = {
         readLines(it)
             .parseUnescapedCsvInputLines { it.toString().toLong() }
             .map { it.toJunctionBox() }
     },
-    solutionSupplier = { Day8Solution(it, numConnections) },
+    deprecatedSolutionSupplier = { Day8Solution(it, numConnections) },
 ) {
     fun forNumConnections(numConnections: Int): Day8SolutionBuilder = Day8SolutionBuilder(day8Path, numConnections)
 }

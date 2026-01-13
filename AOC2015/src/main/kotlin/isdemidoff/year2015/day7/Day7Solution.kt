@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day7
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2015.day7.entity.LogicalCircuit
 import isdemidoff.year2015.day7.entity.LogicalWire
@@ -11,7 +11,7 @@ import isdemidoff.year2015.day7.entity.createLogicalWire
  *
  * Part 2 without changes to code.
  */
-class Day7SolutionBuilder(day7Path: String) : SimpleSolutionBuilder<LogicalCircuit, List<LogicalWire>>(
+class Day7SolutionBuilder(day7Path: String) : SimpleDeprecatedSolutionBuilder<LogicalCircuit, List<LogicalWire>>(
     inputsDir = day7Path,
     inputParser = { readLines(it).map { it.createLogicalWire() } },
     solver = { wires -> LogicalCircuit().apply { importWires(wires) } },

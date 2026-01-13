@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day12
 
-import isdemidoff.SingleLineSolution
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -34,7 +34,7 @@ enum class CountingRules(val calculator: (JsonElement) -> Int) {
     EXCEPT_RED({ it.calculateTotalSumIgnoring("red") }),
 }
 
-class Day12Solution(private val input: String, private val countingRules: CountingRules) : SingleLineSolution<Int>(
+class Day12Solution(private val input: String, private val countingRules: CountingRules) : SingleLineDeprecatedSolution<Int>(
     input = input,
     solution = { countingRules.calculator(Json.parseToJsonElement(input)) },
 )
@@ -45,9 +45,9 @@ class Day12Solution(private val input: String, private val countingRules: Counti
 class Day12SolutionBuilder(
     private val day12Path: String,
     private val countingRules: CountingRules = CountingRules.COUNT_ALL,
-) : SingleLineSolutionBuilder<Int>(
+) : SingleLineDeprecatedSolutionBuilder<Int>(
     inputsDir = day12Path,
-    solutionSupplier = { Day12Solution(it, countingRules) },
+    deprecatedSolutionSupplier = { Day12Solution(it, countingRules) },
 ) {
     fun withCountingRules(countingRules: CountingRules) = Day12SolutionBuilder(day12Path, countingRules)
 }

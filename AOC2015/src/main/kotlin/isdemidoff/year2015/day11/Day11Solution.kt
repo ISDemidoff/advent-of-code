@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day11
 
-import isdemidoff.SingleLineSolution
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 
 internal fun String.isValidPassword(): Boolean {
     return this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()
@@ -40,7 +40,7 @@ fun String.getNextValidPassword() =
 class Day11Solution(
     input: String,
     private val position: Int = 1,
-) : SingleLineSolution<String>(
+) : SingleLineDeprecatedSolution<String>(
     input = input,
     solution = { generateSequence(it) { it.getNextValidPassword() }.drop(position).first() }
 )
@@ -51,9 +51,9 @@ class Day11Solution(
 class Day11SolutionBuilder(
     private val day11Path: String,
     private val position: Int = 1,
-) : SingleLineSolutionBuilder<String>(
+) : SingleLineDeprecatedSolutionBuilder<String>(
     inputsDir = day11Path,
-    solutionSupplier = { Day11Solution(it, position) },
+    deprecatedSolutionSupplier = { Day11Solution(it, position) },
 ) {
     fun searchingPosition(pos: Int) = Day11SolutionBuilder(day11Path, pos)
 }

@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day8
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.SingleLineSolution
+import isdemidoff.SimpleDeprecatedSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
 import isdemidoff.utility.input.readLines
 
 private fun String.inMemorySize(): Int {
@@ -27,7 +27,7 @@ private fun String.encodedSize(): Int {
         .length + 2
 }
 
-class Day8Solution(input: String) : SingleLineSolution<Pair<Int, Int>>(
+class Day8Solution(input: String) : SingleLineDeprecatedSolution<Pair<Int, Int>>(
     input = input,
     solution = { (it.length - it.inMemorySize()) to (it.encodedSize() - it.length) },
 )
@@ -35,7 +35,7 @@ class Day8Solution(input: String) : SingleLineSolution<Pair<Int, Int>>(
 /**
  * [Day 8: Matchsticks](https://adventofcode.com/2015/day/8).
  */
-class Day8SolutionBuilder(day8Path: String) : SimpleSolutionBuilder<Pair<Int, Int>, List<String>>(
+class Day8SolutionBuilder(day8Path: String) : SimpleDeprecatedSolutionBuilder<Pair<Int, Int>, List<String>>(
     inputsDir = day8Path,
     inputParser = { readLines(it) },
     solver = { it.map { Day8Solution(it).solve() }.reduce { acc, p -> (acc.first + p.first) to (acc.second + p.second) } },

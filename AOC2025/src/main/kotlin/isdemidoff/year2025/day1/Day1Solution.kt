@@ -1,30 +1,37 @@
 package isdemidoff.year2025.day1
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
+import isdemidoff.utility.solution.solver
+import isdemidoff.utility.solution.uniformLinesParser
 import isdemidoff.year2025.day1.entity.Rotation
-import isdemidoff.year2025.day1.entity.Rotation.Direction
 
 private fun Int.isStartingPosition() = this % 100 == 0
 
-private infix fun Int.rotate(rotation: Rotation): Int = when (rotation.direction) {
-    Direction.CLOCKWISE -> this + rotation.angle
-    Direction.COUNTERCLOCKWISE -> this - rotation.angle
-}
+/**
+ * [Day 1: Secret Entrance](https://adventofcode.com/2025/day/1).
+ */
+val day1 = solution<List<Rotation>, Int>(1) {
+    inputParser = uniformLinesParser { Rotation(it) }
 
-class Day1SolutionBuilder(day1Path: String) : SimpleSolutionBuilder<Int, List<Rotation>>(
-    inputsDir = day1Path,
-    inputParser = { filename ->
-        readLines(filename)
-            .map { Rotation(it[0], it.drop(1).toInt()) }
-    },
-    solver = { rotations ->
+    part1Solver = solver({ "Password is $it." }) { rotations ->
         var position = 50
         var result = 0
-        rotations.forEach {
-            position = position rotate it
+        rotations.forEach { (direction, angle) ->
+            position += angle * direction.singleClick
             if (position.isStartingPosition()) result++
         }
         result
-    },
-)
+    }
+
+    part2Solver = solver({ "Password method 0x434C49434B is $it." }) { rotations ->
+        var position = 50
+        var result = 0
+        rotations.forEach { (direction, angle) ->
+            repeat(angle) {
+                position += direction.singleClick
+                if (position.isStartingPosition()) result++
+            }
+        }
+        result
+    }
+}

@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day13
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2015.day13.entity.TableArrangement
 
@@ -10,7 +10,7 @@ import isdemidoff.year2015.day13.entity.TableArrangement
 class Day13SolutionBuilder(
     private val day13Path: String,
     private val addIgnorantMan: Boolean = false,
-) : SimpleSolutionBuilder<Int, TableArrangement>(
+) : SimpleDeprecatedSolutionBuilder<Int, TableArrangement>(
     inputsDir = day13Path,
     inputParser = { TableArrangement(readLines(it), addIgnorantMan) },
     solver = { it.findBestSetup() },

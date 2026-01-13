@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day6
 
-import isdemidoff.SimpleSolutionBuilder
+import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2015.day6.entity.Instruction
 import isdemidoff.year2015.day6.entity.Light
@@ -14,7 +14,7 @@ import isdemidoff.year2015.day6.entity.parseInstruction
 class Day6SolutionBuilder(
     private val day6Path: String,
     private val lightGenerator: () -> Light = { TogglingLight() },
-) : SimpleSolutionBuilder<Int, List<Instruction>>(
+) : SimpleDeprecatedSolutionBuilder<Int, List<Instruction>>(
     inputsDir = day6Path,
     inputParser = { readLines(it).map { it.parseInstruction() } },
     solver = { LightGrid(lightGenerator).apply { applyInstructions(it) }.countOfLitLights() },

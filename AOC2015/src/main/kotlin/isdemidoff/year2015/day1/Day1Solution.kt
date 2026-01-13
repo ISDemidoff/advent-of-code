@@ -1,9 +1,9 @@
 package isdemidoff.year2015.day1
 
-import isdemidoff.SingleLineSolution
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 
-class Day1Solution(input: String) : SingleLineSolution<Int>(
+class Day1Solution(input: String) : SingleLineDeprecatedSolution<Int>(
     input = input,
     solution = {
         it.map {
@@ -24,7 +24,7 @@ class Day1Solution(input: String) : SingleLineSolution<Int>(
  * There is still a bug: if input string starts with `)`
  * then it will not show that we entered a basement on index 1.
  */
-class Day1SolutionBuilder(day1Path: String) : SingleLineSolutionBuilder<Int>(
+class Day1SolutionBuilder(day1Path: String) : SingleLineDeprecatedSolutionBuilder<Int>(
     inputsDir = day1Path,
-    solutionSupplier = { Day1Solution(it) },
+    deprecatedSolutionSupplier = { Day1Solution(it) },
 )

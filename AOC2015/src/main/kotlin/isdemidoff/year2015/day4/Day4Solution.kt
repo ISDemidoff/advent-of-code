@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day4
 
-import isdemidoff.SingleLineSolution
-import isdemidoff.SingleLineSolutionBuilder
+import isdemidoff.SingleLineDeprecatedSolution
+import isdemidoff.SingleLineDeprecatedSolutionBuilder
 import java.security.MessageDigest
 
 private fun String.md5hex(): String = MessageDigest.getInstance("MD5")
@@ -13,7 +13,7 @@ val DEFAULT_STARTING_PATTERN = "0".repeat(5)
 class Day4Solution(
     input: String,
     private val targetStartingPattern: String = DEFAULT_STARTING_PATTERN,
-) : SingleLineSolution<Int>(
+) : SingleLineDeprecatedSolution<Int>(
     input = input,
     solution = { str ->
         generateSequence(1) { it + 1 }
@@ -27,9 +27,9 @@ class Day4Solution(
 class Day4SolutionBuilder(
     private val day4Path: String,
     private val targetStartingPattern: String = DEFAULT_STARTING_PATTERN,
-) : SingleLineSolutionBuilder<Int>(
+) : SingleLineDeprecatedSolutionBuilder<Int>(
     inputsDir = day4Path,
-    solutionSupplier = { Day4Solution(it, targetStartingPattern) }
+    deprecatedSolutionSupplier = { Day4Solution(it, targetStartingPattern) }
 ) {
     fun withStartingPattern(startingPattern: String) = Day4SolutionBuilder(day4Path, startingPattern)
 }

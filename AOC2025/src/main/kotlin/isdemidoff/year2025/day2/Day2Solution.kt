@@ -1,21 +1,44 @@
 package isdemidoff.year2025.day2
 
-import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.utility.input.readSingleLine
 import isdemidoff.utility.parseUnescapedCsvInputLine
+import isdemidoff.utility.solution.singleLineParser
+import isdemidoff.utility.solution.solution
+import isdemidoff.utility.solution.solver
 import isdemidoff.utility.toLongRange
 
-private fun Long.isSillyNumber() = toString()
-    .takeIf { it.length % 2 == 0 }
-    ?.takeIf { it.take(it.length / 2) == it.takeLast(it.length / 2) } != null
+private fun LongRange.getSumOfSillyPatterns(onlyTwo: Boolean) =
+    filter { it.isRepeatedPattern(onlyTwo) }.sum()
 
-private fun LongRange.getSumOfSillyPatterns() = filter { it.isSillyNumber() }.sum()
+private fun Long.isRepeatedPattern(onlyTwo: Boolean) = toString().let { str ->
+    if (str.length < 2) return@let false
+    val checkAgainst = ownDividers(str.length).toMutableList().apply { removeIf { onlyTwo && it != 2 } }
 
-class Day2SolutionBuilder(day2Path: String) : SimpleSolutionBuilder<Long, List<LongRange>>(
-    inputsDir = day2Path,
-    inputParser = { filename ->
-        readSingleLine(filename)
-            .parseUnescapedCsvInputLine { it.toLongRange() }
-    },
-    solver = { it.sumOf { it.getSumOfSillyPatterns() } },
-)
+    checkAgainst.forEach {
+        val chunked = str.chunked(str.length / it)
+        if (chunked.toSet().size == 1) {
+            return@let true
+        }
+    }
+
+    return@let false
+}
+
+private fun ownDividers(int: Int): List<Int> {
+    val result = mutableListOf(int)
+    (2 .. int / 2).forEach {
+        if (int % it == 0) result.add(it)
+    }
+    return result
+}
+
+val day2 = solution(2) {
+    inputParser = singleLineParser { it.parseUnescapedCsvInputLine { it.toLongRange() } }
+
+    part1Solver = solver({ "Adding all invalid IDs results into $it" }) {
+        it.sumOf { it.getSumOfSillyPatterns(true) }
+    }
+
+    part2Solver = solver({ "Adding all invalid IDs results into $it" }) {
+        it.sumOf { it.getSumOfSillyPatterns(false) }
+    }
+}

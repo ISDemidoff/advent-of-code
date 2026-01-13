@@ -6,14 +6,19 @@ data class Rotation(
     val direction: Direction,
     val angle: Int,
 ) {
+    constructor(str: String) : this(
+        direction = str.first(),
+        angle = str.drop(1).toInt(),
+    )
+
     constructor(direction: Char, angle: Int) : this(
         direction = direction.getDirection(),
         angle = angle,
     )
 
-    enum class Direction(val value: Char) {
-        CLOCKWISE('R'),
-        COUNTERCLOCKWISE('L'),
+    enum class Direction(val value: Char, val singleClick: Int) {
+        CLOCKWISE('R', 1),
+        COUNTERCLOCKWISE('L', -1),
     }
 }
 

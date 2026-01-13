@@ -1,6 +1,11 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
     id("io.kotest") version "6.0.7"
+    application
+}
+
+application {
+    mainClass = "isdemidoff.year2025.MainKt"
 }
 
 dependencies {
