@@ -63,10 +63,14 @@ fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -
 /**
  * Create all permutations of a given list. Note that complexity is n factorial, so time spent is huge.
  */
-fun <E> List<E>.permutations(prevSeq: List<E> = listOf()): List<List<E>> =
-    if (isEmpty()) listOf(prevSeq) else flatMap { (this - it).permutations(prevSeq + it) }
+fun <E> List<E>.permutations(): List<List<E>> = permutationsInner()
 
-fun <E> List<E>.getCombinations(
+private fun <E> List<E>.permutationsInner(prevSeq: List<E> = listOf()): List<List<E>> =
+    if (isEmpty()) listOf(prevSeq) else flatMap { (this - it).permutationsInner(prevSeq + it) }
+
+infix fun <E> List<E>.combinations(totalSum: Int) = combinationsInner(totalSum)
+
+private fun <E> List<E>.combinationsInner(
     totalSum: Int,
     alreadyCombined: Map<E, Int> = mapOf(),
 ) : List<Map<E, Int>> {
@@ -76,7 +80,7 @@ fun <E> List<E>.getCombinations(
 
     val nextElement = this.first()
     return (0..totalSum).flatMap {
-        (this - nextElement).getCombinations(
+        (this - nextElement).combinationsInner(
             totalSum = totalSum - it,
             alreadyCombined = alreadyCombined + (nextElement to it),
         )

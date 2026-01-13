@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day15
 
 import isdemidoff.SimpleSolutionBuilder
-import isdemidoff.utility.getCombinations
+import isdemidoff.utility.combinations
 import isdemidoff.utility.input.readLines
 import isdemidoff.year2015.day15.entity.Ingredient
 import isdemidoff.year2015.day15.entity.calculateScore
@@ -19,7 +19,7 @@ class Day15SolutionBuilder(
 ) : SimpleSolutionBuilder<Long, List<Ingredient>>(
     inputsDir = day15Path,
     inputParser = { readLines(it).map { it.parseIngredient() } },
-    solver = { it.getCombinations(totalSpoons).filter(combinationsFilter).maxOf { it.calculateScore() } },
+    solver = { it.combinations(totalSpoons).filter(combinationsFilter).maxOf { it.calculateScore() } },
 ) {
     fun withCombinationsFilter(filter: (Map<Ingredient, Int>) -> Boolean) = Day15SolutionBuilder(day15Path, totalSpoons, filter)
 }
