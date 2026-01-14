@@ -1,12 +1,15 @@
 package isdemidoff.year2025.day10
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
-import isdemidoff.year2025.day10.entity.Machine
+import isdemidoff.utility.solution.solution
 import isdemidoff.year2025.day10.entity.toMachine
 
-class Day10SolutionBuilder(day10Path: String) : SimpleDeprecatedSolutionBuilder<Int, List<Machine>>(
-    inputsDir = day10Path,
-    inputParser = { readLines(it).map { it.toMachine() } },
-    solver = { it.sumOf { it.findLeastNumButtonsToTurnOn() } },
-)
+/**
+ * [Day 10: Factory](https://adventofcode.com/2025/day/10).
+ */
+val day10 = solution(10) {
+    inputParser = uniformLinesParser { it.toMachine() }
+
+    part1Solver = solver({ "Minimum number or presses to turn on all machines is $it." }) {
+        it.sumOf { it.findLeastNumButtonsToTurnOn() }
+    }
+}

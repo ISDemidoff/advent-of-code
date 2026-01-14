@@ -1,8 +1,9 @@
 package isdemidoff.year2025.day11
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.graphs.findCountOfPaths
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
+import isdemidoff.year2025.day11.Constants.FROM_NODE_ID
+import isdemidoff.year2025.day11.Constants.TO_NODE_ID
 import isdemidoff.year2025.day11.entity.MachineNode
 import isdemidoff.year2025.day11.entity.toNode
 
@@ -14,18 +15,21 @@ private fun findCountOfPaths(allNodes: Map<String, MachineNode>, fromNodeId: Str
     )
 }
 
-class Day11SolutionBuilder(day11Path: String) : SimpleDeprecatedSolutionBuilder<Int, List<MachineNode>>(
-    inputsDir = day11Path,
-    inputParser = { readLines(it).map { it.toNode() } },
-    solver = { parsedInput ->
-        parsedInput.associateByTo(mutableMapOf()) { it.id }
+private object Constants {
+    const val FROM_NODE_ID = "you"
+    const val TO_NODE_ID = "out"
+}
+
+/**
+ * [Day 11: Reactor](https://adventofcode.com/2025/day/11).
+ */
+val day11 = solution(11) {
+    inputParser = uniformLinesParser { it.toNode() }
+
+    part1Solver = solver({ "Path count between $FROM_NODE_ID to $TO_NODE_ID is $it." }) {
+        it.associateByTo(mutableMapOf()) { it.id }
             .also { it.computeIfAbsent(TO_NODE_ID) { MachineNode(id = it, outputNames = listOf()) } }
             .also { allNodes -> allNodes.values.forEach { it.assignOutputs(allNodes) } }
             .let { findCountOfPaths(it, FROM_NODE_ID, TO_NODE_ID) }
-    },
-) {
-    companion object {
-        const val FROM_NODE_ID = "you"
-        const val TO_NODE_ID = "out"
     }
 }

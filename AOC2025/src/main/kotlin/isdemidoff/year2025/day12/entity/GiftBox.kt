@@ -7,8 +7,9 @@ data class GiftBox(
 }
 
 fun List<String>.toGiftBoxExtendedInput(): GiftBox {
-    check(this[0].matches("""[0-9]:""".toRegex())) { "Gift box input must start with string satisfying \"[0-9]:\"" }
-    check(this[4].isBlank()) { "Gift box input must end with blank line" }
+    require(size == 4) { "Gift box input should have 4 lines." }
+    require(this[0].matches("""[0-9]:""".toRegex())) { "Gift box input must start with string satisfying \"[0-9]:\"" }
+//    check(this[4].isBlank()) { "Gift box input must end with blank line" }
 
     return this.drop(1).take(3).toGiftBox()
 }

@@ -2,8 +2,9 @@ package isdemidoff.utility.solution
 
 class YearSolution(
     private val year: Int,
-    private vararg val solutionBuilders: SolutionBuilder<*, *, *>,
+    private vararg val solutionBuildersWithArgs: SolutionData,
 ) {
+
     fun printSolutions() {
         println(
             """
@@ -11,8 +12,8 @@ class YearSolution(
         
             """.trimIndent()
         )
-        solutionBuilders.forEach {
-            it.parseInput(file()).printSolutions()
+        solutionBuildersWithArgs.forEach { (builder, args1, args2) ->
+            builder.parseInput(file()).printSolutions(args1, args2)
             println()
         }
 

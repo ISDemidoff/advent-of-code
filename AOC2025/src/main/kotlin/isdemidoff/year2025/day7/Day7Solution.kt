@@ -1,13 +1,15 @@
 package isdemidoff.year2025.day7
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
 import isdemidoff.utility.isInvalidPosition
+import isdemidoff.utility.solution.solution
 
-class Day7SolutionBuilder(day7Path: String) : SimpleDeprecatedSolutionBuilder<Int, List<String>>(
-    inputsDir = day7Path,
-    inputParser = { readLines(it) },
-    solver = { lines ->
+/**
+ * [Day 7: Laboratories](https://adventofcode.com/2025/day/7).
+ */
+val day7 = solution(7) {
+    inputParser = singleBlockParser { it }
+
+    part1Solver = solver({ "Beam was split $it times." }) { lines ->
         var splitsCount = 0
         val beams = lines.first().map { it == 'S' }.toMutableList()
         lines.drop(1).forEach { line ->
@@ -22,5 +24,5 @@ class Day7SolutionBuilder(day7Path: String) : SimpleDeprecatedSolutionBuilder<In
             }
         }
         splitsCount
-    },
-)
+    }
+}

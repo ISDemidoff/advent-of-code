@@ -1,16 +1,17 @@
 package isdemidoff.year2025.day8
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.DeprecatedSolution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
-import isdemidoff.utility.input.readLines
-import isdemidoff.utility.parseUnescapedCsvInputLines
+import isdemidoff.utility.parseUnescapedCsvInputLine
+import isdemidoff.utility.solution.solution
 import isdemidoff.year2025.day8.entities.JunctionBox
 import isdemidoff.year2025.day8.entities.JunctionBoxConnection
 import isdemidoff.year2025.day8.entities.createConnection
 import isdemidoff.year2025.day8.entities.toJunctionBox
 
+/**
+ * [Day 8: Playground](https://adventofcode.com/2025/day/8).
+ */
 private fun makeConnectionsGrid(boxes: List<JunctionBox>) =
     cartesianProduct(boxes, boxes) { it.createConnection() }
         .filter { !it.singular }
@@ -22,35 +23,19 @@ private fun connectClosest(connections: Set<JunctionBoxConnection>, numConnectio
         .forEach { it.enableConnection() }
 
 
-class Day8Solution(
-    val boxes: List<JunctionBox>,
-    val numConnections: Int,
-) : DeprecatedSolution<Int> {
-    fun solveForParsedInput(parsedInput: List<JunctionBox>): Int {
-        val connectionsGrid = makeConnectionsGrid(parsedInput)
+val day8 = solution(8) {
+    inputParser = uniformLinesParser { it.parseUnescapedCsvInputLine { it.toString().toLong() }.toJunctionBox() }
+
+    part1Solver = solver<Int, Int>({ result, num ->
+        "Product of sizes of 3 largest circuits after $num closest connections is $result."
+    }) { boxes, numConnections ->
+        val connectionsGrid = makeConnectionsGrid(boxes)
         connectClosest(connectionsGrid, numConnections)
 
-        return extractConnectedComponents(parsedInput)
+        extractConnectedComponents(boxes)
             .map { it.size }
             .sortedDescending()
             .take(3)
             .reduce(Int::times)
     }
-
-    override fun solve() = solveForParsedInput(boxes)
-}
-
-class Day8SolutionBuilder(
-    val day8Path: String,
-    val numConnections: Int = 0,
-) : SimpleDeprecatedSolutionBuilder<Int, List<JunctionBox>>(
-    inputsDir = day8Path,
-    inputParser = {
-        readLines(it)
-            .parseUnescapedCsvInputLines { it.toString().toLong() }
-            .map { it.toJunctionBox() }
-    },
-    deprecatedSolutionSupplier = { Day8Solution(it, numConnections) },
-) {
-    fun forNumConnections(numConnections: Int): Day8SolutionBuilder = Day8SolutionBuilder(day8Path, numConnections)
 }

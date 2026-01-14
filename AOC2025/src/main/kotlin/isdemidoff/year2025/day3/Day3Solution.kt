@@ -1,15 +1,21 @@
 package isdemidoff.year2025.day3
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
 
-private fun findMaxOutputJoltage(battery: String) = battery.mapIndexed { leftIndex, leftChar ->
-    if (leftIndex == battery.lastIndex) return@mapIndexed 0
-    battery.drop(leftIndex + 1).maxOf { rightChar -> "$leftChar$rightChar".toInt() }
-}.max()
+private fun findMaxOutputJoltage(battery: String) =
+    (0 ..< battery.lastIndex).maxOf { leftIndex ->
+        (leftIndex + 1 ..battery.lastIndex).maxOf { rightIndex ->
+            "${battery[leftIndex]}${battery[rightIndex]}".toInt()
+        }
+    }
 
-class Day3SolutionBuilder(day3Path: String) : SimpleDeprecatedSolutionBuilder<Int, List<String>>(
-    inputsDir = day3Path,
-    inputParser = { readLines(it) },
-    solver = { it.sumOf { findMaxOutputJoltage(it) } },
-)
+/**
+ * [Day 3: Lobby](https://adventofcode.com/2025/day/3).
+ */
+val day3 = solution(3) {
+    inputParser = singleBlockParser { it }
+
+    part1Solver = solver({ "Max total joltage is $it." }) {
+        it.sumOf { findMaxOutputJoltage(it) }
+    }
+}

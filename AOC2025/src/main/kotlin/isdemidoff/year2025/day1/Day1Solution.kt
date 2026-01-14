@@ -1,8 +1,6 @@
 package isdemidoff.year2025.day1
 
 import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver
-import isdemidoff.utility.solution.uniformLinesParser
 import isdemidoff.year2025.day1.entity.Rotation
 
 private fun Int.isStartingPosition() = this % 100 == 0

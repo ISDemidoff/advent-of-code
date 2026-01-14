@@ -1,12 +1,16 @@
 package isdemidoff.year2025.day5
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readTwoBlocks
+import isdemidoff.utility.solution.solution
 import isdemidoff.utility.toLongRanges
 import isdemidoff.utility.toLongsList
 
-class Day5SolutionBuilder(day5Path: String) : SimpleDeprecatedSolutionBuilder<Int, Pair<List<LongRange>, List<Long>>>(
-    inputsDir = day5Path,
-    inputParser = { readTwoBlocks(it).let { (ranges, ids) -> ranges.toLongRanges() to ids.toLongsList() } },
-    solver = { (ranges, ids) -> ids.count { id -> ranges.any { id in it } } },
-)
+/**
+ * [Day 5: Cafeteria](https://adventofcode.com/2025/day/5).
+ */
+val day5 = solution<Pair<List<LongRange>, List<Long>>, Int>(5) {
+    inputParser = twoBlocksParser { (ranges, ids) -> ranges.toLongRanges() to ids.toLongsList() }
+
+    part1Solver = solver({ "There are $it fresh ingredients." }) { (ranges, ids) ->
+        ids.count { id -> ranges.any { id in it } }
+    }
+}

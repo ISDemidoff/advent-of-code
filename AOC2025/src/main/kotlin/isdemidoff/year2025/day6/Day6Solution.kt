@@ -1,19 +1,20 @@
 package isdemidoff.year2025.day6
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
 import isdemidoff.utility.parseWhitespaceDelimitedInputList
+import isdemidoff.utility.solution.solution
 import isdemidoff.utility.takeFirstChars
 import isdemidoff.utility.toLongsListList
-import isdemidoff.year2025.day6.entity.Problem
 import isdemidoff.year2025.day6.entity.makeProblemOf
 
-class Day6SolutionBuilder(day6Path: String) : SimpleDeprecatedSolutionBuilder<Long, List<Problem>>(
-    inputsDir = day6Path,
-    inputParser = { filename ->
-        readLines(filename).parseWhitespaceDelimitedInputList()
+/**
+ * [Day 6: Trash Compactor](https://adventofcode.com/2025/day/6).
+ */
+val day6 = solution(6) {
+    inputParser = singleBlockParser { lines ->
+        lines.parseWhitespaceDelimitedInputList()
             .let { it.last().takeFirstChars() to it.dropLast(1).toLongsListList() }
             .let { (operations, elements) -> operations.mapIndexed { index, op -> op makeProblemOf elements.map { it[index] } } }
-    },
-    solver = { parsedInput -> parsedInput.sumOf { it.solve() } },
-)
+    }
+
+    part1Solver = solver({ "Grand total of answers is $it." }) { it.sumOf { it.solve() } }
+}
