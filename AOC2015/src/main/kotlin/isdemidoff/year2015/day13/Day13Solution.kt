@@ -1,19 +1,19 @@
 package isdemidoff.year2015.day13
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
 import isdemidoff.year2015.day13.entity.TableArrangement
 
 /**
  * [Day 13: Knights of the Dinner Table](https://adventofcode.com/2015/day/13).
  */
-class Day13SolutionBuilder(
-    private val day13Path: String,
-    private val addIgnorantMan: Boolean = false,
-) : SimpleDeprecatedSolutionBuilder<Int, TableArrangement>(
-    inputsDir = day13Path,
-    inputParser = { TableArrangement(readLines(it), addIgnorantMan) },
-    solver = { it.findBestSetup() },
-) {
-    fun shouldAddIgnorantMan(add: Boolean) = Day13SolutionBuilder(day13Path, add)
+val day13 = solution(13) {
+    inputParser = singleBlockParser { it }
+
+    part1Solver = solver({ "Max change of happiness is $it." }) {
+        TableArrangement(it, false).findBestSetup()
+    }
+
+    part2Solver = solver({ "Max change of happiness when sitting with you is $it." }) {
+        TableArrangement(it, true).findBestSetup()
+    }
 }

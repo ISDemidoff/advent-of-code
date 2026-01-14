@@ -1,7 +1,6 @@
 package isdemidoff.year2015.day11
 
-import isdemidoff.SingleLineDeprecatedSolution
-import isdemidoff.SingleLineDeprecatedSolutionBuilder
+import isdemidoff.utility.solution.solution
 
 internal fun String.isValidPassword(): Boolean {
     return this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()
@@ -37,23 +36,17 @@ fun String.getNextValidPassword() =
     generateSequence(this.increment()) { it.increment() }
         .first { it.isValidPassword() }
 
-class Day11Solution(
-    input: String,
-    private val position: Int = 1,
-) : SingleLineDeprecatedSolution<String>(
-    input = input,
-    solution = { generateSequence(it) { it.getNextValidPassword() }.drop(position).first() }
-)
-
 /**
  * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11).
  */
-class Day11SolutionBuilder(
-    private val day11Path: String,
-    private val position: Int = 1,
-) : SingleLineDeprecatedSolutionBuilder<String>(
-    inputsDir = day11Path,
-    deprecatedSolutionSupplier = { Day11Solution(it, position) },
-) {
-    fun searchingPosition(pos: Int) = Day11SolutionBuilder(day11Path, pos)
+val day11 = solution(11) {
+    inputParser = singleLineParser { it }
+
+    part1Solver = solver({ "Next password is $it" }) {
+        generateSequence(it) { it.getNextValidPassword() }.drop(1).first()
+    }
+
+    part2Solver = solver({ "Next password after next is $it" }) {
+        generateSequence(it) { it.getNextValidPassword() }.drop(2).first()
+    }
 }

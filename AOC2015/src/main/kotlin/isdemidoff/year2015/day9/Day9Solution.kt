@@ -1,14 +1,14 @@
 package isdemidoff.year2015.day9
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
 import isdemidoff.year2015.day9.entity.Country
 
 /**
  * [Day 9: All in a Single Night](https://adventofcode.com/2015/day/9).
  */
-class Day9SolutionBuilder(day9Path: String) : SimpleDeprecatedSolutionBuilder<Pair<Int, Int>, Country>(
-    inputsDir = day9Path,
-    inputParser = { Country(readLines(it)) },
-    solver = { it.findShortestPath() to it.findLongestPath() },
-)
+val day9 = solution(9) {
+    inputParser = singleBlockParser { Country(it) }
+
+    part1Solver = solver({ "Shortest route distance is $it" }) { it.findShortestPath() }
+    part2Solver = solver({ "Longest route distance is $it" }) { it.findLongestPath() }
+}

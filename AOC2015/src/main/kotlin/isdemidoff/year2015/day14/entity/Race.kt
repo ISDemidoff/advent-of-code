@@ -23,8 +23,3 @@ class LeadTimeRace(override val participants: List<Reindeer>) : Race {
         return scores
     }
 }
-
-enum class RaceConditions(val raceGenerator: (List<Reindeer>) -> Race) {
-    DISTANCE_TRAVELLED({ DistanceTravelledRace(it) }),
-    TOTAL_LEAD_TIME({ LeadTimeRace(it) }),
-}

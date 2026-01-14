@@ -4,6 +4,11 @@ class DeliveryResults {
     val visitedPoints = mutableSetOf(Point(0, 0))
     private var currentPoint: Point = Point(0, 0)
 
+    data class Point(
+        val x: Int,
+        val y: Int,
+    )
+
     fun traversePath(input: String) {
         input.forEach {
             currentPoint = when (it) {

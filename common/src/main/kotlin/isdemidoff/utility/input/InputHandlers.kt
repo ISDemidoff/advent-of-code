@@ -6,12 +6,6 @@ fun readLines(fileName: String): List<String> = (object {}).javaClass
     .bufferedReader()
     .readLines()
 
-fun readSingleLine(fileName: String): String = readLines(fileName).single()
-
-fun readTwoBlocks(fileName: String): Pair<List<String>, List<String>> = readLines(fileName).let {
-    it.takeWhile { it.isNotBlank() } to it.takeLastWhile { it.isNotBlank() }
-}
-
 fun readBlocks(filename: String): List<List<String>> = readLines(filename).let { allLines ->
     val result = mutableListOf<List<String>>()
     var intermediateList = mutableListOf<String>()

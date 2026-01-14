@@ -1,4 +1,6 @@
-package isdemidoff.utility.solution
+package isdemidoff.utility.solution.year
+
+import isdemidoff.utility.solution.file
 
 class YearSolution(
     private val year: Int,

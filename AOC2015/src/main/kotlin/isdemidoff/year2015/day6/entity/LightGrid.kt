@@ -15,5 +15,5 @@ class LightGrid(
 
     fun applyInstructions(instructions: List<Instruction>) = instructions.forEach { applyInstruction(it) }
 
-    fun countOfLitLights() = lights.sumOf { it.sumOf { it.getValue() } }
+    fun totalValueOfLitLights() = lights.sumOf { it.sumOf { it.getValue() } }
 }

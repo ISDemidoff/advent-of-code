@@ -1,20 +1,27 @@
 package isdemidoff.year2015.day7
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
 import isdemidoff.year2015.day7.entity.LogicalCircuit
-import isdemidoff.year2015.day7.entity.LogicalWire
 import isdemidoff.year2015.day7.entity.createLogicalWire
 
 /**
  * [Day 7: Some Assembly Required](https://adventofcode.com/2015/day/7).
- *
- * Part 2 without changes to code.
  */
-class Day7SolutionBuilder(day7Path: String) : SimpleDeprecatedSolutionBuilder<LogicalCircuit, List<LogicalWire>>(
-    inputsDir = day7Path,
-    inputParser = { readLines(it).map { it.createLogicalWire() } },
-    solver = { wires -> LogicalCircuit().apply { importWires(wires) } },
-) {
-    override fun formatResult(result: LogicalCircuit): String = "Value at wire 'a' is ${result.getValue("a")}"
+val day7 = solution<List<String>, LogicalCircuit>(7) {
+    inputParser = uniformLinesParser { it }
+
+    part1Solver = solver({
+        "Value at wire 'a' is ${it.getValue("a")}"
+    }) { wires -> LogicalCircuit().apply { importWires(wires.map { it.createLogicalWire() }) } }
+
+    part2Solver = solver({
+        "Value at wire 'a' is now ${it.getValue("a")}"
+    }) { wires ->
+        val newValue = part1Solver.validateAndSolve(wires).get().getValue("a")
+        LogicalCircuit().apply {
+            importWires(
+                (wires.filterNot { it.endsWith(" -> b") } + "$newValue -> b").map { it.createLogicalWire() }
+            )
+        }
+    }
 }

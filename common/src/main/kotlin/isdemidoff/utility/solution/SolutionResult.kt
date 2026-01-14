@@ -15,11 +15,6 @@ class SimpleSolutionResult<R>(
     override fun formatPretty(): String = formatter(cachedData)
 }
 
-//fun <R> solutionResult(
-//    formatter: (R) -> String = { if (it is String) it else it.toString() },
-//    data: R,
-//) = SimpleSolutionResult(formatter) { data }
-
 fun <R> solutionResult(
     formatter: (R) -> String = { if (it is String) it else it.toString() },
     dataSupplier: () -> R,

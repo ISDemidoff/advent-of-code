@@ -1,8 +1,6 @@
 package isdemidoff.year2015.day5
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.SingleLineDeprecatedSolution
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
 
 private fun String.containsThreeVowels() =
     """[aeiou]""".toRegex().findAll(this).take(3).toList().size == 3
@@ -19,39 +17,17 @@ private fun String.containsTwoRepeatingPairs() =
 private fun String.containsInfixedDoubleLetter() =
     this.zipWithNext().zipWithNext().any { (leftPair, rightPair) -> leftPair.first == rightPair.second }
 
-enum class RulesSet(vararg val rules: (String) -> Boolean) {
-    PART_ONE(
-        { it.containsThreeVowels() },
-        { it.containsDoubleLetter() },
-        { !it.containsForbiddenSubstring() },
-    ),
-
-    PART_TWO(
-        { it.containsTwoRepeatingPairs() },
-        { it.containsInfixedDoubleLetter() }
-    ),
-}
-
-infix fun String.satisfies(rulesSet: RulesSet) = rulesSet.rules.all { it(this) }
-
-class Day5Solution(
-    input: String,
-    private val rulesSet: RulesSet = RulesSet.PART_ONE,
-) : SingleLineDeprecatedSolution<Boolean>(
-    input = input,
-    solution = { it satisfies rulesSet },
-)
-
 /**
  * [Day 5: Doesn't He Have Intern-Elves For This?](https://adventofcode.com/2015/day/5).
  */
-class Day5SolutionBuilder(
-    private val day5Path: String,
-    private val rulesSet: RulesSet = RulesSet.PART_ONE,
-) : SimpleDeprecatedSolutionBuilder<Int, List<String>>(
-    inputsDir = day5Path,
-    inputParser = { readLines(it) },
-    solver = { it.count { Day5Solution(it, rulesSet).solve() } },
-) {
-    fun forRulesSet(newRulesSet: RulesSet) = Day5SolutionBuilder(day5Path, newRulesSet)
+val day5 = solution(5) {
+    inputParser = uniformLinesParser { it }
+
+    part1Solver = solver({ "There are $it nice strings." }) { lines ->
+        lines.count { it.containsThreeVowels() && it.containsDoubleLetter() && !it.containsForbiddenSubstring() }
+    }
+
+    part2Solver = solver({ "There are $it nice strings using new rules." }) { lines ->
+        lines.count { it.containsTwoRepeatingPairs() && it.containsInfixedDoubleLetter() }
+    }
 }

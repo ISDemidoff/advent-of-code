@@ -1,30 +1,29 @@
 package isdemidoff.year2015.day1
 
-import isdemidoff.SingleLineDeprecatedSolution
-import isdemidoff.SingleLineDeprecatedSolutionBuilder
+import isdemidoff.utility.solution.solution
 
-class Day1Solution(input: String) : SingleLineDeprecatedSolution<Int>(
-    input = input,
-    solution = {
-        it.map {
-            when(it) {
+/**
+ * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).
+ */
+val day1 = solution(1) {
+    inputParser = singleLineParser {
+        it.map { ch ->
+            when (ch) {
                 '(' -> 1
                 ')' -> -1
                 else -> throw IllegalArgumentException("Only parenthesis expected in input string")
             }
-        }.reduceIndexed { index, acc, i ->
-            (acc + i).also { if (it == -1) println("Entered a basement on index ${index + 1}") }
         }
-    },
-)
+    }
 
-/**
- * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).
- *
- * There is still a bug: if input string starts with `)`
- * then it will not show that we entered a basement on index 1.
- */
-class Day1SolutionBuilder(day1Path: String) : SingleLineDeprecatedSolutionBuilder<Int>(
-    inputsDir = day1Path,
-    deprecatedSolutionSupplier = { Day1Solution(it) },
-)
+    part1Solver = solver({ "Santa end up at floor $it." }) { it.sumOf { it } }
+
+    part2Solver = solver({ "Santa first time entered basement (-1 floor) on index $it." }) {
+        var currentFloor = 0
+        it.forEachIndexed { idx, shift ->
+            currentFloor += shift
+            if (currentFloor == -1) return@solver idx + 1
+        }
+        return@solver -1
+    }
+}

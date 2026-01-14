@@ -14,9 +14,9 @@ data class Ingredient(
     fun scoringProperties() = listOf(capacity, durability, flavor, texture)
 }
 
-internal fun String.parseIngredient() =
+internal fun parseIngredient(string: String) =
     """(.*): capacity (-?[0-9]+), durability (-?[0-9]+), flavor (-?[0-9]+), texture (-?[0-9]+), calories (-?[0-9]+)""".toRegex()
-        .matchEntire(this)
+        .matchEntire(string)
         .let { requireNotNull(it?.destructured) { "Input string must match regexp" } }
         .let {
             Ingredient(

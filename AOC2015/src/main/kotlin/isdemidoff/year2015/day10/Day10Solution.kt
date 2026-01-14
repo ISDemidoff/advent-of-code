@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day10
 
-import isdemidoff.SingleLineDeprecatedSolutionBuilder
+import isdemidoff.utility.solution.solution
 
 internal fun String.nextApply(): String {
     require(this.matches("""[0-9]+""".toRegex())) { "Invalid input: $this" }
@@ -30,16 +30,17 @@ internal fun String.nextApply(): String {
 /**
  * [Day 10: Elves Look, Elves Say](https://adventofcode.com/2015/day/10).
  */
-class Day10SolutionBuilder(
-    private val day10Path: String,
-    private val repetitions: Int = 40,
-) : SingleLineDeprecatedSolutionBuilder<Int>(
-    inputsDir = day10Path,
-    solver = {
+val day10 = solution(10) {
+    inputParser = singleLineParser { it }
+
+    fun solutionProvider(repetitions: Int) = solver({
+        "After $repetitions steps, input become a string of $it size."
+    }) {
         var result = it
         repeat(repetitions) { result = result.nextApply() }
         result.length
-    },
-) {
-    fun withRepetitions(rep: Int) = Day10SolutionBuilder(day10Path, rep)
+    }
+
+    part1Solver = solutionProvider(40)
+    part2Solver = solutionProvider(50)
 }

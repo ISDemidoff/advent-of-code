@@ -14,9 +14,9 @@ data class Reindeer(
         (seconds / cycleTime * flyingTime + min(seconds % cycleTime, flyingTime)) * speed
 }
 
-internal fun String.createReindeer() =
+internal fun reindeer(string: String) =
     """(.*) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds\.""".toRegex()
-        .matchEntire(this)
+        .matchEntire(string)
         .let { requireNotNull(it?.destructured) { "Input string must match regexp" } }
         .let {
             Reindeer(

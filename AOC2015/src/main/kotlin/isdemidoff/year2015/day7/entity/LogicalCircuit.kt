@@ -3,6 +3,10 @@ package isdemidoff.year2015.day7.entity
 class LogicalCircuit {
     private val wires = mutableMapOf<String, LogicalWire>()
 
+    fun overrideWireValue(name: String, value: UShort) {
+        wires.replace(name, ValueLogicalWire(value.toString()))
+    }
+
     fun importWires(input: List<LogicalWire>) {
         input.forEach { wires[it.identifier] = it }
         input.forEach { it.assignInputs(wires) }

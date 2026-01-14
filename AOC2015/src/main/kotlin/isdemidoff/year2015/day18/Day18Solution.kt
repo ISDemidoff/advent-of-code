@@ -1,32 +1,24 @@
 package isdemidoff.year2015.day18
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
-import isdemidoff.DeprecatedSolution
-import isdemidoff.utility.input.readLines
+import isdemidoff.utility.solution.solution
+import isdemidoff.utility.solution.solver
 import isdemidoff.year2015.day18.entity.LightningGrid
-
-class Day18Solution(
-    private val lightningGrid: LightningGrid,
-    private val numberOfIterations: Int,
-) : DeprecatedSolution<Int> {
-    override fun solve(): Int {
-        lightningGrid.iterate(numberOfIterations)
-        return lightningGrid.countOfTurnedOnLights()
-    }
-}
 
 /**
  * [Day 18: Like a GIF For Your Yard](https://adventofcode.com/2015/day/18).
  */
-class Day18SolutionBuilder(
-    private val day18Path: String,
-    private val numberOfIterations: Int = 100,
-    private val cornersOverride: Boolean = false,
-) : SimpleDeprecatedSolutionBuilder<Int, LightningGrid>(
-    inputsDir = day18Path,
-    inputParser = { LightningGrid(readLines(it), cornersOverride) },
-    deprecatedSolutionSupplier = { Day18Solution(it, numberOfIterations) }
-) {
-    fun forNumberOfIterations(numberOfIterations: Int) = Day18SolutionBuilder(day18Path, numberOfIterations, cornersOverride)
-    fun withCornersOverride(cornersOverride: Boolean) = Day18SolutionBuilder(day18Path, numberOfIterations, cornersOverride)
+val day18 = solution(18) {
+    inputParser = singleBlockParser { it }
+
+    part1Solver = solver<List<String>, Int, Int>({ result, iterations ->
+        "There are total of $result lights on after $iterations iterations."
+    }) { input, iterations ->
+        LightningGrid(input).apply { repeat(iterations) { iterateOnce() } }.countOfTurnedOnLights()
+    }
+
+    part2Solver = solver<List<String>, Int, Int>({ result, iterations ->
+        "There are total of $result lights on after $iterations iterations with stuck on corners lights."
+    }) { input, iterations ->
+        LightningGrid(input, true).apply { repeat(iterations) { iterateOnce() } }.countOfTurnedOnLights()
+    }
 }

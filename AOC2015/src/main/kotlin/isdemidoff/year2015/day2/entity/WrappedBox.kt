@@ -1,10 +1,13 @@
 package isdemidoff.year2015.day2.entity
 
+import isdemidoff.utility.parseUnescapedCsvInputLine
+
 class WrappedBox(
     private val height: Int,
     private val width: Int,
     private val length: Int,
 ) {
+
     private fun calculateSides() = listOf(height * width, height * length, length * width)
     private val dimensions = listOf(height, width, length)
 
@@ -15,6 +18,7 @@ class WrappedBox(
     }
 }
 
-fun String.toWrappedBox() = this.split('x')
-    .also { check(it.size == 3) { "There must be exactly 3 dimensions specified, but git $this" } }
-    .let { WrappedBox(it[0].toInt(), it[1].toInt(), it[2].toInt()) }
+fun wrappedBox(str: String): WrappedBox =
+    str.parseUnescapedCsvInputLine('x') { it.toString().toInt() }
+        .also { require(it.size == 3) { "There must be exactly 3 dimensions specified, but got $str" } }
+        .let { (x, y, z) -> WrappedBox(x, y, z) }

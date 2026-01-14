@@ -1,7 +1,6 @@
 package isdemidoff.year2015.day12
 
-import isdemidoff.SingleLineDeprecatedSolution
-import isdemidoff.SingleLineDeprecatedSolutionBuilder
+import isdemidoff.utility.solution.solution
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -29,25 +28,12 @@ fun JsonElement.calculateTotalSumIgnoring(color: String): Int = when (this) {
     else -> throw IllegalArgumentException("Unexpected type of element ${this.javaClass}")
 }
 
-enum class CountingRules(val calculator: (JsonElement) -> Int) {
-    COUNT_ALL({ it.calculateTotalSum() }),
-    EXCEPT_RED({ it.calculateTotalSumIgnoring("red") }),
-}
-
-class Day12Solution(private val input: String, private val countingRules: CountingRules) : SingleLineDeprecatedSolution<Int>(
-    input = input,
-    solution = { countingRules.calculator(Json.parseToJsonElement(input)) },
-)
-
 /**
  * [Day 12: JSAbacusFramework.io](https://adventofcode.com/2015/day/12).
  */
-class Day12SolutionBuilder(
-    private val day12Path: String,
-    private val countingRules: CountingRules = CountingRules.COUNT_ALL,
-) : SingleLineDeprecatedSolutionBuilder<Int>(
-    inputsDir = day12Path,
-    deprecatedSolutionSupplier = { Day12Solution(it, countingRules) },
-) {
-    fun withCountingRules(countingRules: CountingRules) = Day12SolutionBuilder(day12Path, countingRules)
+val day12 = solution(12) {
+    inputParser = singleLineParser { Json.parseToJsonElement(it) }
+
+    part1Solver = solver({ "Total sum of all numbers is $it" }) { it.calculateTotalSum() }
+    part2Solver = solver({ "Total sum of all numbers except objects with 'red' is $it" }) { it.calculateTotalSumIgnoring("red") }
 }

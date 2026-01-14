@@ -5,6 +5,8 @@ sealed class LogicalWire(
 ) {
     abstract val signalValue: UShort
     abstract fun assignInputs(allWires: Map<String, LogicalWire>)
+
+    override fun toString() = "${this::class.simpleName}(identifier='$identifier')"
 }
 
 class ValueLogicalWire(value: String) : LogicalWire(value) {

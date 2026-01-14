@@ -1,7 +1,7 @@
 package isdemidoff.year2025
 
-import isdemidoff.utility.solution.SolutionData
-import isdemidoff.utility.solution.YearSolution
+import isdemidoff.utility.solution.year.SolutionData
+import isdemidoff.utility.solution.year.YearSolution
 import isdemidoff.year2025.day1.day1
 import isdemidoff.year2025.day10.day10
 import isdemidoff.year2025.day11.day11

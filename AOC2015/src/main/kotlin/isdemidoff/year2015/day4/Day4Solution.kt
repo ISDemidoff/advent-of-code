@@ -1,35 +1,26 @@
 package isdemidoff.year2015.day4
 
-import isdemidoff.SingleLineDeprecatedSolution
-import isdemidoff.SingleLineDeprecatedSolutionBuilder
+import isdemidoff.utility.solution.solution
+import isdemidoff.utility.solution.solver
 import java.security.MessageDigest
 
 private fun String.md5hex(): String = MessageDigest.getInstance("MD5")
     .digest(this.toByteArray(Charsets.UTF_8))
     .toHexString()
 
-val DEFAULT_STARTING_PATTERN = "0".repeat(5)
-
-class Day4Solution(
-    input: String,
-    private val targetStartingPattern: String = DEFAULT_STARTING_PATTERN,
-) : SingleLineDeprecatedSolution<Int>(
-    input = input,
-    solution = { str ->
-        generateSequence(1) { it + 1 }
-            .first { (str + it).md5hex().startsWith(targetStartingPattern) }
-    }
-)
-
 /**
  * [Day 4: The Ideal Stocking Stuffer](https://adventofcode.com/2015/day/4).
  */
-class Day4SolutionBuilder(
-    private val day4Path: String,
-    private val targetStartingPattern: String = DEFAULT_STARTING_PATTERN,
-) : SingleLineDeprecatedSolutionBuilder<Int>(
-    inputsDir = day4Path,
-    deprecatedSolutionSupplier = { Day4Solution(it, targetStartingPattern) }
-) {
-    fun withStartingPattern(startingPattern: String) = Day4SolutionBuilder(day4Path, startingPattern)
+val day4 = solution(4) {
+    inputParser = singleLineParser { it }
+
+    val solver = solver<String, Int, String>({ result, _ ->
+        "Lowest positive number to add is $result."
+    }) { str, targetStartingPattern ->
+        generateSequence(1) { it + 1 }
+            .first { (str + it).md5hex().startsWith(targetStartingPattern) }
+    }
+
+    part1Solver = solver
+    part2Solver = solver
 }

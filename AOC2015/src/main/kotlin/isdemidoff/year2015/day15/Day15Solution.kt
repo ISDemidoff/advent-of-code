@@ -1,9 +1,8 @@
 package isdemidoff.year2015.day15
 
-import isdemidoff.SimpleDeprecatedSolutionBuilder
 import isdemidoff.utility.combinations
-import isdemidoff.utility.input.readLines
-import isdemidoff.year2015.day15.entity.Ingredient
+import isdemidoff.utility.solution.solution
+import isdemidoff.year2015.day15.entity.calculateCalories
 import isdemidoff.year2015.day15.entity.calculateScore
 import isdemidoff.year2015.day15.entity.parseIngredient
 
@@ -12,14 +11,18 @@ import isdemidoff.year2015.day15.entity.parseIngredient
  *
  * Helpful note: you must ignore calories when calculating score, as it is unclear in the description, they really kicks into part two.
  */
-class Day15SolutionBuilder(
-    private val day15Path: String,
-    private val totalSpoons: Int = 100,
-    private val combinationsFilter: (Map<Ingredient, Int>) -> Boolean = { true },
-) : SimpleDeprecatedSolutionBuilder<Long, List<Ingredient>>(
-    inputsDir = day15Path,
-    inputParser = { readLines(it).map { it.parseIngredient() } },
-    solver = { it.combinations(totalSpoons).filter(combinationsFilter).maxOf { it.calculateScore() } },
-) {
-    fun withCombinationsFilter(filter: (Map<Ingredient, Int>) -> Boolean) = Day15SolutionBuilder(day15Path, totalSpoons, filter)
+val day15 = solution(15) {
+    inputParser = uniformLinesParser { parseIngredient(it) }
+
+    val totalSpoons = 100
+
+    part1Solver = solver({ "Best score available is $it." }) {
+        it.combinations(totalSpoons).maxOf { it.calculateScore() }
+    }
+
+    val calories = 500L
+
+    part2Solver = solver({ "Best score available keeping calories at $calories is $it." }) {
+        it.combinations(totalSpoons).filter { it.calculateCalories() == calories }.maxOf { it.calculateScore() }
+    }
 }

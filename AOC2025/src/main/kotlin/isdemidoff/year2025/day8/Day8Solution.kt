@@ -8,6 +8,7 @@ import isdemidoff.year2025.day8.entities.JunctionBox
 import isdemidoff.year2025.day8.entities.JunctionBoxConnection
 import isdemidoff.year2025.day8.entities.createConnection
 import isdemidoff.year2025.day8.entities.toJunctionBox
+import isdemidoff.utility.solution.solver
 
 /**
  * [Day 8: Playground](https://adventofcode.com/2025/day/8).
@@ -26,7 +27,7 @@ private fun connectClosest(connections: Set<JunctionBoxConnection>, numConnectio
 val day8 = solution(8) {
     inputParser = uniformLinesParser { it.parseUnescapedCsvInputLine { it.toString().toLong() }.toJunctionBox() }
 
-    part1Solver = solver<Int, Int>({ result, num ->
+    part1Solver = solver<List<JunctionBox>, Int, Int>({ result, num ->
         "Product of sizes of 3 largest circuits after $num closest connections is $result."
     }) { boxes, numConnections ->
         val connectionsGrid = makeConnectionsGrid(boxes)
