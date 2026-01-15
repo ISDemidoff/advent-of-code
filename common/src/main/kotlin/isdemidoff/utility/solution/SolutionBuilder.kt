@@ -21,9 +21,9 @@ class SolutionBuilder<INNER_DATA, R1, R2>(
             context = context,
             inputSupplier = SolutionBuilderDataSupplierUseScope(
                 context = context,
-                inputParser = requireNotNull(inputParser) { "Input parser is not specified!" }
+                inputParserNullable = inputParser,
             ).inputConfiguration(),
             part1Solver = part1Solver,
-            part2Solver = part2Solver
+            part2Solver = part2Solver,
         )
 }

@@ -4,7 +4,6 @@ class YearSolution(
     private val year: Int,
     private vararg val solutionBuildersWithArgs: SolutionData,
 ) {
-
     fun printSolutions() {
         println(
             """

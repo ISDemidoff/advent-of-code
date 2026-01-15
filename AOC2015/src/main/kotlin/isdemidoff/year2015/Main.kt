@@ -1,7 +1,8 @@
 package isdemidoff.year2015
 
-import isdemidoff.utility.solution.year.SolutionData
-import isdemidoff.utility.solution.year.YearSolution
+import isdemidoff.utility.solution.year.withArgs
+import isdemidoff.utility.solution.year.withSameArgs
+import isdemidoff.utility.solution.year.yearSolution
 import isdemidoff.year2015.day1.day1
 import isdemidoff.year2015.day10.day10
 import isdemidoff.year2015.day11.day11
@@ -22,27 +23,25 @@ import isdemidoff.year2015.day7.day7
 import isdemidoff.year2015.day8.day8
 import isdemidoff.year2015.day9.day9
 
-fun main() {
-    YearSolution(
-        2015,
-        SolutionData(day1),
-        SolutionData(day2),
-        SolutionData(day3),
-        SolutionData(day4, listOf("0".repeat(5)), listOf("0".repeat(6))),
-        SolutionData(day5),
-        SolutionData(day6),
-        SolutionData(day7),
-        SolutionData(day8),
-        SolutionData(day9),
-        SolutionData(day10),
-        SolutionData(day11),
-        SolutionData(day12),
-        SolutionData(day13),
-        SolutionData(day14, listOf(2503), listOf(2503)),
-        SolutionData(day15),
-        SolutionData(day16),
-        SolutionData(day17, listOf(150), listOf(150)),
-        SolutionData(day18, listOf(100), listOf(100)),
-        SolutionData(day19),
-    ).printSolutions()
-}
+fun main() = yearSolution(
+    2015,
+    day1,
+    day2,
+    day3,
+    day4.withArgs(listOf("0".repeat(5)), listOf("0".repeat(6))),
+    day5,
+    day6,
+    day7,
+    day8,
+    day9,
+    day10,
+    day11,
+    day12,
+    day13,
+    day14.withSameArgs(listOf(2503)),
+    day15,
+    day16,
+    day17.withSameArgs(listOf(150)),
+    day18.withSameArgs(listOf(100)),
+    day19,
+)

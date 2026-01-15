@@ -5,7 +5,7 @@ import isdemidoff.utility.solution.inputparser.InputParser
 
 class SolutionBuilderDataSupplierUseScope<INNER_DATA>(
     private val context: SolutionBuilderContext,
-    override val inputParser: InputParser<INNER_DATA>,
+    override val inputParserNullable: InputParser<INNER_DATA>?,
 ) : DataSupplierWithInputParserUseScope<INNER_DATA> {
     override fun inputFile(): DataSupplier<INNER_DATA> = filename("day${context.day}-input.txt")
     override fun inputFile(suffix: Any): DataSupplier<INNER_DATA> = filename("day${context.day}-input-$suffix.txt")
