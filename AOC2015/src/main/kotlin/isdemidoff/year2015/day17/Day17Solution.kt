@@ -1,14 +1,13 @@
 package isdemidoff.year2015.day17
 
 import isdemidoff.utility.solution.solution
-import kotlin.collections.minOf
-import isdemidoff.utility.solution.solver
+import isdemidoff.utility.solution.solver.solver
 import isdemidoff.year2015.day17.entity.SumCombiner
 
 /**
  * [Day 17: No Such Thing as Too Much](https://adventofcode.com/2015/day/17).
  */
-val day17 = solution<List<Int>, List<List<Int>>>(17) {
+val day17 = solution(17) {
     inputParser = uniformLinesParser { it.toInt() }
 
     fun solve(input: List<Int>, totalSum: Int): List<List<Int>> =

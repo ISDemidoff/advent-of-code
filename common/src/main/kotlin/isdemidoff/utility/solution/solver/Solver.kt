@@ -1,5 +1,6 @@
-package isdemidoff.utility.solution
+package isdemidoff.utility.solution.solver
 
+import isdemidoff.utility.solution.result.SolutionResult
 import kotlin.reflect.KClass
 
 interface Solver<INNER_DATA, R> {
@@ -19,12 +20,3 @@ interface Solver<INNER_DATA, R> {
         return solve(input, *args)
     }
 }
-
-open class SolverNoArgs<INNER_DATA, R>(
-    private val fn: (INNER_DATA) -> SolutionResult<R>,
-) : Solver<INNER_DATA, R> {
-    override fun solve(input: INNER_DATA, vararg args: Any) = fn(input)
-}
-
-class EmptySolver<INNER_DATA, R> : SolverNoArgs<INNER_DATA, R>({ TODO("No solution provided yet") })
-

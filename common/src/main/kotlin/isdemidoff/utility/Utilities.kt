@@ -1,7 +1,5 @@
 package isdemidoff.utility
 
-import kotlin.text.trim
-
 /**
  * Map list of string with [toLongsList] function.
  */

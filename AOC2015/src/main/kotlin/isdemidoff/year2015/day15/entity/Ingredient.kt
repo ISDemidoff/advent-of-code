@@ -1,6 +1,5 @@
 package isdemidoff.year2015.day15.entity
 
-import kotlin.collections.component1
 import kotlin.math.max
 
 data class Ingredient(

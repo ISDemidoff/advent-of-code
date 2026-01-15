@@ -2,7 +2,6 @@ package isdemidoff.year2015.day19
 
 import isdemidoff.utility.keyValue
 import isdemidoff.utility.solution.solution
-import kotlin.sequences.forEach
 
 /**
  * [Day 19: Medicine for Rudolph](https://adventofcode.com/2015/day/19).

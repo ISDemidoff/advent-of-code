@@ -1,13 +1,9 @@
-package isdemidoff.utility.solution
+package isdemidoff.utility.solution.solver
 
-interface SolverUseScope<INNER_DATA> {
-    fun <R> emptySolver() = EmptySolver<INNER_DATA, R>()
+import isdemidoff.utility.solution.result.SolutionResult
+import isdemidoff.utility.solution.result.solutionResult
 
-    fun <R> solver(
-        formatter: (result: R) -> String = { if (it is String) it else it.toString() },
-        fn: (data: INNER_DATA) -> R,
-    ) = SolverNoArgs<INNER_DATA, R> { solutionResult(formatter) { fn(it) } }
-}
+class EmptySolver<INNER_DATA, R> : SolverNoArgs<INNER_DATA, R>({ TODO("No solution provided yet") })
 
 inline fun <INNER_DATA, R, reified A : Any> SolverUseScope<INNER_DATA>.solver(
     crossinline formatter: (result: R, A) -> String = { result, _ -> if (result is String) result else result.toString() },

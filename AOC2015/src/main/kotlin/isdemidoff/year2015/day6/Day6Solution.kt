@@ -1,13 +1,7 @@
 package isdemidoff.year2015.day6
 
-import isdemidoff.utility.solution.Solver
 import isdemidoff.utility.solution.solution
-import isdemidoff.year2015.day6.entity.BrightnessLight
-import isdemidoff.year2015.day6.entity.Instruction
-import isdemidoff.year2015.day6.entity.Light
-import isdemidoff.year2015.day6.entity.LightGrid
-import isdemidoff.year2015.day6.entity.TogglingLight
-import isdemidoff.year2015.day6.entity.parseInstruction
+import isdemidoff.year2015.day6.entity.*
 
 /**
  * [Day 6: Probably a Fire Hazard](https://adventofcode.com/2015/day/6).

@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day14
 
 import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver
+import isdemidoff.utility.solution.solver.solver
 import isdemidoff.year2015.day14.entity.DistanceTravelledRace
 import isdemidoff.year2015.day14.entity.LeadTimeRace
 import isdemidoff.year2015.day14.entity.Reindeer

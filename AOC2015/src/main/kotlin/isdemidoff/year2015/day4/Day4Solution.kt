@@ -1,7 +1,7 @@
 package isdemidoff.year2015.day4
 
 import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver
+import isdemidoff.utility.solution.solver.solver
 import java.security.MessageDigest
 
 private fun String.md5hex(): String = MessageDigest.getInstance("MD5")

@@ -1,7 +1,7 @@
 package isdemidoff.utility.graphs
 
 import isdemidoff.utility.graphs.VisitedPoint.Companion.toVisitedNode
-import java.util.LinkedList
+import java.util.*
 
 data class VisitedPoint<T : Node<T>>(
     val node: T,

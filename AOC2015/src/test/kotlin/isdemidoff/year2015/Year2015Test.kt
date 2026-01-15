@@ -5,10 +5,6 @@ import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import isdemidoff.utility.solution.raw
-import isdemidoff.utility.solution.sampleFile
-import isdemidoff.utility.solution.string
-import isdemidoff.utility.test.TestConstants.SAMPLE_FILE_NAME
 import isdemidoff.year2015.day1.day1
 import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day11.getNextValidPassword
@@ -46,7 +42,7 @@ class Year2015Test : FreeSpec({
                 ")))" to -3,
                 ")())())" to -3,
             ) { (input, result) ->
-                day1.parseInput(string(input)).solvePart1().get() shouldBe result
+                day1.input { string(input) }.solvePart1().get() shouldBe result
             }
         }
 
@@ -58,7 +54,7 @@ class Year2015Test : FreeSpec({
                 ")" to 1,
                 "()())" to 5,
             ) { (input, result) ->
-                day1.parseInput(string(input)).solvePart2().get() shouldBe result
+                day1.input { string(input) }.solvePart2().get() shouldBe result
             }
         }
     }
@@ -72,7 +68,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 58,
                 "1x1x10" to 43,
             ) { (input, result) ->
-                day2.parseInput(string(input)).solvePart1().get() shouldBe result
+                day2.input { string(input) }.solvePart1().get() shouldBe result
             }
         }
 
@@ -84,7 +80,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 34,
                 "1x1x10" to 14,
             ) { (input, result) ->
-                day2.parseInput(string(input)).solvePart2().get() shouldBe result
+                day2.input { string(input) }.solvePart2().get() shouldBe result
             }
         }
     }
@@ -99,7 +95,7 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 4,
                 "^v^v^v^v^v" to 2,
             ) { (input, result) ->
-                day3.rawInput(raw(input)).solvePart1().get() shouldBe result
+                day3.input { raw(input) }.solvePart1().get() shouldBe result
             }
         }
 
@@ -112,7 +108,7 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 3,
                 "^v^v^v^v^v" to 11,
             ) { (input, result) ->
-                day3.rawInput(raw(input)).solvePart2().get() shouldBe result
+                day3.input { raw(input) }.solvePart2().get() shouldBe result
             }
         }
     }
@@ -125,7 +121,7 @@ class Year2015Test : FreeSpec({
             "abcdef" to 609043,
             "pqrstuv" to 1048970,
         ) { (input, result) ->
-            day4.rawInput(raw(input)).solvePart1("00000").get() shouldBe result
+            day4.input { raw(input) }.solvePart1("00000").get() shouldBe result
         }
     }
 
@@ -143,7 +139,7 @@ class Year2015Test : FreeSpec({
                 "dvszwmarrgswjxmb" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.parseInput(string(input)).solvePart1().get() shouldBe expectedResult
+                day5.input { string(input) }.solvePart1().get() shouldBe expectedResult
             }
         }
 
@@ -158,20 +154,20 @@ class Year2015Test : FreeSpec({
                 "ieodomkazucvgmuy" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.parseInput(string(input)).solvePart2().get() shouldBe expectedResult
+                day5.input { string(input) }.solvePart2().get() shouldBe expectedResult
             }
         }
     }
 
     "Day 6: Probably a Fire Hazard" - {
-        val builder = day6.parseInput(sampleFile())
+        val builder = day6.input { sampleFile() }
         "Part 1 check" { builder.solvePart1().get() shouldBe 998000 }
         "Part 2 check" { builder.solvePart2().get() shouldBe 1000998 }
     }
 
     "Day 7: Some Assembly Required" - {
         "Part 1 checks" - {
-            val logicalCircuit = day7.parseInput(sampleFile()).solvePart1().get()
+            val logicalCircuit = day7.input { sampleFile() }.solvePart1().get()
 
             withData(
                 nameFn = { (key, value) ->
@@ -192,7 +188,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 8: Matchsticks" - {
-        val builder = day8.parseInput(sampleFile())
+        val builder = day8.input { sampleFile() }
 
         "Part 1 checks" - {
             "Sample file" { builder.solvePart1().get() shouldBe 12 }
@@ -209,7 +205,7 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 3,
                 """"\\\\"""" to 4,
             ) { (str, result) ->
-                day8.parseInput(string(str)).solvePart1().get() shouldBe result
+                day8.input { string(str) }.solvePart1().get() shouldBe result
             }
         }
 
@@ -228,13 +224,13 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 6,
                 """"\\\\"""" to 8,
             ) { (str, result) ->
-                day8.parseInput(string(str)).solvePart2().get() shouldBe result
+                day8.input { string(str) }.solvePart2().get() shouldBe result
             }
         }
     }
 
     "Day 9: All in a Single Night" - {
-        val builder = day9.parseInput(sampleFile())
+        val builder = day9.input { sampleFile() }
         "Part 1 check" { builder.solvePart1().get() shouldBe 605 }
         "Part 2 check" { builder.solvePart2().get() shouldBe 982 }
     }
@@ -282,7 +278,7 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.parseInput(string(str)).solvePart1().get() shouldBe result
+                day12.input { string(str) }.solvePart1().get() shouldBe result
             }
         }
 
@@ -302,17 +298,17 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.parseInput(string(str)).solvePart2().get() shouldBe result
+                day12.input { string(str) }.solvePart2().get() shouldBe result
             }
         }
     }
 
     "Day 13: Knights of the Dinner Table" - {
-        "Part 1 check" { day13.parseInput(sampleFile()).solvePart1().get() shouldBe 330 }
+        "Part 1 check" { day13.input { sampleFile() }.solvePart1().get() shouldBe 330 }
     }
 
     "Day 14: Reindeer Olympics" - {
-        val builder = day14.parseInput(sampleFile())
+        val builder = day14.input { sampleFile() }
         val sampleRaceTime = 1000
         fun Map<Reindeer, Int>.findReindeerResults(name: String) = this.filterKeys { it.name == name }.values.single()
 
@@ -342,7 +338,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 15: Science for Hungry People" - {
-        val builder = day15.parseInput(sampleFile())
+        val builder = day15.input { sampleFile() }
         "Part 1 check" { builder.solvePart1().get() shouldBe 62842880 }
         "Part 2 check" { builder.solvePart2().get() shouldBe 57600000 }
     }
@@ -353,7 +349,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 17: No Such Thing as Too Much" - {
-        val builder = day17.parseInput(sampleFile())
+        val builder = day17.input { sampleFile() }
 
         builder.solvePart1(25).get().let {
             it shouldHaveSize 4
@@ -364,7 +360,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 18: Like a GIF For Your Yard" - {
-        val builder = day18.parseInput(sampleFile())
+        val builder = day18.input { sampleFile() }
 
         "Part 1 checks" - {
             withData(
@@ -398,7 +394,7 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 19: Medicine for Rudolph" - {
-        val builder = day19.parseInput(sampleFile())
+        val builder = day19.input { sampleFile() }
 
         "Part 1 check" {
             builder.solvePart1().get() shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")

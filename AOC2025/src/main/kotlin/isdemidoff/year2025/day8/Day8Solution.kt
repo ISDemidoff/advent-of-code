@@ -4,11 +4,11 @@ import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
 import isdemidoff.utility.parseUnescapedCsvInputLine
 import isdemidoff.utility.solution.solution
+import isdemidoff.utility.solution.solver.solver
 import isdemidoff.year2025.day8.entities.JunctionBox
 import isdemidoff.year2025.day8.entities.JunctionBoxConnection
 import isdemidoff.year2025.day8.entities.createConnection
 import isdemidoff.year2025.day8.entities.toJunctionBox
-import isdemidoff.utility.solution.solver
 
 /**
  * [Day 8: Playground](https://adventofcode.com/2025/day/8).

@@ -1,12 +1,7 @@
 package isdemidoff.year2015.day12
 
 import isdemidoff.utility.solution.solution
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.*
 
 fun JsonElement.calculateTotalSum(): Int = when (this) {
     is JsonPrimitive -> this.contentOrNull?.toIntOrNull() ?: 0

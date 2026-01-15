@@ -1,4 +1,4 @@
-package isdemidoff.utility.solution
+package isdemidoff.utility.solution.inputparser
 
 interface InputParserUseScope {
     fun <R> inputParser(transform: (blocks: List<List<String>>) -> R) =
