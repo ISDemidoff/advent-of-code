@@ -1,7 +1,7 @@
 package isdemidoff.year2025
 
 import isdemidoff.utility.solution.year.withSameArgs
-import isdemidoff.utility.solution.year.yearSolution
+import isdemidoff.utility.solution.year.printYearSolution
 import isdemidoff.year2025.day1.day1
 import isdemidoff.year2025.day10.day10
 import isdemidoff.year2025.day11.day11
@@ -15,7 +15,7 @@ import isdemidoff.year2025.day7.day7
 import isdemidoff.year2025.day8.day8
 import isdemidoff.year2025.day9.day9
 
-fun main() = yearSolution(
+fun main() = printYearSolution(
     2025,
     day1,
     day2,

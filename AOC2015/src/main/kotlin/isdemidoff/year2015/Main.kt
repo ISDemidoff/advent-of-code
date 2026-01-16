@@ -2,7 +2,7 @@ package isdemidoff.year2015
 
 import isdemidoff.utility.solution.year.withArgs
 import isdemidoff.utility.solution.year.withSameArgs
-import isdemidoff.utility.solution.year.yearSolution
+import isdemidoff.utility.solution.year.printYearSolution
 import isdemidoff.year2015.day1.day1
 import isdemidoff.year2015.day10.day10
 import isdemidoff.year2015.day11.day11
@@ -23,7 +23,7 @@ import isdemidoff.year2015.day7.day7
 import isdemidoff.year2015.day8.day8
 import isdemidoff.year2015.day9.day9
 
-fun main() = yearSolution(
+fun main() = printYearSolution(
     2015,
     day1,
     day2,

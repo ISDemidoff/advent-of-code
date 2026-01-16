@@ -2,7 +2,7 @@ package isdemidoff.utility.solution.year
 
 import isdemidoff.utility.solution.SolutionBuilder
 
-fun yearSolution(
+fun printYearSolution(
     year: Int,
     vararg solutions: Any,
 ) = YearSolution(
@@ -10,7 +10,7 @@ fun yearSolution(
     *solutions.mapIndexed { index, it ->
         extractSolution(it) { IllegalArgumentException("Expected SolutionData or SolutionBuilder at position $index, got $it (type ${it::class.qualifiedName})") }
     }.toTypedArray()
-).printSolutions()
+).getSolutionsFormatted().let { println(it) }
 
 private fun extractSolution(builderOrData: Any, exceptionSupplier: () -> Exception): SolutionData {
     return when (builderOrData) {

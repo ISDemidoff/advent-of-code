@@ -14,7 +14,9 @@ class UtilitiesTest : FreeSpec({
         )
 
         withData(
-            nameFn = { "${it.first.formatShort()} x ${it.second.formatShort()} should be ${it.result.formatShort()}" },
+            nameFn = { (first, second, result) ->
+                "${first.formatShort()} x ${second.formatShort()} should be ${result.formatShort()}"
+            },
             CartesianProductTestData(listOf(1), listOf('a'), listOf(1 to 'a')),
             CartesianProductTestData(listOf(1, 1), listOf('a'), listOf(1 to 'a', 1 to 'a')),
             CartesianProductTestData(listOf(1, 2), listOf('a'), listOf(1 to 'a', 2 to 'a')),
@@ -52,7 +54,9 @@ class UtilitiesTest : FreeSpec({
         )
 
         withData(
-            nameFn = { "${it.input.formatShort()} has permutations ${it.result.formatShort()}" },
+            nameFn = { (input, result) ->
+                "${input.formatShort()} has permutations ${result.formatShort()}"
+            },
             PermutationsTestData(listOf(1), listOf(listOf(1))),
             PermutationsTestData(listOf(1, 2), listOf(listOf(1, 2), listOf(2, 1)),),
             PermutationsTestData(listOf(1, 1), listOf(listOf(1, 1), listOf(1, 1)),),
@@ -80,7 +84,9 @@ class UtilitiesTest : FreeSpec({
         )
 
         withData(
-            nameFn = { "${it.inputList.formatShort()} combinations with total sum ${it.totalCount} are ${it.result.formatShort()}" },
+            nameFn = { (inputList, totalCount, result) ->
+                "${inputList.formatShort()} combinations with total sum $totalCount are ${result.formatShort()}"
+            },
             CombinationsTestData(
                 listOf("a"),
                 1,

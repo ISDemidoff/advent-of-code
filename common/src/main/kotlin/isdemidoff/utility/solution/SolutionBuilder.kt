@@ -11,14 +11,13 @@ import isdemidoff.utility.solution.solver.SolverUseScope
 class SolutionBuilder<INNER_DATA, R1, R2>(
     day: Int,
 ) : InputParserUseScope, SolverUseScope<INNER_DATA> {
-    private val context = SolutionBuilderContext(day)
+    val context = SolutionBuilderContext(day)
     var inputParser: InputParser<INNER_DATA>? = null
     var part1Solver: Solver<INNER_DATA, R1> = emptySolver()
     var part2Solver: Solver<INNER_DATA, R2> = emptySolver()
 
     fun input(inputConfiguration: DataSupplierUseScope<INNER_DATA>.() -> DataSupplier<INNER_DATA>): SolutionWithInputBuilder<INNER_DATA, R1, R2> =
         SolutionWithInputBuilder(
-            context = context,
             inputSupplier = SolutionBuilderDataSupplierUseScope(
                 context = context,
                 inputParserNullable = inputParser,
