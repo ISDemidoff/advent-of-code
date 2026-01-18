@@ -1,5 +1,6 @@
 package isdemidoff.year2015.day17
 
+import isdemidoff.utility.discretemath.combinationsHavingSum
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
 import isdemidoff.year2015.day17.entity.SumCombiner
@@ -11,7 +12,7 @@ val day17 = solution(17) {
     inputParser = uniformLinesParser { it.toInt() }
 
     fun solve(input: List<Int>, totalSum: Int): List<List<Int>> =
-        SumCombiner(input).findCombinations(totalSum)
+        combinationsHavingSum(input, totalSum)
 
     part1Solver = solver<List<Int>, List<List<Int>>, Int>({ result, _ ->
         "Total number of combinations is ${result.size}."

@@ -1,30 +1,95 @@
 package isdemidoff.utility.discretemath
 
-infix fun <E> List<E>.combinationsWithSum(totalSum: Int): List<Map<E, Int>> =
-    combinations(this, totalSum)
+import java.util.LinkedList
 
-fun <E> combinations(elements: List<E>, totalSum: Int): List<Map<E, Int>> =
-    elements.combinationsInner(totalSum.also { require(it >= 0) { "Cannot combine to negative total sum." } })
+fun <E> combinationsWithRepetitions(elements: List<E>, totalCount: Int): List<Map<E, Int>> =
+    combinationsWithRepetitionsInner(elements, totalCount.also { require(it >= 0) { "Cannot combine to negative total sum." } })
 
-private fun <E> List<E>.combinationsInner(
+private fun <E> combinationsWithRepetitionsInner(
+    elements: List<E>,
     totalSum: Int,
     alreadyCombined: Map<E, Int> = emptyMap(),
 ) : List<Map<E, Int>> {
-    if (this.isEmpty()) {
+    if (elements.isEmpty()) {
         if (totalSum == 0) return emptyList()
         throw IllegalArgumentException("Cannot combine empty list to positive sum.")
     }
 
-    if (size == 1) return listOf(alreadyCombined + mapOf(this.single() to totalSum))
+    if (elements.size == 1) return listOf(alreadyCombined + mapOf(elements.single() to totalSum))
 
-    val nextElement = this.first()
+    val nextElement = elements.first()
     return (0..totalSum).flatMap {
-        (this - nextElement).combinationsInner(
+        combinationsWithRepetitionsInner(
+            elements = elements - nextElement,
             totalSum = totalSum - it,
             alreadyCombined = alreadyCombined + (nextElement to it),
         )
     }
 }
+
+fun combinationsHavingSum(availableTerms: List<Int>, totalSum: Int) =
+    combinationsHavingSumInner(availableTerms.sorted(), totalSum)
+
+private fun combinationsHavingSumInner(
+    availableTerms: List<Int>,
+    totalSum: Int,
+    takenTerms: List<Int> = listOf(),
+): List<List<Int>> {
+    if (totalSum == 0) {
+        return listOf(takenTerms)
+    } else if (totalSum < 0) {
+        return emptyList()
+    }
+
+    if (availableTerms.isEmpty()) return emptyList()
+
+    return availableTerms.flatMapIndexed { index, v ->
+        combinationsHavingSumInner(
+            availableTerms.subList(index + 1, availableTerms.size),
+            totalSum - v,
+            takenTerms + v,
+        )
+    }
+}
+
+fun combinationsHavingSum(availableTerms: List<Long>, totalSum: Long) =
+    combinationsHavingSumInner(availableTerms.sorted(), totalSum)
+
+private fun combinationsHavingSumInner(
+    availableTerms: List<Long>,
+    totalSum: Long,
+    takenTerms: List<Long> = listOf(),
+): List<List<Long>> {
+    if (totalSum == 0L) {
+        return listOf(takenTerms)
+    } else if (totalSum < 0) {
+        return emptyList()
+    }
+
+    if (availableTerms.isEmpty()) return emptyList()
+
+    return availableTerms.flatMapIndexed { index, v ->
+        combinationsHavingSumInner(
+            availableTerms.subList(index + 1, availableTerms.size),
+            totalSum - v,
+            takenTerms + v,
+        )
+    }
+}
+
+//fun existsCombinationHavingSum(
+//    availableTerms: List<Int>,
+//    totalSum: Int
+//): Boolean {
+//    if (availableTerms.contains(totalSum)) return true
+//
+//    val queue = LinkedList<Pair<List<Int>, Int>>()
+//    queue.offer(Pair(availableTerms, totalSum))
+//
+//    while (queue.isNotEmpty()) {
+//
+//    }
+//}
 
 fun <E> createAllChoices(elements: Map<E, Int>): List<Map<E, Int>> = elements.takeUnless { it.isEmpty() }
     ?.let { allChoicesInner(it) } ?: emptyList()

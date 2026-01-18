@@ -34,6 +34,8 @@ import isdemidoff.year2015.day22.entity.ShieldSpell
 import isdemidoff.year2015.day22.entity.Stats
 import isdemidoff.year2015.day22.entity.Victory
 import isdemidoff.year2015.day23.day23
+import isdemidoff.year2015.day24.day24
+import isdemidoff.year2015.day25.findCodeAtPosition
 import isdemidoff.year2015.day3.day3
 import isdemidoff.year2015.day4.day4
 import isdemidoff.year2015.day5.day5
@@ -520,5 +522,65 @@ class Year2015Test : FreeSpec({
 
     "Day 23: Opening the Turing Lock" - {
         "Sample check" { day23.input { sampleFile() }.solvePart1("a").get() shouldBe 2u }
+    }
+
+    "Day 24: It Hangs in the Balance" - {
+        "Part 1 check" { day24.input { sampleFile() }.solvePart1().get() shouldBe 99 }
+        "Part 2 check" { day24.input { sampleFile() }.solvePart2().get() shouldBe 44 }
+    }
+
+    "Day 25: Let It Snow" - {
+        data class TestData(
+            val row: Int,
+            val col: Int,
+            val expectedCode: Long,
+        )
+
+
+        "Part 1 checks" - {
+            withData(
+                nameFn = { (row, col, expectedCode) ->
+                    "Code at row $row, col $col is $expectedCode"
+                },
+                TestData(1, 1, 20151125L),
+                TestData(1, 2, 18749137L),
+                TestData(1, 3, 17289845L),
+                TestData(1, 4, 30943339L),
+                TestData(1, 5, 10071777L),
+                TestData(1, 6, 33511524L),
+                TestData(2, 1, 31916031L),
+                TestData(2, 2, 21629792L),
+                TestData(2, 3, 16929656L),
+                TestData(2, 4, 7726640L),
+                TestData(2, 5, 15514188L),
+                TestData(2, 6, 4041754L),
+                TestData(3, 1, 16080970L),
+                TestData(3, 2, 8057251),
+                TestData(3, 3, 1601130),
+                TestData(3, 4, 7981243),
+                TestData(3, 5, 11661866),
+                TestData(3, 6, 16474243),
+                TestData(4, 1, 24592653),
+                TestData(4, 2, 32451966),
+                TestData(4, 3, 21345942),
+                TestData(4, 4, 9380097),
+                TestData(4, 5, 10600672),
+                TestData(4, 6, 31527494),
+                TestData(5, 1, 77061),
+                TestData(5, 2, 17552253),
+                TestData(5, 3, 28094349),
+                TestData(5, 4, 6899651),
+                TestData(5, 5, 9250759),
+                TestData(5, 6, 31663883),
+                TestData(6, 1, 33071741),
+                TestData(6, 2, 6796745),
+                TestData(6, 3, 25397450),
+                TestData(6, 4, 24659492),
+                TestData(6, 5, 1534922),
+                TestData(6, 6, 27995004),
+            ) { (row, col, expectedCode) ->
+                findCodeAtPosition(row, col) shouldBe expectedCode
+            }
+        }
     }
 })

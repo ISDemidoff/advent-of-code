@@ -82,7 +82,7 @@ class CombinationsTest : FreeSpec({
                 ),
             )
         ) { (inputList, totalSum, result) ->
-            inputList combinationsWithSum totalSum shouldContainExactlyInAnyOrder result
+            combinationsWithRepetitions(inputList, totalSum) shouldContainExactlyInAnyOrder result
         }
 
         data class CombinationsErrorTestData(
@@ -111,7 +111,7 @@ class CombinationsTest : FreeSpec({
             )
         ) { (inputList, totalCount, exceptionMessage) ->
             shouldThrow<IllegalArgumentException> {
-                inputList combinationsWithSum totalCount
+                combinationsWithRepetitions(inputList, totalCount)
             } shouldHaveMessage exceptionMessage
         }
     }
