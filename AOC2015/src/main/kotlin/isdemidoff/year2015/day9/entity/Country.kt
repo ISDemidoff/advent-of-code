@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day9.entity
 
-import isdemidoff.utility.permutations
+import isdemidoff.utility.discretemath.permutations
 
 class Country(
     citiesRaw: List<String>,

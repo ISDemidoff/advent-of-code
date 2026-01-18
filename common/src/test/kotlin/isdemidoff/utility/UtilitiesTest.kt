@@ -3,7 +3,6 @@ package isdemidoff.utility
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 
 class UtilitiesTest : FreeSpec({
     "Check of cartesianProduct(List<A>, List<B>)" - {
@@ -46,101 +45,4 @@ class UtilitiesTest : FreeSpec({
             cartesianProduct(first, second) shouldContainExactly result
         }
     }
-
-    "Check of List<E>.permutations()" - {
-        data class PermutationsTestData(
-            val input: List<Int>,
-            val result: List<List<Int>>,
-        )
-
-        withData(
-            nameFn = { (input, result) ->
-                "${input.formatShort()} has permutations ${result.formatShort()}"
-            },
-            PermutationsTestData(listOf(1), listOf(listOf(1))),
-            PermutationsTestData(listOf(1, 2), listOf(listOf(1, 2), listOf(2, 1)),),
-            PermutationsTestData(listOf(1, 1), listOf(listOf(1, 1), listOf(1, 1)),),
-            PermutationsTestData(
-                listOf(1, 2, 3),
-                listOf(
-                    listOf(1, 2, 3),
-                    listOf(1, 3, 2),
-                    listOf(2, 1, 3),
-                    listOf(2, 3, 1),
-                    listOf(3, 1, 2),
-                    listOf(3, 2, 1),
-                ),
-            ),
-        ) { (input, result) ->
-            input.permutations() shouldContainExactly result
-        }
-    }
-
-    "Check of List<E>.combinations(Int)" - {
-        data class CombinationsTestData(
-            val inputList: List<String>,
-            val totalCount: Int,
-            val result: List<Map<String, Int>>,
-        )
-
-        withData(
-            nameFn = { (inputList, totalCount, result) ->
-                "${inputList.formatShort()} combinations with total sum $totalCount are ${result.formatShort()}"
-            },
-            CombinationsTestData(
-                listOf("a"),
-                1,
-                listOf(mapOf("a" to 1)),
-            ),
-            CombinationsTestData(
-                listOf("a"),
-                2,
-                listOf(mapOf("a" to 2)),
-            ),
-            CombinationsTestData(
-                listOf("a", "b", "c", "d", "e"),
-                1,
-                listOf(
-                    mapOf("a" to 1, "b" to 0, "c" to 0, "d" to 0, "e" to 0),
-                    mapOf("a" to 0, "b" to 1, "c" to 0, "d" to 0, "e" to 0),
-                    mapOf("a" to 0, "b" to 0, "c" to 1, "d" to 0, "e" to 0),
-                    mapOf("a" to 0, "b" to 0, "c" to 0, "d" to 1, "e" to 0),
-                    mapOf("a" to 0, "b" to 0, "c" to 0, "d" to 0, "e" to 1),
-                ),
-            ),
-            CombinationsTestData(
-                listOf("a", "b", "c"),
-                2,
-                listOf(
-                    mapOf("a" to 2, "b" to 0, "c" to 0),
-                    mapOf("a" to 0, "b" to 2, "c" to 0),
-                    mapOf("a" to 0, "b" to 0, "c" to 2),
-                    mapOf("a" to 1, "b" to 1, "c" to 0),
-                    mapOf("a" to 1, "b" to 0, "c" to 1),
-                    mapOf("a" to 0, "b" to 1, "c" to 1),
-                ),
-            ),
-            CombinationsTestData(
-                listOf("a", "b"),
-                5,
-                listOf(
-                    mapOf("a" to 0, "b" to 5),
-                    mapOf("a" to 1, "b" to 4),
-                    mapOf("a" to 2, "b" to 3),
-                    mapOf("a" to 3, "b" to 2),
-                    mapOf("a" to 4, "b" to 1),
-                    mapOf("a" to 5, "b" to 0),
-                ),
-            )
-        ) { (inputList, totalSum, result) ->
-            inputList combinations totalSum shouldContainExactlyInAnyOrder result
-        }
-    }
 })
-
-private fun List<*>.formatShort() =
-    if (isEmpty()) {
-        "<empty list>"
-    } else {
-        joinToString(prefix = "[", postfix = "]", separator = ", ", limit = 3, truncated = "<truncated>")
-    }

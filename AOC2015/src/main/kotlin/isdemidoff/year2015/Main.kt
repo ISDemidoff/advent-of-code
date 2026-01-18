@@ -15,6 +15,10 @@ import isdemidoff.year2015.day17.day17
 import isdemidoff.year2015.day18.day18
 import isdemidoff.year2015.day19.day19
 import isdemidoff.year2015.day2.day2
+import isdemidoff.year2015.day20.day20
+import isdemidoff.year2015.day21.day21
+import isdemidoff.year2015.day22.day22
+import isdemidoff.year2015.day23.day23
 import isdemidoff.year2015.day3.day3
 import isdemidoff.year2015.day4.day4
 import isdemidoff.year2015.day5.day5
@@ -44,4 +48,9 @@ fun main() = printYearSolution(
     day17.withSameArgs(listOf(150)),
     day18.withSameArgs(listOf(100)),
     day19,
+    // Time-consuming solution, skip
+//    day20,
+    day21,
+    day22,
+    day23.withSameArgs(listOf("b")),
 )

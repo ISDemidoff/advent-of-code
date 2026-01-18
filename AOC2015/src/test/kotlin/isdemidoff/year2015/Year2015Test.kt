@@ -3,8 +3,11 @@ package isdemidoff.year2015
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.beInstanceOf
 import isdemidoff.year2015.day1.day1
 import isdemidoff.year2015.day10.nextApply
 import isdemidoff.year2015.day11.getNextValidPassword
@@ -17,6 +20,20 @@ import isdemidoff.year2015.day17.day17
 import isdemidoff.year2015.day18.day18
 import isdemidoff.year2015.day19.day19
 import isdemidoff.year2015.day2.day2
+import isdemidoff.year2015.day21.entity.BattleSimulation
+import isdemidoff.year2015.day21.entity.SimpleCharacter
+import isdemidoff.year2015.day22.entity.DrainSpell
+import isdemidoff.year2015.day22.entity.InProgressGameState
+import isdemidoff.year2015.day22.entity.MagicMissileSpell
+import isdemidoff.year2015.day22.entity.PoisonEffect
+import isdemidoff.year2015.day22.entity.PoisonSpell
+import isdemidoff.year2015.day22.entity.RechargeEffect
+import isdemidoff.year2015.day22.entity.RechargeSpell
+import isdemidoff.year2015.day22.entity.ShieldEffect
+import isdemidoff.year2015.day22.entity.ShieldSpell
+import isdemidoff.year2015.day22.entity.Stats
+import isdemidoff.year2015.day22.entity.Victory
+import isdemidoff.year2015.day23.day23
 import isdemidoff.year2015.day3.day3
 import isdemidoff.year2015.day4.day4
 import isdemidoff.year2015.day5.day5
@@ -399,5 +416,109 @@ class Year2015Test : FreeSpec({
         "Part 1 check" {
             builder.solvePart1().get() shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")
         }
+    }
+
+    "Day 20: Infinite Elves and Infinite Houses" - {
+        // There are no any examples provided in problem.
+        1 shouldBe 1
+    }
+
+    "Day 21: RPG Simulator 20XX" - {
+        "Check of battle simulator from sample" {
+            BattleSimulation(
+                SimpleCharacter("player", 8, 5, 5),
+                SimpleCharacter("boss", 12, 7, 2),
+                true,
+            ).decideWinner() shouldBe BattleSimulation.Winner.FIRST
+        }
+    }
+
+    "Day 22: Wizard Simulator 20XX" - {
+        "Check of battle simulator from sample" {
+            var state = InProgressGameState(
+                stats = Stats(
+                    playerHealth = 10,
+                    currentMana = 250,
+                    bossHealth = 13,
+                    bossDamage = 8,
+                    currentEffects = listOf(),
+                ),
+                totalManaSpentSoFar = 0,
+                enableLogging = true,
+                hardMode = false,
+            ).useSpell(PoisonSpell)
+
+            state should beInstanceOf(InProgressGameState::class)
+
+            (state as InProgressGameState).stats.apply {
+                playerHealth shouldBe 2
+                currentMana shouldBe 77
+                bossHealth shouldBe 7
+                currentEffects shouldContainExactly listOf(PoisonEffect(4, 3))
+            }
+
+            state.useSpell(MagicMissileSpell) shouldBe Victory(226)
+        }
+
+        "Check of battle simulator from another sample" {
+            // Player casts Recharge.
+            var state = InProgressGameState(
+                stats = Stats(
+                    playerHealth = 10,
+                    currentMana = 250,
+                    bossHealth = 14,
+                    bossDamage = 8,
+                    currentEffects = listOf(),
+                ),
+                totalManaSpentSoFar = 0,
+                enableLogging = true,
+                hardMode = false,
+            ).useSpell(RechargeSpell)
+            state should beInstanceOf(InProgressGameState::class)
+            (state as InProgressGameState).stats.apply {
+                playerHealth shouldBe 2
+                currentMana shouldBe 223
+                bossHealth shouldBe 14
+                currentEffects shouldContainExactly listOf(RechargeEffect(3, 101))
+            }
+
+            // Player casts Shield, increasing armor by 7.
+            state = state.useSpell(ShieldSpell)
+            state should beInstanceOf(InProgressGameState::class)
+            (state as InProgressGameState).stats.apply {
+                playerHealth shouldBe 1
+                currentMana shouldBe 312
+                bossHealth shouldBe 14
+                currentEffects shouldContainExactlyInAnyOrder listOf(RechargeEffect(1, 101), ShieldEffect(4, 7))
+            }
+
+            // Player casts Drain, dealing 2 damage, and healing 2 hit points.
+            state = state.useSpell(DrainSpell)
+            state should beInstanceOf(InProgressGameState::class)
+            (state as InProgressGameState).stats.apply {
+                playerHealth shouldBe 2
+                currentMana shouldBe 340
+                bossHealth shouldBe 12
+                currentEffects shouldContainExactlyInAnyOrder listOf(ShieldEffect(2, 7))
+            }
+
+            // Player casts Poison.
+            state = state.useSpell(PoisonSpell)
+            state should beInstanceOf(InProgressGameState::class)
+            (state as InProgressGameState).stats.apply {
+                playerHealth shouldBe 1
+                currentMana shouldBe 167
+                bossHealth shouldBe 6
+                currentEffects shouldContainExactlyInAnyOrder listOf(PoisonEffect(4, 3))
+            }
+
+            // Player casts Magic Missile, dealing 4 damage.
+            state = state.useSpell(MagicMissileSpell)
+            state shouldBe Victory(641)
+        }
+    }
+
+    "Day 23: Opening the Turing Lock" - {
+        "Sample check" { day23.input { sampleFile() }.solvePart1("a").get() shouldBe 2u }
     }
 })

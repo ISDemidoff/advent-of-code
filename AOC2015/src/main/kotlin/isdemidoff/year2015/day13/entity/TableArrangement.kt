@@ -1,6 +1,6 @@
 package isdemidoff.year2015.day13.entity
 
-import isdemidoff.utility.permutations
+import isdemidoff.utility.discretemath.permutations
 
 class TableArrangement(
     peopleRaw: List<String>,
