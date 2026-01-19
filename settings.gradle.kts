@@ -25,5 +25,6 @@ include(
     ":common",
 
     ":AOC2015",
+    ":AOC2016",
     ":AOC2025",
 )
