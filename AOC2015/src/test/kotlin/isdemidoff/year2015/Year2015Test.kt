@@ -418,6 +418,10 @@ class Year2015Test : FreeSpec({
         "Part 1 check" {
             builder.solvePart1().get() shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")
         }
+
+        "Part 2 check" {
+            builder.solvePart2().get() shouldBe 3
+        }
     }
 
     "Day 20: Infinite Elves and Infinite Houses" - {
