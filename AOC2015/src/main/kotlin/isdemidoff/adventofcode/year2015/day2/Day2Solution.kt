@@ -9,7 +9,7 @@ import isdemidoff.utility.solution.solution
  */
 val day2 = solution(2) {
     inputParser = uniformLinesParser {
-        it.parseUnescapedCsvInputLine('x') { it.toString().toInt() }
+        it.parseUnescapedCsvInputLine("x") { it.toString().toInt() }
             .also { require(it.size == 3) { "There must be exactly 3 dimensions specified, but got $it" } }
             .let { (x, y, z) -> WrappedBox(x, y, z) }
     }

@@ -20,6 +20,8 @@ fun List<CharSequence>.takeFirstChars(): List<Char> = map { it.first() }
  */
 fun CharSequence.parseWhitespaceDelimitedInput(): List<CharSequence> = trim().split("""\s+""".toRegex())
 
+fun <R> CharSequence.parseWhitespaceDelimitedInput(transform: (CharSequence) -> R): List<R> = parseWhitespaceDelimitedInput().map { transform(it) }
+
 /**
  * Map list of string with [parseWhitespaceDelimitedInput] function.
  */
@@ -28,14 +30,14 @@ fun List<CharSequence>.parseWhitespaceDelimitedInputList(): List<List<CharSequen
 /**
  * Read line in form of "123,423,235" into something like list("123","423","235") with additional transform into any other form.
  */
-fun <R> CharSequence.parseUnescapedCsvInputLine(delimiter: Char = ',', transform: (CharSequence) -> R): List<R> = trim().split(delimiter).map(transform)
-fun CharSequence.parseUnescapedCsvInputLine(delimiter: Char = ',') = parseUnescapedCsvInputLine(delimiter) { it }
+fun <R> CharSequence.parseUnescapedCsvInputLine(delimiter: String = ",", transform: (CharSequence) -> R): List<R> = trim().split(delimiter).map(transform)
+fun CharSequence.parseUnescapedCsvInputLine(delimiter: String = ",") = parseUnescapedCsvInputLine(delimiter) { it }
 
 /**
  * Map list of strings with [parseUnescapedCsvInputLine] function.
  */
-fun <R> List<CharSequence>.parseUnescapedCsvInputLines(delimiter: Char = ',', transform: (CharSequence) -> R): List<List<R>> = map { it.parseUnescapedCsvInputLine(delimiter, transform) }
-fun List<CharSequence>.parseUnescapedCsvInputLines(delimiter: Char = ',') = parseUnescapedCsvInputLines(delimiter) { it }
+fun <R> List<CharSequence>.parseUnescapedCsvInputLines(delimiter: String = ",", transform: (CharSequence) -> R): List<List<R>> = map { it.parseUnescapedCsvInputLine(delimiter, transform) }
+fun List<CharSequence>.parseUnescapedCsvInputLines(delimiter: String = ",") = parseUnescapedCsvInputLines(delimiter) { it }
 
 /**
  * Converts a string like a "1-10" or "23-412" to a standard LongRange with inclusive end.
@@ -58,3 +60,8 @@ fun <A, B> cartesianProduct(a: List<A>, b: List<B>): List<Pair<A, B>> =
 fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -> R): List<R> =
     a.flatMap { aElem -> b.map { bElem -> transform(aElem to bElem) } }
 
+fun <E> List<List<E>>.transpose(): List<List<E>> {
+    if (this.isEmpty()) return this
+    require(all { it.size == this.first().size }) { "Expected all rows to be same size." }
+    return (0..<this.first().size).map { index -> this.map { it[index] } }
+}

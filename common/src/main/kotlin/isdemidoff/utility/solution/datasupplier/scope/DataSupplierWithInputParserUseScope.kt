@@ -1,5 +1,9 @@
-package isdemidoff.utility.solution.datasupplier
+package isdemidoff.utility.solution.datasupplier.scope
 
+import isdemidoff.utility.solution.datasupplier.ConversionDataSupplier
+import isdemidoff.utility.solution.datasupplier.DataSupplier
+import isdemidoff.utility.solution.datasupplier.FileDataSupplier
+import isdemidoff.utility.solution.datasupplier.FunctionDataSupplier
 import isdemidoff.utility.solution.inputparser.InputParser
 
 interface DataSupplierWithInputParserUseScope<INNER_DATA> : DataSupplierUseScope<INNER_DATA> {

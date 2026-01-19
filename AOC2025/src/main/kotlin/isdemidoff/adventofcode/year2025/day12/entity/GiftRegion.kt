@@ -26,6 +26,6 @@ fun String.toGiftRegion(): GiftRegion = split(":")
                 check(it.size == 2) { "Gift region size must be set in form of \"{length}x{width}\"" }
                 it[0].toInt() to it[1].toInt()
             }
-        val counts = countsStr.parseUnescapedCsvInputLine(delimiter = ' ') { it.toString().toInt() }
+        val counts = countsStr.parseUnescapedCsvInputLine(delimiter = " ") { it.toString().toInt() }
         GiftRegion(size.first, size.second, counts)
     }

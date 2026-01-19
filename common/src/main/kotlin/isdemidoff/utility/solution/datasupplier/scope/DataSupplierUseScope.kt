@@ -1,4 +1,7 @@
-package isdemidoff.utility.solution.datasupplier
+package isdemidoff.utility.solution.datasupplier.scope
+
+import isdemidoff.utility.solution.datasupplier.DataSupplier
+import isdemidoff.utility.solution.datasupplier.FunctionDataSupplier
 
 interface DataSupplierUseScope<INNER_DATA> {
     fun lazyData(dataSupplier: () -> INNER_DATA): DataSupplier<INNER_DATA> = FunctionDataSupplier(dataSupplier)

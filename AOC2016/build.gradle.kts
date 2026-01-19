@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClass = "isdemidoff.year2016.MainKt"
+    mainClass = "isdemidoff.adventofcode.year2016.MainKt"
 }
 
 dependencies {

@@ -61,7 +61,7 @@ class Year2015Test : FreeSpec({
                 ")))" to -3,
                 ")())())" to -3,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart1().get() shouldBe result
+                day1.input { string(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -73,7 +73,7 @@ class Year2015Test : FreeSpec({
                 ")" to 1,
                 "()())" to 5,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart2().get() shouldBe result
+                day1.input { string(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -87,7 +87,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 58,
                 "1x1x10" to 43,
             ) { (input, result) ->
-                day2.input { string(input) }.solvePart1().get() shouldBe result
+                day2.input { string(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -99,7 +99,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 34,
                 "1x1x10" to 14,
             ) { (input, result) ->
-                day2.input { string(input) }.solvePart2().get() shouldBe result
+                day2.input { string(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -114,7 +114,7 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 4,
                 "^v^v^v^v^v" to 2,
             ) { (input, result) ->
-                day3.input { raw(input) }.solvePart1().get() shouldBe result
+                day3.input { raw(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -127,7 +127,7 @@ class Year2015Test : FreeSpec({
                 "^>v<" to 3,
                 "^v^v^v^v^v" to 11,
             ) { (input, result) ->
-                day3.input { raw(input) }.solvePart2().get() shouldBe result
+                day3.input { raw(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -140,7 +140,7 @@ class Year2015Test : FreeSpec({
             "abcdef" to 609043,
             "pqrstuv" to 1048970,
         ) { (input, result) ->
-            day4.input { raw(input) }.solvePart1("00000").get() shouldBe result
+            day4.input { raw(input) }.solvePart1("00000") shouldBe result
         }
     }
 
@@ -158,7 +158,7 @@ class Year2015Test : FreeSpec({
                 "dvszwmarrgswjxmb" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.input { string(input) }.solvePart1().get() shouldBe expectedResult
+                day5.input { string(input) }.solvePart1() shouldBe expectedResult
             }
         }
 
@@ -173,20 +173,20 @@ class Year2015Test : FreeSpec({
                 "ieodomkazucvgmuy" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.input { string(input) }.solvePart2().get() shouldBe expectedResult
+                day5.input { string(input) }.solvePart2() shouldBe expectedResult
             }
         }
     }
 
     "Day 6: Probably a Fire Hazard" - {
         val builder = day6.input { sampleFile() }
-        "Part 1 check" { builder.solvePart1().get() shouldBe 998000 }
-        "Part 2 check" { builder.solvePart2().get() shouldBe 1000998 }
+        "Part 1 check" { builder.solvePart1() shouldBe 998000 }
+        "Part 2 check" { builder.solvePart2() shouldBe 1000998 }
     }
 
     "Day 7: Some Assembly Required" - {
         "Part 1 checks" - {
-            val logicalCircuit = day7.input { sampleFile() }.solvePart1().get()
+            val logicalCircuit = day7.input { sampleFile() }.solvePart1()
 
             withData(
                 nameFn = { (key, value) ->
@@ -210,7 +210,7 @@ class Year2015Test : FreeSpec({
         val builder = day8.input { sampleFile() }
 
         "Part 1 checks" - {
-            "Sample file" { builder.solvePart1().get() shouldBe 12 }
+            "Sample file" { builder.solvePart1() shouldBe 12 }
 
             withData(
                 nameFn = { (str, result) ->
@@ -224,12 +224,12 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 3,
                 """"\\\\"""" to 4,
             ) { (str, result) ->
-                day8.input { string(str) }.solvePart1().get() shouldBe result
+                day8.input { string(str) }.solvePart1() shouldBe result
             }
         }
 
         "Part 2 checks" - {
-            "Sample file" { builder.solvePart2().get() shouldBe 19 }
+            "Sample file" { builder.solvePart2() shouldBe 19 }
 
             withData(
                 nameFn = { (str, result) ->
@@ -243,15 +243,15 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 6,
                 """"\\\\"""" to 8,
             ) { (str, result) ->
-                day8.input { string(str) }.solvePart2().get() shouldBe result
+                day8.input { string(str) }.solvePart2() shouldBe result
             }
         }
     }
 
     "Day 9: All in a Single Night" - {
         val builder = day9.input { sampleFile() }
-        "Part 1 check" { builder.solvePart1().get() shouldBe 605 }
-        "Part 2 check" { builder.solvePart2().get() shouldBe 982 }
+        "Part 1 check" { builder.solvePart1() shouldBe 605 }
+        "Part 2 check" { builder.solvePart2() shouldBe 982 }
     }
 
     "Day 10: Elves Look, Elves Say" - {
@@ -297,7 +297,7 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.input { string(str) }.solvePart1().get() shouldBe result
+                day12.input { string(str) }.solvePart1() shouldBe result
             }
         }
 
@@ -317,13 +317,13 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.input { string(str) }.solvePart2().get() shouldBe result
+                day12.input { string(str) }.solvePart2() shouldBe result
             }
         }
     }
 
     "Day 13: Knights of the Dinner Table" - {
-        "Part 1 check" { day13.input { sampleFile() }.solvePart1().get() shouldBe 330 }
+        "Part 1 check" { day13.input { sampleFile() }.solvePart1() shouldBe 330 }
     }
 
     "Day 14: Reindeer Olympics" - {
@@ -339,7 +339,7 @@ class Year2015Test : FreeSpec({
                 "Comet" to 1120,
                 "Dancer" to 1056,
             ) { (str, result) ->
-                builder.solvePart1(sampleRaceTime).get().findReindeerResults(str) shouldBe result
+                builder.solvePart1(sampleRaceTime).findReindeerResults(str) shouldBe result
             }
         }
 
@@ -351,15 +351,15 @@ class Year2015Test : FreeSpec({
                 "Comet" to 312,
                 "Dancer" to 689,
             ) { (str, result) ->
-                builder.solvePart2(sampleRaceTime).get().findReindeerResults(str) shouldBe result
+                builder.solvePart2(sampleRaceTime).findReindeerResults(str) shouldBe result
             }
         }
     }
 
     "Day 15: Science for Hungry People" - {
         val builder = day15.input { sampleFile() }
-        "Part 1 check" { builder.solvePart1().get() shouldBe 62842880 }
-        "Part 2 check" { builder.solvePart2().get() shouldBe 57600000 }
+        "Part 1 check" { builder.solvePart1() shouldBe 62842880 }
+        "Part 2 check" { builder.solvePart2() shouldBe 57600000 }
     }
 
     "Day 16: Aunt Sue" - {
@@ -370,7 +370,7 @@ class Year2015Test : FreeSpec({
     "Day 17: No Such Thing as Too Much" - {
         val builder = day17.input { sampleFile() }
 
-        builder.solvePart1(25).get().let { result ->
+        builder.solvePart1(25).let { result ->
             result shouldHaveSize 4
 
             val minSize = result.minOf { it.size } shouldBe 2
@@ -392,7 +392,7 @@ class Year2015Test : FreeSpec({
                 4 to 4,
                 5 to 4,
             ) { (iterations, result) ->
-                builder.solvePart1(iterations).get() shouldBe result
+                builder.solvePart1(iterations) shouldBe result
             }
         }
 
@@ -407,7 +407,7 @@ class Year2015Test : FreeSpec({
                 4 to 14,
                 5 to 17,
             ) { (iterations, result) ->
-                builder.solvePart2(iterations).get() shouldBe result
+                builder.solvePart2(iterations) shouldBe result
             }
         }
     }
@@ -416,11 +416,11 @@ class Year2015Test : FreeSpec({
         val builder = day19.input { sampleFile() }
 
         "Part 1 check" {
-            builder.solvePart1().get() shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")
+            builder.solvePart1() shouldContainExactly setOf("HOOH", "HOHO", "OHOH", "HHHH")
         }
 
         "Part 2 check" {
-            builder.solvePart2().get() shouldBe 3
+            builder.solvePart2() shouldBe 3
         }
     }
 
@@ -525,12 +525,12 @@ class Year2015Test : FreeSpec({
     }
 
     "Day 23: Opening the Turing Lock" - {
-        "Sample check" { day23.input { sampleFile() }.solvePart1("a").get() shouldBe 2u }
+        "Sample check" { day23.input { sampleFile() }.solvePart1("a") shouldBe 2u }
     }
 
     "Day 24: It Hangs in the Balance" - {
-        "Part 1 check" { day24.input { sampleFile() }.solvePart1().get() shouldBe 99 }
-        "Part 2 check" { day24.input { sampleFile() }.solvePart2().get() shouldBe 44 }
+        "Part 1 check" { day24.input { sampleFile() }.solvePart1() shouldBe 99 }
+        "Part 2 check" { day24.input { sampleFile() }.solvePart2() shouldBe 44 }
     }
 
     "Day 25: Let It Snow" - {

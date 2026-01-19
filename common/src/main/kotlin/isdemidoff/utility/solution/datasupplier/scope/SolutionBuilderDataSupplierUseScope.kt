@@ -1,6 +1,7 @@
-package isdemidoff.utility.solution.datasupplier
+package isdemidoff.utility.solution.datasupplier.scope
 
 import isdemidoff.utility.solution.SolutionBuilderContext
+import isdemidoff.utility.solution.datasupplier.DataSupplier
 import isdemidoff.utility.solution.inputparser.InputParser
 
 class SolutionBuilderDataSupplierUseScope<INNER_DATA>(
