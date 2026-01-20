@@ -7,6 +7,10 @@ import isdemidoff.adventofcode.year2016.day1.day1
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
+import isdemidoff.adventofcode.year2016.day5.day5
+import isdemidoff.adventofcode.year2016.day6.day6
+import isdemidoff.adventofcode.year2016.day7.supportsSSL
+import isdemidoff.adventofcode.year2016.day7.supportsTLS
 
 class Year2016Test : FreeSpec({
     "Day 1: No Time for a Taxicab" - {
@@ -72,6 +76,48 @@ class Year2016Test : FreeSpec({
 
         "Part 2 check by sample" {
             Room("qzmt-zixmtkozy-ivhz-343[zimth]").decryptName() shouldBe "very encrypted name"
+        }
+    }
+
+    "Day 5: How About a Nice Game of Chess?" - {
+        val builder = day5.input { string("abc") }
+        "Part 1 check" { builder.solvePart1() shouldBe "18f47a30" }
+        "Part 2 check" { builder.solvePart2() shouldBe "05ace8e3" }
+    }
+
+    "Day 6: Signals and Noise" - {
+        val builder = day6.input { sampleFile() }
+        "Part 1 check" { builder.solvePart1() shouldBe "easter" }
+        "Part 2 check" { builder.solvePart2() shouldBe "advent" }
+    }
+
+    "Day 7: Internet Protocol Version 7" - {
+        "Part 1 checks" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "IP $input ${if (result) "supports" else "does not support"} TLS"
+                },
+                "abba[mnop]qrst" to true,
+                "abcd[bddb]xyyx" to false,
+                "aaaa[qwer]tyui" to false,
+                "ioxxoj[asdfgh]zxcvbn" to true,
+            ) { (input, result) ->
+                supportsTLS(input) shouldBe result
+            }
+        }
+
+        "Part 2 checks" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "IP $input ${if (result) "supports" else "does not support"} SSL"
+                },
+                "aba[bab]xyz" to true,
+                "xyx[xyx]xyx" to false,
+                "aaa[kek]eke" to true,
+                "zazbz[bzb]cdb" to true,
+            ) { (input, result) ->
+                supportsSSL(input) shouldBe result
+            }
         }
     }
 })

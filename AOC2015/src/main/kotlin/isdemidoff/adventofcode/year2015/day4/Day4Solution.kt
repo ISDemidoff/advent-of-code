@@ -2,11 +2,7 @@ package isdemidoff.adventofcode.year2015.day4
 
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
-import java.security.MessageDigest
-
-private fun String.md5hex(): String = MessageDigest.getInstance("MD5")
-    .digest(this.toByteArray(Charsets.UTF_8))
-    .toHexString()
+import isdemidoff.utility.strings.md5hex
 
 /**
  * [Day 4: The Ideal Stocking Stuffer](https://adventofcode.com/2015/day/4).
@@ -18,7 +14,7 @@ val day4 = solution(4) {
         "Lowest positive number to add is $result."
     }) { str, targetStartingPattern ->
         generateSequence(1) { it + 1 }
-            .first { (str + it).md5hex().startsWith(targetStartingPattern) }
+            .first { md5hex(str + it).startsWith(targetStartingPattern) }
     }
 
     part1Solver = solver
