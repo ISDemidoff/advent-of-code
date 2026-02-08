@@ -27,3 +27,16 @@ inline fun <INNER_DATA, R, reified A1 : Any, reified A2 : Any> SolverUseScope<IN
         return solutionResult({ res -> formatter(res, arg0, arg1) }) { fn(input, arg0, arg1) }
     }
 }
+
+inline fun <INNER_DATA, R, reified A1 : Any, reified A2 : Any, reified A3 : Any> SolverUseScope<INNER_DATA>.solver(
+    crossinline formatter: (result: R, A1, A2, A3) -> String = { result, _, _, _ -> if (result is String) result else result.toString() },
+    crossinline fn: (data: INNER_DATA, A1, A2, A3) -> R,
+) = object : Solver<INNER_DATA, R> {
+    override fun expectedArgs() = listOf(A1::class, A2::class, A3::class)
+    override fun solve(input: INNER_DATA, vararg args: Any): SolutionResult<R> {
+        val arg0 = args[0] as A1
+        val arg1 = args[1] as A2
+        val arg2 = args[2] as A3
+        return solutionResult({ res -> formatter(res, arg0, arg1, arg2) }) { fn(input, arg0, arg1, arg2) }
+    }
+}

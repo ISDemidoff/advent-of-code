@@ -116,7 +116,7 @@ class CombinationsTest : FreeSpec({
         }
     }
 
-    "Check of createAllChoices(Map<E, Int>" - {
+    "Check of createAllChoices(Map<E, Int>)" - {
         withData(
             nameFn = { (input, result) ->
                 "$input choices are ${result.map { it.formatShort() }.formatShort()}"
@@ -155,6 +155,57 @@ class CombinationsTest : FreeSpec({
             shouldThrow<IllegalArgumentException> {
                 createAllChoices(mapOf("a" to -1))
             } shouldHaveMessage "Cannot combine negative count, occurred at key 'a'"
+        }
+    }
+
+    "Check of chooseItems(List<E>, Int)" - {
+        data class ChooseItemsTestData(
+            val inputList: List<String>,
+            val totalCount: Int,
+            val expectedResult: List<List<String>>,
+        )
+
+        withData(
+            nameFn = { (inputList, totalCount, expectedResult) ->
+                "Choosing $totalCount items from ${inputList.formatShort()} should be ${expectedResult.map { it.formatShort() }.formatShort()}"
+            },
+            ChooseItemsTestData(listOf(), 0, listOf(listOf())),
+            ChooseItemsTestData(listOf("a", "b"), 0, listOf(listOf())),
+            ChooseItemsTestData(listOf("a"), 1, listOf(listOf("a"))),
+            ChooseItemsTestData(listOf("a", "b", "c"), 1, listOf(listOf("a"), listOf("b"), listOf("c"))),
+            ChooseItemsTestData(
+                listOf("a", "b", "c"),
+                2,
+                listOf(
+                    listOf("a", "b"),
+                    listOf("a", "c"),
+                    listOf("b", "a"),
+                    listOf("b", "c"),
+                    listOf("c", "a"),
+                    listOf("c", "b"),
+                )
+            ),
+        ) { (inputList, totalCount, expectedResult) ->
+            chooseItems(inputList, totalCount) shouldBe expectedResult
+        }
+
+        data class ChooseItemsErrorTestData(
+            val inputList: List<String>,
+            val totalCount: Int,
+            val expectedMessage: String,
+        )
+
+        withData(
+            nameFn = { (inputList, totalCount, expectedMessage) ->
+                "Trying to choose $totalCount items from ${inputList.formatShort()} results into error '$expectedMessage'"
+            },
+            ChooseItemsErrorTestData(listOf("1", "2"), -1, "Cannot choose -1 items"),
+            ChooseItemsErrorTestData(listOf(), 1, "Cannot choose 1 items from list of size 0"),
+            ChooseItemsErrorTestData(listOf("a"), 2, "Cannot choose 2 items from list of size 1"),
+        ) { (inputList, totalCount, expectedMessage) ->
+            shouldThrow<IllegalArgumentException> {
+                chooseItems(inputList, totalCount)
+            } shouldHaveMessage expectedMessage
         }
     }
 })

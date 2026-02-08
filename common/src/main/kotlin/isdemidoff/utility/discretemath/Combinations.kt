@@ -1,7 +1,5 @@
 package isdemidoff.utility.discretemath
 
-import java.util.LinkedList
-
 fun <E> combinationsWithRepetitions(elements: List<E>, totalCount: Int): List<Map<E, Int>> =
     combinationsWithRepetitionsInner(elements, totalCount.also { require(it >= 0) { "Cannot combine to negative total sum." } })
 
@@ -77,20 +75,6 @@ private fun combinationsHavingSumInner(
     }
 }
 
-//fun existsCombinationHavingSum(
-//    availableTerms: List<Int>,
-//    totalSum: Int
-//): Boolean {
-//    if (availableTerms.contains(totalSum)) return true
-//
-//    val queue = LinkedList<Pair<List<Int>, Int>>()
-//    queue.offer(Pair(availableTerms, totalSum))
-//
-//    while (queue.isNotEmpty()) {
-//
-//    }
-//}
-
 fun <E> createAllChoices(elements: Map<E, Int>): List<Map<E, Int>> = elements.takeUnless { it.isEmpty() }
     ?.let { allChoicesInner(it) } ?: emptyList()
 
@@ -115,6 +99,7 @@ infix fun <E> List<E>.chooseItemsCount(count: Int): List<List<E>> = chooseItems(
 
 fun <E> chooseItems(elements: List<E>, count: Int): List<List<E>> {
     require(count >=0) { "Cannot choose $count items" }
+    require(count <= elements.size) { "Cannot choose $count items from list of size ${elements.size}" }
     return chooseItemsInner(elements, count)
 }
 
@@ -123,6 +108,30 @@ private fun <E> chooseItemsInner(
     count: Int,
     alreadyChosen: List<E> = emptyList(),
 ): List<List<E>> {
+    if (count == 0) return listOf(alreadyChosen)
+
+    return elements.flatMap {
+        chooseItemsInner(
+            elements = elements - it,
+            count = count - 1,
+            alreadyChosen = alreadyChosen + it,
+        )
+    }
+}
+
+infix fun <E> Set<E>.chooseItemsCount(count: Int): List<Set<E>> = chooseItems(this, count)
+
+fun <E> chooseItems(elements: Set<E>, count: Int): List<Set<E>> {
+    require(count >=0) { "Cannot choose $count items" }
+    require(count <= elements.size) { "Cannot choose $count items from list of size ${elements.size}" }
+    return chooseItemsInner(elements, count)
+}
+
+private fun <E> chooseItemsInner(
+    elements: Set<E>,
+    count: Int,
+    alreadyChosen: Set<E> = emptySet(),
+): List<Set<E>> {
     if (count == 0) return listOf(alreadyChosen)
 
     return elements.flatMap {

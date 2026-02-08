@@ -7,11 +7,11 @@ class YearSolution(
     fun getSolutionsFormatted() = with(StringBuilder()) {
         appendLine("=== AOC$year solutions ===\n")
 
-        solutionBuildersWithArgs.forEach { (builder, args1, args2) ->
-            builder.input { inputFile() }
-                .getSolutions(args1, args2)
+        solutionBuildersWithArgs.forEach { data ->
+            data.builder.input { inputFile() }
+                .getSolutions(data.buildPart1Context(), data.buildPart2Context())
                 .let { solutions ->
-                    appendLine("""Day ${builder.context.day} solutions:""")
+                    appendLine("""Day ${data.builder.context.day} solutions:""")
                     solutions.forEachIndexed { index, solution ->
                         appendLine(
                             solution?.let { "Part ${index + 1}: $solution" }
