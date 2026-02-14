@@ -3,6 +3,7 @@ package isdemidoff.utility.discretemath
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
 import io.kotest.property.Arb
@@ -32,15 +33,35 @@ class FactorisationTest : FreeSpec({
             15 to mapOf(3 to 1, 5 to 1),
             16 to mapOf(2 to 4),
         ) { (input, result) ->
-            getFactorisation(input) shouldBe result
+            getFactorization(input) shouldBe result
         }
 
         "Check for positive value" - {
             checkAll(Arb.nonPositiveInt()) {
                 shouldThrow<IllegalArgumentException> {
-                    getFactorisation(it)
+                    getFactorization(it)
                 } shouldHaveMessage "Input value should be positive, but got $it"
             }
+        }
+    }
+
+    "Check getDivisors(Int)" - {
+        withData(
+            nameFn = { (input, result) ->
+                "Number $input has divisors $result"
+            },
+            1 to listOf(1),
+            2 to listOf(1, 2),
+            3 to listOf(1, 3),
+            4 to listOf(1, 2, 4),
+            5 to listOf(1, 5),
+            6 to listOf(1, 2, 3, 6),
+            7 to listOf(1, 7),
+            8 to listOf(1, 2, 4, 8),
+            9 to listOf(1, 3, 9),
+            10 to listOf(1, 2, 5, 10),
+        ) { (input, result) ->
+            getDivisors(input) shouldContainExactlyInAnyOrder result
         }
     }
 

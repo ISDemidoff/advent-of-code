@@ -2,10 +2,14 @@ package isdemidoff.adventofcode.year2016
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
+import io.kotest.matchers.Matcher
+import io.kotest.matchers.equals.beEqual
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldHave
 import isdemidoff.adventofcode.year2016.day1.day1
 import isdemidoff.adventofcode.year2016.day10.day10
 import isdemidoff.adventofcode.year2016.day11.day11
+import isdemidoff.adventofcode.year2016.day12.day12
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
@@ -202,6 +206,12 @@ class Year2016Test : FreeSpec({
     "Day 11: Radioisotope Thermoelectric Generators" - {
         "Part 1 check" {
             day11.input { sampleFile() }.solvePart1() shouldBe 11
+        }
+    }
+
+    "Day 12: Leonardo's Monorail" - {
+        "Part 1 check" {
+            day12.input { sampleFile() }.solvePart1().getRegisterValue("a") shouldBe 42
         }
     }
 })

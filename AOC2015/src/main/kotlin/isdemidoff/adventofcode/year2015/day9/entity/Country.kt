@@ -26,6 +26,6 @@ class Country(
     private fun calculatePath(path: List<String>) =
         path.zipWithNext { from, to -> cities[from]!! distanceTo cities[to]!! }.sum()
 
-    fun findShortestPath() = cities.keys.sorted().permutations().minOf { calculatePath(it) }
-    fun findLongestPath() = cities.keys.sorted().permutations().maxOf { calculatePath(it) }
+    fun findShortestPath() = permutations(cities.keys.sorted()).minOf { calculatePath(it) }
+    fun findLongestPath() = permutations(cities.keys.sorted()).maxOf { calculatePath(it) }
 }

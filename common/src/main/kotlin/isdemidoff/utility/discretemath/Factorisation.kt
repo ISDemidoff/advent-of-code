@@ -1,6 +1,11 @@
 package isdemidoff.utility.discretemath
 
-fun getFactorisation(value: Int): Map<Int, Int> {
+/**
+ * Produces a [factorization](https://en.wikipedia.org/wiki/Factorization) of a given [value].
+ *
+ * Resulting map has factors as keys and corresponding powers as values. Produces empty map for 1.
+ */
+fun getFactorization(value: Int): Map<Int, Int> {
     require(value > 0) { "Input value should be positive, but got $value" }
     val result = mutableMapOf<Int, Int>()
 
@@ -26,8 +31,13 @@ fun getFactorisation(value: Int): Map<Int, Int> {
     return result
 }
 
+/**
+ * Collects all [divisors](https://en.wikipedia.org/wiki/Divisor) of a given [value].
+ *
+ * Uses [getFactorization] and [createAllCombinations] as helper functions to calculate faster.
+ */
 fun getDivisors(value: Int): List<Int> =
-    if (value == 1) listOf(1) else createAllChoices(getFactorisation(value)).map { choice ->
+    if (value == 1) listOf(1) else createAllCombinations(getFactorization(value)).map { choice ->
         choice.map { (factor, power) ->
             var acc = 1
             repeat(power) { acc *= factor }
@@ -35,4 +45,7 @@ fun getDivisors(value: Int): List<Int> =
         }.reduce(Int::times)
     }
 
+/**
+ * Just [getDivisors]'s result with total sum of elements.
+ */
 fun getSumOfDivisors(value: Int): Int = getDivisors(value).sum()

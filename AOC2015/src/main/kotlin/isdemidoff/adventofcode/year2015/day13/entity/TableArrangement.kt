@@ -45,5 +45,5 @@ class TableArrangement(
     private fun calculateHappiness(setup: List<String>) =
         (setup + setup.first()).zipWithNext { left, right -> people[left]!! bothHappyWith people[right]!! }.sum()
 
-    fun findBestSetup() = people.keys.sorted().permutations().maxOf { calculateHappiness(it) }
+    fun findBestSetup() = permutations(people.keys.sorted()).maxOf { calculateHappiness(it) }
 }

@@ -13,10 +13,7 @@ class YearSolution(
                 .let { solutions ->
                     appendLine("""Day ${data.builder.context.day} solutions:""")
                     solutions.forEachIndexed { index, solution ->
-                        appendLine(
-                            solution?.let { "Part ${index + 1}: $solution" }
-                                ?: "Part ${index + 1} is not solved yet."
-                        )
+                        appendLine(solution.let { "Part ${index + 1}: $solution" })
                     }
                     appendLine()
                 }

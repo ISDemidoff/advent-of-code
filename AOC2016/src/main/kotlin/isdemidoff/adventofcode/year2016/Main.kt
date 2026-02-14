@@ -3,6 +3,7 @@ package isdemidoff.adventofcode.year2016
 import isdemidoff.adventofcode.year2016.day1.day1
 import isdemidoff.adventofcode.year2016.day10.day10
 import isdemidoff.adventofcode.year2016.day11.day11
+import isdemidoff.adventofcode.year2016.day12.day12
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.day4
@@ -29,4 +30,5 @@ fun main() = printYearSolution(
     day9,
     day10.withArgs(listOf(61, 17), listOf(0, 1, 2)),
     day11.withNoArgs().disablePart2("It takes a long time to complete"),
+    day12,
 )

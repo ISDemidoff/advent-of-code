@@ -1,9 +1,11 @@
 package isdemidoff.utility.discretemath
 
 /**
- * Create all permutations of a given list. Note that complexity is n factorial, so time spent is huge.
+ * Create all [permutations](https://en.wikipedia.org/wiki/Permutation) of a given list.
+ *
+ * **NB.** Time complexity is n factorial regarding size of [elements].
  */
-fun <E> List<E>.permutations(): List<List<E>> = permutationsInner()
+fun <E> permutations(elements: List<E>): List<List<E>> = permutationsInner(elements)
 
-private fun <E> List<E>.permutationsInner(prevSeq: List<E> = listOf()): List<List<E>> =
-    if (isEmpty()) listOf(prevSeq) else flatMap { (this - it).permutationsInner(prevSeq + it) }
+private fun <E> permutationsInner(leftElements: List<E>, prevSeq: List<E> = listOf()): List<List<E>> =
+    if (leftElements.isEmpty()) listOf(prevSeq) else leftElements.flatMap { permutationsInner(leftElements - it, prevSeq + it) }

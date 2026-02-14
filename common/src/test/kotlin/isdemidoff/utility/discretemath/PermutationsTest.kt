@@ -31,7 +31,7 @@ class PermutationsTest : FreeSpec({
                 ),
             ),
         ) { (input, result) ->
-            input.permutations() shouldContainExactly result
+            permutations(input) shouldContainExactly result
         }
     }
 })

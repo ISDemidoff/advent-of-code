@@ -10,7 +10,7 @@ import isdemidoff.adventofcode.year2015.day21.entity.weaponChooses
 import isdemidoff.adventofcode.year2015.day21.entity.winsAgainst
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.discretemath.chooseItemsCount
-import isdemidoff.utility.discretemath.createAllChoices
+import isdemidoff.utility.discretemath.createAllCombinations
 import isdemidoff.utility.solution.solution
 
 internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
@@ -32,7 +32,7 @@ val day21 = solution(21) {
     part1Solver = solver({
         "Least money to spend still winning is $it."
     }) { boss ->
-        createAllChoices(
+        createAllCombinations(
             mapOf(
                 ItemType.ARMOR to 1,
                 ItemType.RING to 2,
@@ -52,7 +52,7 @@ val day21 = solution(21) {
     part2Solver = solver({
         "Most money to spend still losing is $it."
     }) { boss ->
-        createAllChoices(
+        createAllCombinations(
             mapOf(
                 ItemType.ARMOR to 1,
                 ItemType.RING to 2,

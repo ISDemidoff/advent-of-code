@@ -148,12 +148,12 @@ class CombinationsTest : FreeSpec({
                 mapOf("a" to 2, "b" to 1),
             ),
         ) { (input, result) ->
-            createAllChoices(input) shouldBe result
+            createAllCombinations(input) shouldBe result
         }
 
         "For negative count in input throws exception" {
             shouldThrow<IllegalArgumentException> {
-                createAllChoices(mapOf("a" to -1))
+                createAllCombinations(mapOf("a" to -1))
             } shouldHaveMessage "Cannot combine negative count, occurred at key 'a'"
         }
     }
