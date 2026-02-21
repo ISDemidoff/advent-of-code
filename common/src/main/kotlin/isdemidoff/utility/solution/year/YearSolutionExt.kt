@@ -3,10 +3,10 @@ package isdemidoff.utility.solution.year
 import isdemidoff.utility.solution.SolutionBuilder
 
 fun printYearSolution(
-    year: Int,
+    config: YearSolutionConfig,
     vararg solutions: Any,
 ) = YearSolution(
-    year,
+    config,
     *solutions.mapIndexed { index, it ->
         extractSolution(it) { IllegalArgumentException("Expected SolutionData or SolutionBuilder at position $index, got $it (type ${it::class.qualifiedName})") }
     }.toTypedArray()
@@ -18,4 +18,8 @@ private fun extractSolution(builderOrData: Any, exceptionSupplier: () -> Excepti
         is SolutionData -> builderOrData
         else -> throw exceptionSupplier()
     }
+}
+
+object DisableReason {
+    const val LONG_TIME = "It takes a long time to complete"
 }

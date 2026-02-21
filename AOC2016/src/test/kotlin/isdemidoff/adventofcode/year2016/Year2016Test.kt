@@ -10,6 +10,9 @@ import isdemidoff.adventofcode.year2016.day1.day1
 import isdemidoff.adventofcode.year2016.day10.day10
 import isdemidoff.adventofcode.year2016.day11.day11
 import isdemidoff.adventofcode.year2016.day12.day12
+import isdemidoff.adventofcode.year2016.day13.day13
+import isdemidoff.adventofcode.year2016.day14.day14
+import isdemidoff.adventofcode.year2016.day14.stretchedHash
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
@@ -20,6 +23,7 @@ import isdemidoff.adventofcode.year2016.day7.supportsTLS
 import isdemidoff.adventofcode.year2016.day8.entity.Screen
 import isdemidoff.adventofcode.year2016.day8.entity.parseCommand
 import isdemidoff.adventofcode.year2016.day9.day9
+import isdemidoff.utility.strings.md5hex
 
 class Year2016Test : FreeSpec({
     "Day 1: No Time for a Taxicab" - {
@@ -212,6 +216,34 @@ class Year2016Test : FreeSpec({
     "Day 12: Leonardo's Monorail" - {
         "Part 1 check" {
             day12.input { sampleFile() }.solvePart1().getRegisterValue("a") shouldBe 42
+        }
+    }
+
+    "Day 13: A Maze of Twisty Little Cubicles" - {
+        "Part 1 check" {
+            day13.input { sampleFile() }.solvePart1() shouldBe 11
+        }
+    }
+
+    "Day 14: One-Time Pad" - {
+        "Part 1 check" - {
+            "MD5 works fine" {
+                md5hex("abc0") shouldBe "577571be4de9dcce85a041ba0410f29f"
+            }
+
+            "Sample check" {
+                day14.input { string("abc") }.solvePart1() shouldBe 22728
+            }
+        }
+
+        "Part 2 checks" - {
+            "Hash stretch is correct" {
+                stretchedHash("abc0") shouldBe "a107ff634856bb300138cac6568c0f24"
+            }
+
+            "Sample check" {
+                day14.input { string("abc") }.solvePart2() shouldBe 22551
+            }
         }
     }
 })

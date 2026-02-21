@@ -1,6 +1,7 @@
 package isdemidoff.utility.solution.year
 
 import isdemidoff.utility.solution.SolutionBuilder
+import isdemidoff.utility.solution.model.PartSolutionConfig
 
 fun SolutionBuilder<*, *, *>.withNoArgs(): SolutionData = withSameArgs()
 
@@ -12,6 +13,6 @@ fun SolutionBuilder<*, *, *>.withArgs(
     part2Args: List<Any> = emptyList(),
 ): SolutionData = SolutionData(
     builder = this,
-    part1Args = part1Args,
-    part2Args = part2Args,
+    part1Config = PartSolutionConfig(args = part1Args),
+    part2Config = PartSolutionConfig(args = part2Args),
 )

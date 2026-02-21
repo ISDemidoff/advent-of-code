@@ -1,6 +1,6 @@
 package isdemidoff.utility.solution.result
 
-sealed interface SolutionResult<R> {
+sealed interface SolverResult<R> {
     fun get(): R
     fun formatPretty(): String
 }

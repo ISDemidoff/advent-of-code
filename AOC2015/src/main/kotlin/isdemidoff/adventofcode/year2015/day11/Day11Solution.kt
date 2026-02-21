@@ -1,19 +1,14 @@
 package isdemidoff.adventofcode.year2015.day11
 
+import isdemidoff.utility.other.zipTriple
 import isdemidoff.utility.solution.solution
 
-internal fun String.isValidPassword(): Boolean {
-    return this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()
-}
+internal fun String.isValidPassword(): Boolean =
+    this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()
 
-internal fun String.hasIncreasingStraight(): Boolean {
-    return this.zipWithNext()
-        .zipWithNext { leftPair, rightPair ->
-            rightPair.second - rightPair.first == 1
-                    && leftPair.second - leftPair.first == 1
-        }
-        .any { it }
-}
+internal fun String.hasIncreasingStraight(): Boolean = this.zipTriple { first, second, third ->
+    second - first == 1 && third - second == 1
+}.any { it }
 
 internal fun String.hasNoForbiddenLetters() = """[iol]""".toRegex().containsMatchIn(this).not()
 

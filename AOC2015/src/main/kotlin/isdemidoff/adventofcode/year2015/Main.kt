@@ -25,16 +25,25 @@ import isdemidoff.adventofcode.year2015.day6.day6
 import isdemidoff.adventofcode.year2015.day7.day7
 import isdemidoff.adventofcode.year2015.day8.day8
 import isdemidoff.adventofcode.year2015.day9.day9
+import isdemidoff.utility.solution.year.DisableReason
+import isdemidoff.utility.solution.year.YearSolutionConfig
 import isdemidoff.utility.solution.year.printYearSolution
 import isdemidoff.utility.solution.year.withArgs
+import isdemidoff.utility.solution.year.withNoArgs
 import isdemidoff.utility.solution.year.withSameArgs
 
 fun main() = printYearSolution(
-    2015,
+    config = YearSolutionConfig(
+        year = 2015,
+        forceTimerEnabled = true,
+    ),
     day1,
     day2,
     day3,
-    day4.withArgs(listOf("0".repeat(5)), listOf("0".repeat(6))),
+    day4.withArgs(
+        part1Args = listOf("0".repeat(5)),
+        part2Args = listOf("0".repeat(6)),
+    ).disablePart2(DisableReason.LONG_TIME),
     day5,
     day6,
     day7,
@@ -50,11 +59,10 @@ fun main() = printYearSolution(
     day17.withSameArgs(listOf(150)),
     day18.withSameArgs(listOf(100)),
     day19,
-    // Time-consuming solution, prefer to skip if not needed
-    day20,
+    day20.withNoArgs().disableAll(DisableReason.LONG_TIME),
     day21,
     day22,
     day23.withSameArgs(listOf("b")),
-    day24,
+    day24.withNoArgs().disableAll(DisableReason.LONG_TIME),
     day25,
 )

@@ -12,12 +12,15 @@ import isdemidoff.adventofcode.year2025.day6.day6
 import isdemidoff.adventofcode.year2025.day7.day7
 import isdemidoff.adventofcode.year2025.day8.day8
 import isdemidoff.adventofcode.year2025.day9.day9
+import isdemidoff.utility.solution.year.YearSolutionConfig
 import isdemidoff.utility.solution.year.printYearSolution
-import isdemidoff.utility.solution.year.withNoArgs
 import isdemidoff.utility.solution.year.withSameArgs
 
 fun main() = printYearSolution(
-    2025,
+    config = YearSolutionConfig(
+        year = 2025,
+        forceTimerEnabled = true,
+    ),
     day1,
     day2,
     day3,
