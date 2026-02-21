@@ -13,6 +13,7 @@ import isdemidoff.adventofcode.year2016.day12.day12
 import isdemidoff.adventofcode.year2016.day13.day13
 import isdemidoff.adventofcode.year2016.day14.day14
 import isdemidoff.adventofcode.year2016.day14.stretchedHash
+import isdemidoff.adventofcode.year2016.day15.day15
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
@@ -244,6 +245,12 @@ class Year2016Test : FreeSpec({
             "Sample check" {
                 day14.input { string("abc") }.solvePart2() shouldBe 22551
             }
+        }
+    }
+
+    "Day 15: Timing is Everything" - {
+        "Part 1 check" {
+            day15.input { sampleFile() }.solvePart1() shouldBe 5
         }
     }
 })

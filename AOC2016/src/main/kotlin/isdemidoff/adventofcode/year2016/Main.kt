@@ -6,6 +6,7 @@ import isdemidoff.adventofcode.year2016.day11.day11
 import isdemidoff.adventofcode.year2016.day12.day12
 import isdemidoff.adventofcode.year2016.day13.day13
 import isdemidoff.adventofcode.year2016.day14.day14
+import isdemidoff.adventofcode.year2016.day15.day15
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.day4
@@ -40,4 +41,5 @@ fun main() = printYearSolution(
     day12,
     day13,
     day14.withNoArgs().disablePart2(DisableReason.LONG_TIME),
+    day15,
 )

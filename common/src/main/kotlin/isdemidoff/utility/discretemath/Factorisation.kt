@@ -37,15 +37,12 @@ fun getFactorization(value: Int): Map<Int, Int> {
  * Uses [getFactorization] and [createAllCombinations] as helper functions to calculate faster.
  */
 fun getDivisors(value: Int): List<Int> =
-    if (value == 1) listOf(1) else createAllCombinations(getFactorization(value)).map { choice ->
-        choice.map { (factor, power) ->
-            var acc = 1
-            repeat(power) { acc *= factor }
-            acc
-        }.reduce(Int::times)
-    }
+    if (value == 1) listOf(1) else createAllCombinations(getFactorization(value)).map { calculateNumberFromFactorization(it) }
 
 /**
  * Just [getDivisors]'s result with total sum of elements.
  */
 fun getSumOfDivisors(value: Int): Int = getDivisors(value).sum()
+
+fun calculateNumberFromFactorization(factorization: Map<Int, Int>) =
+    factorization.map { (factor, power) -> fastPow(factor, power) }.reduce(Int::times)
