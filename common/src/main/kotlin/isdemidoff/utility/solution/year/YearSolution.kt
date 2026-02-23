@@ -1,7 +1,5 @@
 package isdemidoff.utility.solution.year
 
-import isdemidoff.utility.solution.model.PartSolutionConfig
-
 class YearSolution(
     private val config: YearSolutionConfig,
     private vararg val solutionBuildersWithArgs: SolutionData,
@@ -13,8 +11,8 @@ class YearSolution(
             data.builder
                 .input { inputFile() }
                 .getSolutions(
-                    data.part1Config.adjust(config),
-                    data.part2Config.adjust(config),
+                    config.adjust(data.part1Config),
+                    config.adjust(data.part2Config),
                 )
                 .let { solutions ->
                     appendLine("""Day ${data.builder.context.day} solutions:""")
@@ -27,7 +25,4 @@ class YearSolution(
 
         appendLine("=== End of solutions ===")
     }.toString()
-
-    private fun PartSolutionConfig.adjust(yearConfig: YearSolutionConfig) =
-        config.forceTimerEnabled?.let { copy(timerEnabled = it) } ?: this
 }

@@ -7,9 +7,9 @@ data class SimpleCharacter(
     override var armor: Int,
 ) : GameCharacter
 
-internal fun parseBossStats(rawInput: List<String>) : GameCharacter {
+internal val bossStatsParser: (List<String>) -> GameCharacter = { rawInput: List<String> ->
     require(rawInput.size == 3) { "Boss's stats must contain 3 lines!" }
-    return rawInput.let { (hitPointsStr, damageStr, armorStr) ->
+    rawInput.let { (hitPointsStr, damageStr, armorStr) ->
         SimpleCharacter(
             name = "boss",
             hitPoints = hitPointsStr.substringAfterLast(' ').toInt(),

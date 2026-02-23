@@ -15,3 +15,8 @@ class WrappedBox(
         take(2).sum().times(2) + reduce(Int::times)
     }
 }
+
+val wrappedBoxFromList: (List<Int>) -> WrappedBox = {
+    require(it.size == 3) { "There must be exactly 3 dimensions specified, but got $it" }
+    WrappedBox(it[0], it[1], it[2])
+}

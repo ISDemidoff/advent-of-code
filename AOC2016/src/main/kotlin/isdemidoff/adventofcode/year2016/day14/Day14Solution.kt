@@ -1,10 +1,15 @@
 package isdemidoff.adventofcode.year2016.day14
 
 import isdemidoff.utility.other.zipTriple
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.md5hex
 import java.util.TreeSet
+import kotlin.collections.ArrayDeque
+import kotlin.collections.filterNotNull
+import kotlin.collections.firstOrNull
+import kotlin.collections.isNotEmpty
+import kotlin.collections.sorted
 
 internal fun stretchedHash(str: String): String {
     var md5 = md5hex(str)
@@ -27,7 +32,7 @@ private fun hasFivelet(str: String, ch: Char): Boolean =
  * Interesting that I had correct answer in part 1 using "just throw key when met 64th confirmation" strategy.
  */
 val day14 = solution(14) {
-    inputParser = InputParsers.singleString
+    inputParser = StringsInputParsers.singleLine
 
     fun findNthPadKeyIndex(salt: String, hashFunction: (String) -> String): Int {
         val targetN = 64

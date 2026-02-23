@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day16
 
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
 
@@ -24,7 +24,7 @@ fun checksumIteration(str: String): String {
  * [Day 16: Dragon Checksum](https://adventofcode.com/2016/day/16).
  */
 val day16 = solution(16) {
-    inputParser = InputParsers.singleString
+    inputParser = StringsInputParsers.singleLine
 
     part1Solver = solver<String, String, Int>({ res, _ ->
         "Checksum of written data is $res."

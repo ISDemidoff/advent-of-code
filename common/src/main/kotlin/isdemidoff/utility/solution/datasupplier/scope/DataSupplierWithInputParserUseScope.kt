@@ -12,8 +12,8 @@ interface DataSupplierWithInputParserUseScope<INNER_DATA> : DataSupplierUseScope
         get() = requireNotNull(inputParserNullable) { "input parser can not be null" }
 
     override fun strings(vararg strings: String): DataSupplier<INNER_DATA> =
-        ConversionDataSupplier(FunctionDataSupplier { listOf(strings.toList()) }, inputParser)
+        ConversionDataSupplier(FunctionDataSupplier { listOf(strings.toList()) }, { inputParser.parse(it) })
 
     override fun filename(filename: String): DataSupplier<INNER_DATA> =
-        ConversionDataSupplier(FileDataSupplier(filename), inputParser)
+        ConversionDataSupplier(FileDataSupplier(filename), { inputParser.parse(it) })
 }

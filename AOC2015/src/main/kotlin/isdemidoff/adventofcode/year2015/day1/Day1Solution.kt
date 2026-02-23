@@ -1,12 +1,14 @@
 package isdemidoff.adventofcode.year2015.day1
 
+import isdemidoff.utility.solution.inputparser.functions.map
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 /**
  * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).
  */
 val day1 = solution(1) {
-    inputParser = singleLineParser {
+    inputParser = StringsInputParsers.singleLine.map {
         it.map { ch ->
             when (ch) {
                 '(' -> 1

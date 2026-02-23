@@ -4,13 +4,15 @@ import isdemidoff.adventofcode.year2015.day21.entity.CharacterWithItems
 import isdemidoff.adventofcode.year2015.day21.entity.Item
 import isdemidoff.adventofcode.year2015.day21.entity.ItemType
 import isdemidoff.adventofcode.year2015.day21.entity.armors
-import isdemidoff.adventofcode.year2015.day21.entity.parseBossStats
+import isdemidoff.adventofcode.year2015.day21.entity.bossStatsParser
 import isdemidoff.adventofcode.year2015.day21.entity.rings
 import isdemidoff.adventofcode.year2015.day21.entity.weaponChooses
 import isdemidoff.adventofcode.year2015.day21.entity.winsAgainst
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.discretemath.chooseItemsCount
 import isdemidoff.utility.discretemath.createAllCombinations
+import isdemidoff.utility.solution.inputparser.functions.andThen
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
@@ -27,7 +29,7 @@ internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
  * [Day 21: RPG Simulator 20XX](https://adventofcode.com/2015/day/21).
  */
 val day21 = solution(21) {
-    inputParser = singleBlockParser(::parseBossStats)
+    inputParser = StringsInputParsers.singleBlock andThen bossStatsParser
 
     part1Solver = solver({
         "Least money to spend still winning is $it."

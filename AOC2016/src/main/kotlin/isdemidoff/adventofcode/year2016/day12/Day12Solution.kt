@@ -5,13 +5,15 @@ import isdemidoff.adventofcode.year2016.day12.entity.ProgramInstruction
 import isdemidoff.adventofcode.year2016.day12.entity.ProgramState
 import isdemidoff.adventofcode.year2016.day12.entity.readInstruction
 import isdemidoff.adventofcode.year2016.day12.entity.runProgram
+import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 /**
  * [Day 12: Leonardo's Monorail](https://adventofcode.com/2016/day/12).
  */
 val day12 = solution<List<ProgramInstruction>, ProgramState>(12) {
-    inputParser = uniformLinesParser(::readInstruction)
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::readInstruction
 
     part1Solver = solver({
         "Value at register 'a' is ${it.getRegisterValue("a")}"

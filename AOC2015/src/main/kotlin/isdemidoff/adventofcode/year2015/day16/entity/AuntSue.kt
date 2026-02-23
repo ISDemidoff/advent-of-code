@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day16.entity
 
-import isdemidoff.utility.keyValueWith
+import isdemidoff.utility.parsing.keyValueWith
 
 data class AuntSue(
     val id: Int,

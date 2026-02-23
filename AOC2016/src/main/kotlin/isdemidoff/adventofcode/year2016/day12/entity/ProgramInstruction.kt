@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2016.day12.entity
 
 import isdemidoff.utility.exception.validationError
-import isdemidoff.utility.keyValue
-import isdemidoff.utility.keyValueWith
+import isdemidoff.utility.parsing.keyValue
+import isdemidoff.utility.parsing.keyValueWith
 
 sealed interface ProgramInstruction {
     /**

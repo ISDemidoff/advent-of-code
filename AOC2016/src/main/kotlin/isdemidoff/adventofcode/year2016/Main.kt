@@ -9,6 +9,8 @@ import isdemidoff.adventofcode.year2016.day14.day14
 import isdemidoff.adventofcode.year2016.day15.day15
 import isdemidoff.adventofcode.year2016.day16.day16
 import isdemidoff.adventofcode.year2016.day17.day17
+import isdemidoff.adventofcode.year2016.day18.day18
+import isdemidoff.adventofcode.year2016.day19.day19
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.day4
@@ -28,6 +30,7 @@ fun main() = printYearSolution(
     config = YearSolutionConfig(
         year = 2016,
         forceTimerEnabled = true,
+//        forceShowAllSolutions = true,
     ),
     day1,
     day2,
@@ -46,4 +49,6 @@ fun main() = printYearSolution(
     day15,
     day16.withArgs(listOf(272), listOf(35651584)).disablePart2(DisableReason.LONG_TIME),
     day17,
+    day18.withArgs(listOf(40), listOf(400000)).disablePart2(DisableReason.LONG_TIME),
+    day19,
 )

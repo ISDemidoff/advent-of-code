@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day17
 
 import isdemidoff.utility.solution.complexSolution
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.strings.md5hex
 import kotlin.math.max
 
@@ -60,7 +60,7 @@ data class LabyrinthState(
  * [Day 17: Two Steps Forward](https://adventofcode.com/2016/day/17).
  */
 val day17 = complexSolution(17) {
-    inputParser = InputParsers.singleString
+    inputParser = StringsInputParsers.singleLine
 
     part1Solver = solver({
         "Shortest path is $it."

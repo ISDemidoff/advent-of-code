@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day8.entity
 
-import isdemidoff.utility.keyValueBy
+import isdemidoff.utility.parsing.keyValueBy
 
 sealed interface Command
 

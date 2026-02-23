@@ -1,6 +1,8 @@
 package isdemidoff.adventofcode.year2025.day1
 
 import isdemidoff.adventofcode.year2025.day1.entity.Rotation
+import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 private fun Int.isStartingPosition() = this % 100 == 0
@@ -9,7 +11,7 @@ private fun Int.isStartingPosition() = this % 100 == 0
  * [Day 1: Secret Entrance](https://adventofcode.com/2025/day/1).
  */
 val day1 = solution<List<Rotation>, Int>(1) {
-    inputParser = uniformLinesParser(::Rotation)
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::Rotation
 
     part1Solver = solver({ "Password is $it." }) { rotations ->
         var position = 50

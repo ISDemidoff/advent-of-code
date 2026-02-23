@@ -3,15 +3,18 @@ package isdemidoff.adventofcode.year2015.day16
 import isdemidoff.adventofcode.year2015.day16.entity.AuntSue
 import isdemidoff.adventofcode.year2015.day16.entity.analyseAuntSue
 import isdemidoff.adventofcode.year2015.day16.entity.parseAuntSueFromMemory
+import isdemidoff.utility.solution.inputparser.functions.mapFirst
+import isdemidoff.utility.solution.inputparser.functions.mapSecondLines
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 /**
  * [Day 16: Aunt Sue](https://adventofcode.com/2015/day/16).
  */
 val day16 = solution<Pair<AuntSue, List<AuntSue>>, Int>(16) {
-    inputParser = twoBlocksParser { (firstBlock, secondBlock) ->
-        analyseAuntSue(firstBlock) to secondBlock.map { parseAuntSueFromMemory(it) }
-    }
+    inputParser = StringsInputParsers.twoBlocks
+        .mapFirst { analyseAuntSue(it) }
+        .mapSecondLines { parseAuntSueFromMemory(it) }
 
     part1Solver = solver({ "Using default comparison rules, seems like that was Aunt Sue #$it" }) { (analysed, all) ->
         all.find { analysed.seemsLike(it) }

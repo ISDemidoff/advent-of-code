@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day5
 
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.md5hex
 
@@ -8,7 +8,7 @@ import isdemidoff.utility.strings.md5hex
  * [Day 5: How About a Nice Game of Chess?](https://adventofcode.com/2016/day/5).
  */
 val day5 = solution(5) {
-    inputParser = InputParsers.singleString
+    inputParser = StringsInputParsers.singleLine
 
     fun findNextInterestingHash(str: String, seed: Int = 1): Pair<Int, String> {
         generateSequence(seed) { it + 1 }

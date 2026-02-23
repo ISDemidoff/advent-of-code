@@ -5,6 +5,8 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
+import isdemidoff.utility.parsing.keyValue
+import isdemidoff.utility.parsing.keyValueBy
 
 class PairUtilitiesTest : FreeSpec({
     "Check CharSequence#keyValue(String)" - {

@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day10
 
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 internal fun String.nextApply(): String {
@@ -32,7 +32,7 @@ internal fun String.nextApply(): String {
  * [Day 10: Elves Look, Elves Say](https://adventofcode.com/2015/day/10).
  */
 val day10 = solution(10) {
-    inputParser = InputParsers.singleString
+    inputParser = StringsInputParsers.singleLine
 
     fun solutionProvider(repetitions: Int) = solver({
         "After $repetitions steps, input become a string of $it size."

@@ -1,6 +1,7 @@
 package isdemidoff.adventofcode.year2016.day15
 
 import isdemidoff.utility.discretemath.lcm
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 data class Disk(val index: Int, val totalPositions: Int, val startingPosition: Int) {
@@ -20,7 +21,7 @@ private fun parseDisk(index: Int, str: String): Disk =
  * [Day 15: Timing is Everything](https://adventofcode.com/2016/day/15).
  */
 val day15 = solution(15) {
-    inputParser = uniformLinesParserIndexed(::parseDisk)
+    inputParser = StringsInputParsers.uniformLinesParserIndexed(::parseDisk)
 
     fun solveForDisks(disks: List<Disk>): Int {
         val lcm = lcm(disks.map { it.totalPositions })

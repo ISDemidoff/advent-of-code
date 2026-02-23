@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2015.day17
 
 import isdemidoff.utility.discretemath.combinationsHavingSum
-import isdemidoff.utility.solution.inputparser.InputParsers
+import isdemidoff.utility.solution.inputparser.scope.PrimitivesInputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
 
@@ -9,7 +9,7 @@ import isdemidoff.utility.solution.solver.solver
  * [Day 17: No Such Thing as Too Much](https://adventofcode.com/2015/day/17).
  */
 val day17 = solution(17) {
-    inputParser = InputParsers.intLines
+    inputParser = PrimitivesInputParsers.intLines
 
     fun solve(input: List<Int>, totalSum: Int): List<List<Int>> =
         combinationsHavingSum(input, totalSum)

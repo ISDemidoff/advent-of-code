@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day1
 
-import isdemidoff.utility.parseUnescapedCsvInputLine
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 import kotlin.math.abs
 
@@ -8,7 +8,7 @@ import kotlin.math.abs
  * [Day 1: No Time for a Taxicab](https://adventofcode.com/2016/day/1).
  */
 val day1 = solution(1) {
-    inputParser = singleLineParser { it.parseUnescapedCsvInputLine(", ") { it.toString() } }
+    inputParser = StringsInputParsers.splitLineBy(", ")
 
     part1Solver = solver({
         "HQ is $it blocks away."

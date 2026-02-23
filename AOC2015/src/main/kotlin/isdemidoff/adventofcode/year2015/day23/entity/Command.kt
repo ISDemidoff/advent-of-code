@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day23.entity
 
-import isdemidoff.utility.keyValueWith
+import isdemidoff.utility.parsing.keyValueWith
 
 sealed interface Command {
     /**

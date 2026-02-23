@@ -1,11 +1,11 @@
 package isdemidoff.adventofcode.year2016
 
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.core.test.Enabled
+import io.kotest.core.test.EnabledOrReasonIf
+import io.kotest.core.test.config.TestConfig
 import io.kotest.datatest.withData
-import io.kotest.matchers.Matcher
-import io.kotest.matchers.equals.beEqual
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldHave
 import isdemidoff.adventofcode.year2016.day1.day1
 import isdemidoff.adventofcode.year2016.day10.day10
 import isdemidoff.adventofcode.year2016.day11.day11
@@ -18,6 +18,9 @@ import isdemidoff.adventofcode.year2016.day16.checksumIteration
 import isdemidoff.adventofcode.year2016.day16.day16
 import isdemidoff.adventofcode.year2016.day16.dragonCurveString
 import isdemidoff.adventofcode.year2016.day17.day17
+import isdemidoff.adventofcode.year2016.day18.calculateNextRow
+import isdemidoff.adventofcode.year2016.day18.day18
+import isdemidoff.adventofcode.year2016.day19.day19
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
@@ -31,6 +34,15 @@ import isdemidoff.adventofcode.year2016.day9.day9
 import isdemidoff.utility.strings.md5hex
 
 class Year2016Test : FreeSpec({
+    val disableLongRunningTests = true
+    val longRunningTestDisabler: EnabledOrReasonIf = {
+        if (disableLongRunningTests) {
+            Enabled.disabled("Takes long to compute")
+        } else {
+            Enabled.enabled
+        }
+    }
+
     "Day 1: No Time for a Taxicab" - {
         "Part 1 checks" - {
             withData(
@@ -41,7 +53,7 @@ class Year2016Test : FreeSpec({
                 "R2, R2, R2" to 2,
                 "R5, L5, R5, R3" to 12,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart1() shouldBe result
+                day1.input { line(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -54,7 +66,7 @@ class Year2016Test : FreeSpec({
                 "R2, R2, R2, R6" to 0,
                 "R5, L5, R5, R3, R10" to 7,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart2() shouldBe result
+                day1.input { line(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -73,7 +85,7 @@ class Year2016Test : FreeSpec({
             "5 10 25" to false,
             "3 4 5" to true,
         ) { (input, result) ->
-            day3.input { string(input) }.solvePart1() shouldBe if (result) 1 else 0
+            day3.input { line(input) }.solvePart1() shouldBe if (result) 1 else 0
         }
     }
 
@@ -97,8 +109,8 @@ class Year2016Test : FreeSpec({
         }
     }
 
-    "Day 5: How About a Nice Game of Chess?" - {
-        val builder = day5.input { string("abc") }
+    "Day 5: How About a Nice Game of Chess?".config(config = TestConfig(enabledOrReasonIf = longRunningTestDisabler)) - {
+        val builder = day5.input { line("abc") }
         "Part 1 check" { builder.solvePart1() shouldBe "18f47a30" }
         "Part 2 check" { builder.solvePart2() shouldBe "05ace8e3" }
     }
@@ -186,7 +198,7 @@ class Year2016Test : FreeSpec({
                 "(6x1)(1x3)A" to 6,
                 "X(8x2)(3x3)ABCY" to 18,
             ) { (input, result) ->
-                day9.input { string(input) }.solvePart1() shouldBe result
+                day9.input { line(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -201,7 +213,7 @@ class Year2016Test : FreeSpec({
                 "(27x12)(20x12)(13x14)(7x10)(1x12)A" to 241920,
                 "(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN" to 445,
             ) { (input, result) ->
-                day9.input { string(input) }.solvePart2() shouldBe result
+                day9.input { line(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -237,7 +249,7 @@ class Year2016Test : FreeSpec({
             }
 
             "Sample check" {
-                day14.input { string("abc") }.solvePart1() shouldBe 22728
+                day14.input { line("abc") }.solvePart1() shouldBe 22728
             }
         }
 
@@ -246,8 +258,8 @@ class Year2016Test : FreeSpec({
                 stretchedHash("abc0") shouldBe "a107ff634856bb300138cac6568c0f24"
             }
 
-            "Sample check" {
-                day14.input { string("abc") }.solvePart2() shouldBe 22551
+            "Sample check".config(config = TestConfig(enabledOrReasonIf = longRunningTestDisabler)) {
+                day14.input { line("abc") }.solvePart2() shouldBe 22551
             }
         }
     }
@@ -284,7 +296,7 @@ class Year2016Test : FreeSpec({
         }
 
         "Sample check" {
-            day16.input { string("10000") }.solvePart1(20) shouldBe "01100"
+            day16.input { line("10000") }.solvePart1(20) shouldBe "01100"
         }
     }
 
@@ -298,7 +310,7 @@ class Year2016Test : FreeSpec({
                 "kglvqrro" to "DDUDRLRRUDRD",
                 "ulqzkmiv" to "DRURDRUDDLLDLUURRDULRLDUUDDDRR",
             ) { (input, result) ->
-                day17.input { string(input) }.solvePart1() shouldBe result
+                day17.input { line(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -311,7 +323,46 @@ class Year2016Test : FreeSpec({
                 "kglvqrro" to 492,
                 "ulqzkmiv" to 830,
             ) { (input, result) ->
-                day17.input { string(input) }.solvePart2() shouldBe result
+                day17.input { line(input) }.solvePart2() shouldBe result
+            }
+        }
+    }
+
+    "Day 18: Like a Rogue" - {
+        "Utility checks" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Next row after '$input' is '$result'"
+                },
+                "..^^." to ".^^^^",
+                ".^^^^" to "^^..^",
+            ) { (input, result) ->
+                calculateNextRow(input) shouldBe result
+            }
+        }
+
+        "Part 1 check" {
+            day18.input { line(".^^.^.^^^^")}.solvePart1(10) shouldBe 38
+        }
+    }
+
+    "Day 19: An Elephant Named Joseph" - {
+        "Part 1 check" {
+            day19.input { line("5") }.solvePart1() shouldBe 3
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Among $input elves #$result will take all"
+                },
+                2 to 1,
+                3 to 3,
+                4 to 1,
+                5 to 2,
+                6 to 3,
+            ) { (input, result) ->
+                day19.input { line(input) }.solvePart2() shouldBe result
             }
         }
     }

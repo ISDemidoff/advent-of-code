@@ -1,6 +1,6 @@
 package isdemidoff.utility.input
 
-fun readLines(fileName: String): List<String> = (object {}).javaClass
+private fun readLines(fileName: String): List<String> = (object {}).javaClass
     .getResourceAsStream("/$fileName")
     .let { requireNotNull(it) { "file $fileName not found" } }
     .bufferedReader()

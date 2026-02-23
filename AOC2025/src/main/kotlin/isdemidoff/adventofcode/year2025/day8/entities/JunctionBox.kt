@@ -23,7 +23,7 @@ data class JunctionBox(
     override fun getConnectedNodes() = connections.toList()
 }
 
-fun List<Long>.toJunctionBox(): JunctionBox {
-    require(this.size == 3) { "Expected 3 this, got ${this.size}." }
-    return JunctionBox(this[0], this[1], this[2])
+internal val junctionBoxConverter: (List<Long>) -> JunctionBox = {
+    require(it.size == 3) { "Expected 3 ints, got ${it.size}." }
+    JunctionBox(it[0], it[1], it[2])
 }

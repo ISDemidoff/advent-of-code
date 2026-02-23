@@ -1,5 +1,7 @@
 package isdemidoff.adventofcode.year2015.day25
 
+import isdemidoff.utility.solution.inputparser.functions.map
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 data class Position(val row: Int, val column: Int)
@@ -15,7 +17,7 @@ internal fun findCodeAtPosition(position: Position): Long {
  * [Day 25: Let It Snow](https://adventofcode.com/2015/day/25).
  */
 val day25 = solution(25) {
-    inputParser = singleLineParser { inputLine ->
+    inputParser = StringsInputParsers.singleLine.map { inputLine ->
         """Enter the code at row ([0-9]+), column ([0-9]+)""".toRegex().find(inputLine)
             .let { requireNotNull(it?.destructured) { "Incorrect input: $inputLine" } }
             .let { Position(it.component1().toInt(), it.component2().toInt()) }

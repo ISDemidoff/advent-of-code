@@ -4,7 +4,7 @@ import isdemidoff.utility.solution.datasupplier.DataSupplier
 import isdemidoff.utility.solution.datasupplier.scope.DataSupplierUseScope
 import isdemidoff.utility.solution.datasupplier.scope.SolutionBuilderDataSupplierUseScope
 import isdemidoff.utility.solution.inputparser.InputParser
-import isdemidoff.utility.solution.inputparser.InputParserUseScope
+import isdemidoff.utility.solution.inputparser.scope.InputParserUseScope
 import isdemidoff.utility.solution.solver.Solver
 import isdemidoff.utility.solution.solver.SolverUseScope
 

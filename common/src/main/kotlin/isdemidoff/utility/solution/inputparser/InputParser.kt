@@ -1,6 +1,7 @@
 package isdemidoff.utility.solution.inputparser
 
-class InputParser<INNER_DATA>(
-    private val fn: (List<List<String>>) -> INNER_DATA,
-) : (List<List<String>>) -> INNER_DATA by fn
+import isdemidoff.utility.solution.datasupplier.BlocksContent
 
+interface InputParser<T> {
+    fun parse(input: BlocksContent): T
+}

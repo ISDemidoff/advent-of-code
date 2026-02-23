@@ -1,6 +1,8 @@
 package isdemidoff.adventofcode.year2016.day4
 
 import isdemidoff.adventofcode.year2016.day4.entity.Room
+import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 
 /**
@@ -9,7 +11,7 @@ import isdemidoff.utility.solution.solution
  * Second part solved correctly just by chance, may be right idea to search explicit decrypted name `northpole object storage`.
  */
 val day4 = solution(4) {
-    inputParser = uniformLinesParser(::Room)
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::Room
 
     part1Solver = solver({
         "Sum of real rooms sector IDs is $it."

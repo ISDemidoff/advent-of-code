@@ -62,7 +62,7 @@ class Year2015Test : FreeSpec({
                 ")))" to -3,
                 ")())())" to -3,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart1() shouldBe result
+                day1.input { line(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -74,7 +74,7 @@ class Year2015Test : FreeSpec({
                 ")" to 1,
                 "()())" to 5,
             ) { (input, result) ->
-                day1.input { string(input) }.solvePart2() shouldBe result
+                day1.input { line(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -88,7 +88,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 58,
                 "1x1x10" to 43,
             ) { (input, result) ->
-                day2.input { string(input) }.solvePart1() shouldBe result
+                day2.input { line(input) }.solvePart1() shouldBe result
             }
         }
 
@@ -100,7 +100,7 @@ class Year2015Test : FreeSpec({
                 "2x3x4" to 34,
                 "1x1x10" to 14,
             ) { (input, result) ->
-                day2.input { string(input) }.solvePart2() shouldBe result
+                day2.input { line(input) }.solvePart2() shouldBe result
             }
         }
     }
@@ -159,7 +159,7 @@ class Year2015Test : FreeSpec({
                 "dvszwmarrgswjxmb" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.input { string(input) }.solvePart1() shouldBe expectedResult
+                day5.input { line(input) }.solvePart1() shouldBe expectedResult
             }
         }
 
@@ -174,7 +174,7 @@ class Year2015Test : FreeSpec({
                 "ieodomkazucvgmuy" to false,
             ) { (input, result) ->
                 val expectedResult = if (result) 1 else 0
-                day5.input { string(input) }.solvePart2() shouldBe expectedResult
+                day5.input { line(input) }.solvePart2() shouldBe expectedResult
             }
         }
     }
@@ -225,7 +225,7 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 3,
                 """"\\\\"""" to 4,
             ) { (str, result) ->
-                day8.input { string(str) }.solvePart1() shouldBe result
+                day8.input { line(str) }.solvePart1() shouldBe result
             }
         }
 
@@ -244,7 +244,7 @@ class Year2015Test : FreeSpec({
                 """"p\"zqyw"""" to 6,
                 """"\\\\"""" to 8,
             ) { (str, result) ->
-                day8.input { string(str) }.solvePart2() shouldBe result
+                day8.input { line(str) }.solvePart2() shouldBe result
             }
         }
     }
@@ -298,7 +298,7 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.input { string(str) }.solvePart1() shouldBe result
+                day12.input { line(str) }.solvePart1() shouldBe result
             }
         }
 
@@ -318,7 +318,7 @@ class Year2015Test : FreeSpec({
                 "[]" to 0,
                 "{}" to 0,
             ) { (str, result) ->
-                day12.input { string(str) }.solvePart2() shouldBe result
+                day12.input { line(str) }.solvePart2() shouldBe result
             }
         }
     }

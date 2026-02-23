@@ -1,21 +1,6 @@
 package isdemidoff.utility
 
 /**
- * Map list of string with [toLongsList] function.
- */
-fun List<List<CharSequence>>.toLongsListList(): List<List<Long>> = map { it.toLongsList() }
-
-/**
- * Map list of string with [toLong] function.
- */
-fun List<CharSequence>.toLongsList(): List<Long> = map { it.toString().toLong() }
-
-/**
- * Take out first char of every string in a list and form a new list.
- */
-fun List<CharSequence>.takeFirstChars(): List<Char> = map { it.first() }
-
-/**
  * Parse any input with free count of whitespace delimiters, i.e. "  123  2     21 2" converts into list("123","2","21","2").
  */
 fun CharSequence.parseWhitespaceDelimitedInput(): List<CharSequence> = trim().split("""\s+""".toRegex())
@@ -38,16 +23,6 @@ fun CharSequence.parseUnescapedCsvInputLine(delimiter: String = ",") = parseUnes
  */
 fun <R> List<CharSequence>.parseUnescapedCsvInputLines(delimiter: String = ",", transform: (CharSequence) -> R): List<List<R>> = map { it.parseUnescapedCsvInputLine(delimiter, transform) }
 fun List<CharSequence>.parseUnescapedCsvInputLines(delimiter: String = ",") = parseUnescapedCsvInputLines(delimiter) { it }
-
-/**
- * Converts a string like a "1-10" or "23-412" to a standard LongRange with inclusive end.
- */
-fun CharSequence.toLongRange(): LongRange = this.split("-").also { check(it.size == 2) { "Range must be set with exactly two boundaries" } }.let { it.first().toLong()..it.last().toLong() }
-
-/**
- * Map list of string with [toLongRange] function.
- */
-fun List<CharSequence>.toLongRanges(): List<LongRange> = map { it.toLongRange() }
 
 /**
  * Check whether is current number is valid index for list with size [limit].
