@@ -13,7 +13,7 @@ import kotlin.math.min
  * [Day 11: Radioisotope Thermoelectric Generators](https://adventofcode.com/2016/day/11).
  */
 val day11 = solution(11) {
-    inputParser = uniformLinesParser { parseComponents(it) }
+    inputParser = uniformLinesParser(::parseComponents)
 
     fun findMinimalMoves(componentsOnFloors: List<Set<Component>>): Int {
         val startingPosition = LabState(floors = componentsOnFloors)

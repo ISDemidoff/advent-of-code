@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2016.day2
 
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 
 private fun moveToNextSmallKeypad(current: Int, direction: Char) = when (current) {
@@ -152,7 +153,7 @@ private fun moveToNextBigKeypad(current: Char, direction: Char) = when (current)
  * [Day 2: Bathroom Security](https://adventofcode.com/2016/day/2).
  */
 val day2 = solution(2) {
-    inputParser = uniformLinesParser { it }
+    inputParser = InputParsers.strings
 
     part1Solver = solver({
         "Code to the bathroom is $it."

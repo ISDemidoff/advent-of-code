@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2025.day3
 
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 
 private fun findMaxOutputJoltage(battery: String) =
@@ -13,7 +14,7 @@ private fun findMaxOutputJoltage(battery: String) =
  * [Day 3: Lobby](https://adventofcode.com/2025/day/3).
  */
 val day3 = solution(3) {
-    inputParser = singleBlockParser { it }
+    inputParser = InputParsers.strings
 
     part1Solver = solver({ "Max total joltage is $it." }) {
         it.sumOf { findMaxOutputJoltage(it) }

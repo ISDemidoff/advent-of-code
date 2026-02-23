@@ -1,6 +1,7 @@
 package isdemidoff.adventofcode.year2016.day14
 
 import isdemidoff.utility.other.zipTriple
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.md5hex
 import java.util.TreeSet
@@ -26,7 +27,7 @@ private fun hasFivelet(str: String, ch: Char): Boolean =
  * Interesting that I had correct answer in part 1 using "just throw key when met 64th confirmation" strategy.
  */
 val day14 = solution(14) {
-    inputParser = singleLineParser { it }
+    inputParser = InputParsers.singleString
 
     fun findNthPadKeyIndex(salt: String, hashFunction: (String) -> String): Int {
         val targetN = 64

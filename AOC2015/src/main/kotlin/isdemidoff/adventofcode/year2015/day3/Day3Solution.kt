@@ -2,13 +2,14 @@ package isdemidoff.adventofcode.year2015.day3
 
 import isdemidoff.adventofcode.year2015.day3.entity.DeliveryResults
 import isdemidoff.adventofcode.year2015.day3.entity.totalVisitedPoints
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 
 /**
  * [Day 3: Perfectly Spherical Houses in a Vacuum](https://adventofcode.com/2015/day/3).
  */
 val day3 = solution(3) {
-    inputParser = singleLineParser { it }
+    inputParser = InputParsers.singleString
 
     fun solverProvider(numberOfCouriers: Int) = solver({
         "$numberOfCouriers courier(s) visited total of $it houses."

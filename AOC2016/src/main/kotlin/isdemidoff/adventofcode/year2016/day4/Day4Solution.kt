@@ -9,7 +9,7 @@ import isdemidoff.utility.solution.solution
  * Second part solved correctly just by chance, may be right idea to search explicit decrypted name `northpole object storage`.
  */
 val day4 = solution(4) {
-    inputParser = uniformLinesParser { Room(it) }
+    inputParser = uniformLinesParser(::Room)
 
     part1Solver = solver({
         "Sum of real rooms sector IDs is $it."

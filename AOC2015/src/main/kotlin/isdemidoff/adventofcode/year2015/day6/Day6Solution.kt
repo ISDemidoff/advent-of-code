@@ -11,7 +11,7 @@ import isdemidoff.utility.solution.solution
  * [Day 6: Probably a Fire Hazard](https://adventofcode.com/2015/day/6).
  */
 val day6 = solution(6) {
-    inputParser = uniformLinesParser { it.parseInstruction() }
+    inputParser = uniformLinesParser(::parseInstruction)
 
     fun solverGenerator(
         formatter: (Int) -> String,

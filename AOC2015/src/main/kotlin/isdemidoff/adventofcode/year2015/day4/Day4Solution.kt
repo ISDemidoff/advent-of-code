@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2015.day4
 
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
 import isdemidoff.utility.strings.md5hex
@@ -8,7 +9,7 @@ import isdemidoff.utility.strings.md5hex
  * [Day 4: The Ideal Stocking Stuffer](https://adventofcode.com/2015/day/4).
  */
 val day4 = solution(4) {
-    inputParser = singleLineParser { it }
+    inputParser = InputParsers.singleString
 
     val solver = solver<String, Int, String>({ result, _ ->
         "Lowest positive number to add is $result."

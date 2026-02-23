@@ -35,6 +35,7 @@ import isdemidoff.adventofcode.year2015.day22.entity.Stats
 import isdemidoff.adventofcode.year2015.day22.entity.Victory
 import isdemidoff.adventofcode.year2015.day23.day23
 import isdemidoff.adventofcode.year2015.day24.day24
+import isdemidoff.adventofcode.year2015.day25.Position
 import isdemidoff.adventofcode.year2015.day25.findCodeAtPosition
 import isdemidoff.adventofcode.year2015.day3.day3
 import isdemidoff.adventofcode.year2015.day4.day4
@@ -583,7 +584,7 @@ class Year2015Test : FreeSpec({
                 TestData(6, 5, 1534922),
                 TestData(6, 6, 27995004),
             ) { (row, col, expectedCode) ->
-                findCodeAtPosition(row, col) shouldBe expectedCode
+                findCodeAtPosition(Position(row, col)) shouldBe expectedCode
             }
         }
     }

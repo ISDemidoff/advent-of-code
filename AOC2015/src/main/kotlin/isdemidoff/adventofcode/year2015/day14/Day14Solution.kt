@@ -3,7 +3,7 @@ package isdemidoff.adventofcode.year2015.day14
 import isdemidoff.adventofcode.year2015.day14.entity.DistanceTravelledRace
 import isdemidoff.adventofcode.year2015.day14.entity.LeadTimeRace
 import isdemidoff.adventofcode.year2015.day14.entity.Reindeer
-import isdemidoff.adventofcode.year2015.day14.entity.reindeer
+import isdemidoff.adventofcode.year2015.day14.entity.readReindeerInfo
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.solution.solver.solver
 
@@ -11,7 +11,7 @@ import isdemidoff.utility.solution.solver.solver
  * [Day 14: Reindeer Olympics](https://adventofcode.com/2015/day/14).
  */
 val day14 = solution(14) {
-    inputParser = uniformLinesParser { reindeer(it) }
+    inputParser = uniformLinesParser(::readReindeerInfo)
 
     fun Map<Reindeer, Int>.findBestResult() = this.maxOf { it.value }
 

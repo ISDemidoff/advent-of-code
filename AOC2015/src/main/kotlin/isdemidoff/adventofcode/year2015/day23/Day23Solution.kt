@@ -11,7 +11,7 @@ import isdemidoff.utility.solution.solver.solver
  * [Day 23: Opening the Turing Lock](https://adventofcode.com/2015/day/23).
  */
 val day23 = solution(23) {
-    inputParser = uniformLinesParser { parseCommand(it) }
+    inputParser = uniformLinesParser(::parseCommand)
 
     part1Solver = solver<List<Command>, UInt, String>({ result, register ->
         "Value at register '$register' after program run is $result."

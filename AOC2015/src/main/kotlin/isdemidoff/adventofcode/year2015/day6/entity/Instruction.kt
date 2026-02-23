@@ -17,9 +17,9 @@ data class Instruction(
 private fun String.findOperation() =
     Instruction.Operation.entries.first { this.startsWith(it.text) }
 
-fun String.parseInstruction(): Instruction {
-    val op = this.findOperation()
-    val limits = this.substring(op.text.length).trim()
+fun parseInstruction(input: String): Instruction {
+    val op = input.findOperation()
+    val limits = input.substring(op.text.length).trim()
     val points = limits.split(" through ")
         .also { check(it.size == 2) { "Exactly two point must be specified" } }
         .map { pointRaw ->

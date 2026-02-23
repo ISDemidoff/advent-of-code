@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2016.day7
 
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 
 /**
@@ -42,7 +43,7 @@ internal fun abaCandidates(part: String): List<String> =
  * [Day 7: Internet Protocol Version 7](https://adventofcode.com/2016/day/7).
  */
 val day7 = solution(7) {
-    inputParser = uniformLinesParser { it }
+    inputParser = InputParsers.strings
 
     part1Solver = solver({
         "There are $it IPs that support TLS."

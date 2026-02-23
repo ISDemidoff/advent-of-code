@@ -8,7 +8,7 @@ import isdemidoff.utility.transpose
  * [Day 6: Signals and Noise](https://adventofcode.com/2016/day/6).
  */
 val day6 = solution(6) {
-    inputParser = singleBlockParser { it.map { s -> s.toCharArray().toList() } }
+    inputParser = uniformLinesParser { it.toCharArray().toList() }
 
     part1Solver = solver({
         "Error-corrected message by repetition code algo is $it."

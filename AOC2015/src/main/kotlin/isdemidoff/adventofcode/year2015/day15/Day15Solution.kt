@@ -12,7 +12,7 @@ import isdemidoff.utility.solution.solution
  * Helpful note: you must ignore calories when calculating score, as it is unclear in the description, they really kicks into part two.
  */
 val day15 = solution(15) {
-    inputParser = uniformLinesParser { parseIngredient(it) }
+    inputParser = uniformLinesParser(::parseIngredient)
 
     val totalSpoons = 100
 

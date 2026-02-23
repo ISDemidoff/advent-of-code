@@ -20,7 +20,7 @@ private fun parseDisk(index: Int, str: String): Disk =
  * [Day 15: Timing is Everything](https://adventofcode.com/2016/day/15).
  */
 val day15 = solution(15) {
-    inputParser = singleBlockParser { it.mapIndexed(::parseDisk) }
+    inputParser = uniformLinesParserIndexed(::parseDisk)
 
     fun solveForDisks(disks: List<Disk>): Int {
         val lcm = lcm(disks.map { it.totalPositions })

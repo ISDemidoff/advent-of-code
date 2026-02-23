@@ -9,7 +9,7 @@ private fun Int.isStartingPosition() = this % 100 == 0
  * [Day 1: Secret Entrance](https://adventofcode.com/2025/day/1).
  */
 val day1 = solution<List<Rotation>, Int>(1) {
-    inputParser = uniformLinesParser { Rotation(it) }
+    inputParser = uniformLinesParser(::Rotation)
 
     part1Solver = solver({ "Password is $it." }) { rotations ->
         var position = 50

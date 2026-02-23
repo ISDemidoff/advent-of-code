@@ -27,7 +27,7 @@ internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
  * [Day 21: RPG Simulator 20XX](https://adventofcode.com/2015/day/21).
  */
 val day21 = solution(21) {
-    inputParser = singleBlockParser { parseBossStats(it) }
+    inputParser = singleBlockParser(::parseBossStats)
 
     part1Solver = solver({
         "Least money to spend still winning is $it."

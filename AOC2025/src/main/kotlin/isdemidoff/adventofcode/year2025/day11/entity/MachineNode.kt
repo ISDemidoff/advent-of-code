@@ -16,6 +16,6 @@ data class MachineNode(
     override fun getIdentity() = id
 }
 
-fun String.toNode() = split(": ")
-    .also { require(it.size == 2) { "Expected exactly 2 tokens in form \"%id%: %outputs%\", but got $this" } }
+fun parseNode(input: String) = input.split(": ")
+    .also { require(it.size == 2) { "Expected exactly 2 tokens in form \"%id%: %outputs%\", but got $input" } }
     .let { MachineNode(id = it[0], outputNames = it[1].split("""\s+""".toRegex())) }

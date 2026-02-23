@@ -5,6 +5,7 @@ import isdemidoff.adventofcode.year2015.day22.entity.InProgressGameState
 import isdemidoff.adventofcode.year2015.day22.entity.Lose
 import isdemidoff.adventofcode.year2015.day22.entity.Victory
 import isdemidoff.adventofcode.year2015.day22.entity.parseInitialGameState
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 import java.util.*
 import kotlin.math.min
@@ -13,7 +14,7 @@ import kotlin.math.min
  * [Day 22: Wizard Simulator 20XX](https://adventofcode.com/2015/day/22).
  */
 val day22 = solution(22) {
-    inputParser = singleBlockParser { it }
+    inputParser = InputParsers.strings
 
     fun findMinimalManaSpentForAWin(initialState: GameState): Int {
         val queue = LinkedList<GameState>()

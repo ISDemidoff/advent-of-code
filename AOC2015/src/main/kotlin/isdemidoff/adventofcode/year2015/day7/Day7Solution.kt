@@ -2,13 +2,14 @@ package isdemidoff.adventofcode.year2015.day7
 
 import isdemidoff.adventofcode.year2015.day7.entity.LogicalCircuit
 import isdemidoff.adventofcode.year2015.day7.entity.createLogicalWire
+import isdemidoff.utility.solution.inputparser.InputParsers
 import isdemidoff.utility.solution.solution
 
 /**
  * [Day 7: Some Assembly Required](https://adventofcode.com/2015/day/7).
  */
 val day7 = solution<List<String>, LogicalCircuit>(7) {
-    inputParser = uniformLinesParser { it }
+    inputParser = InputParsers.strings
 
     part1Solver = solver({
         "Value at wire 'a' is ${it.getValue("a")}"

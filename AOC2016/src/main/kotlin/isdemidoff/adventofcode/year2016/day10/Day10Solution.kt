@@ -13,7 +13,7 @@ import isdemidoff.utility.solution.solver.solver
  * [Day 10: Balance Bots](https://adventofcode.com/2016/day/10).
  */
 val day10 = solution(10) {
-    inputParser = uniformLinesParser { parseInstruction(it) }
+    inputParser = uniformLinesParser(::parseInstruction)
 
     part1Solver = solver<List<Instruction>, Int, Int, Int>({ result, val1, val2 ->
         "Bot which compared $val1 and $val2 has number $result."
