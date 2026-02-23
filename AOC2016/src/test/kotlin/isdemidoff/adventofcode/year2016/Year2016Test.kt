@@ -14,6 +14,10 @@ import isdemidoff.adventofcode.year2016.day13.day13
 import isdemidoff.adventofcode.year2016.day14.day14
 import isdemidoff.adventofcode.year2016.day14.stretchedHash
 import isdemidoff.adventofcode.year2016.day15.day15
+import isdemidoff.adventofcode.year2016.day16.checksumIteration
+import isdemidoff.adventofcode.year2016.day16.day16
+import isdemidoff.adventofcode.year2016.day16.dragonCurveString
+import isdemidoff.adventofcode.year2016.day17.day17
 import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
@@ -251,6 +255,64 @@ class Year2016Test : FreeSpec({
     "Day 15: Timing is Everything" - {
         "Part 1 check" {
             day15.input { sampleFile() }.solvePart1() shouldBe 5
+        }
+    }
+
+    "Day 16: Dragon Checksum" - {
+        "Utility checks" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "'$input' populates into '$result' via dragon curve iteration"
+                },
+                "1" to "100",
+                "0" to "001",
+                "11111" to "11111000000",
+                "111100001010" to "1111000010100101011110000",
+            ) { (input, result) ->
+                dragonCurveString(input) shouldBe result
+            }
+
+            withData(
+                nameFn = { (input, result) ->
+                    "'$input' iterated info '$result' after checksum iteration"
+                },
+                "110010110100" to "110101",
+                "110101" to "100",
+            ) { (input, result) ->
+                checksumIteration(input) shouldBe result
+            }
+        }
+
+        "Sample check" {
+            day16.input { string("10000") }.solvePart1(20) shouldBe "01100"
+        }
+    }
+
+    "Day 17: Two Steps Forward" - {
+        "Part 1 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "For passcode '$input' shortest path is $result"
+                },
+                "ihgpwlah" to "DDRRRD",
+                "kglvqrro" to "DDUDRLRRUDRD",
+                "ulqzkmiv" to "DRURDRUDDLLDLUURRDULRLDUUDDDRR",
+            ) { (input, result) ->
+                day17.input { string(input) }.solvePart1() shouldBe result
+            }
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "For passcode '$input' the longest path would be $result steps long."
+                },
+                "ihgpwlah" to 370,
+                "kglvqrro" to 492,
+                "ulqzkmiv" to 830,
+            ) { (input, result) ->
+                day17.input { string(input) }.solvePart2() shouldBe result
+            }
         }
     }
 })
