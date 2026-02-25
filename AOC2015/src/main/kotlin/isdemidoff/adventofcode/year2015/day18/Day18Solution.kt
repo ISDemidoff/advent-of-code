@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2015.day18
 
 import isdemidoff.adventofcode.year2015.day18.entity.LightningGrid
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 
 /**
  * [Day 18: Like a GIF For Your Yard](https://adventofcode.com/2015/day/18).

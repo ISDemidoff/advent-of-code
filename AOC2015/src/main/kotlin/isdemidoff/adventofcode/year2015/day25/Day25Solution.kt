@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day25
 
-import isdemidoff.utility.solution.inputparser.functions.map
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.map
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 data class Position(val row: Int, val column: Int)
 

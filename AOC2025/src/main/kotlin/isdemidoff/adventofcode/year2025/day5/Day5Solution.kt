@@ -1,11 +1,11 @@
 package isdemidoff.adventofcode.year2025.day5
 
+import isdemidoff.solution.inputparser.functions.mapFirst
+import isdemidoff.solution.inputparser.functions.mapSecond
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.parsing.toLongRanges
 import isdemidoff.utility.parsing.toLongsList
-import isdemidoff.utility.solution.inputparser.functions.mapFirst
-import isdemidoff.utility.solution.inputparser.functions.mapSecond
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 5: Cafeteria](https://adventofcode.com/2025/day/5).

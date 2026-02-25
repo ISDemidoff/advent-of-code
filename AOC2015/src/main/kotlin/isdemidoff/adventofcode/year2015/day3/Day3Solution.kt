@@ -2,8 +2,8 @@ package isdemidoff.adventofcode.year2015.day3
 
 import isdemidoff.adventofcode.year2015.day3.entity.DeliveryResults
 import isdemidoff.adventofcode.year2015.day3.entity.totalVisitedPoints
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 3: Perfectly Spherical Houses in a Vacuum](https://adventofcode.com/2015/day/3).

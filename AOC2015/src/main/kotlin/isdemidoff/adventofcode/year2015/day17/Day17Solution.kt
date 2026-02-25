@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2015.day17
 
+import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 import isdemidoff.utility.discretemath.combinationsHavingSum
-import isdemidoff.utility.solution.inputparser.scope.PrimitivesInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
 
 /**
  * [Day 17: No Such Thing as Too Much](https://adventofcode.com/2015/day/17).

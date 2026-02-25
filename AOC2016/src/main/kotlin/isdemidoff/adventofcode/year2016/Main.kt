@@ -22,11 +22,11 @@ import isdemidoff.adventofcode.year2016.day6.day6
 import isdemidoff.adventofcode.year2016.day7.day7
 import isdemidoff.adventofcode.year2016.day8.day8
 import isdemidoff.adventofcode.year2016.day9.day9
-import isdemidoff.utility.solution.year.DisableReason
-import isdemidoff.utility.solution.year.YearSolutionConfig
-import isdemidoff.utility.solution.year.printYearSolution
-import isdemidoff.utility.solution.year.withArgs
-import isdemidoff.utility.solution.year.withNoArgs
+import isdemidoff.solution.year.DisableReason
+import isdemidoff.solution.year.YearSolutionConfig
+import isdemidoff.solution.year.printYearSolution
+import isdemidoff.solution.year.withArgs
+import isdemidoff.solution.year.withNoArgs
 
 
 fun main() = printYearSolution(

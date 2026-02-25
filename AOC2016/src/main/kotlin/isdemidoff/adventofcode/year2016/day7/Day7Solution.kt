@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day7
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * Splits incoming IP into two groups of strings:

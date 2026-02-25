@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2025.day4
 
 import isdemidoff.adventofcode.year2025.day4.entity.WarehouseGrid
-import isdemidoff.utility.solution.inputparser.functions.andThen
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 4: Printing Department](https://adventofcode.com/2025/day/4).

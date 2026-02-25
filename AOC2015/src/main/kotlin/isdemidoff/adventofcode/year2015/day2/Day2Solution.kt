@@ -1,10 +1,10 @@
 package isdemidoff.adventofcode.year2015.day2
 
 import isdemidoff.adventofcode.year2015.day2.entity.wrappedBoxFromList
+import isdemidoff.solution.inputparser.functions.mapLines
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.parsing.toIntsList
-import isdemidoff.utility.solution.inputparser.functions.mapLines
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 2: I Was Told There Would Be No Math](https://adventofcode.com/2015/day/2).

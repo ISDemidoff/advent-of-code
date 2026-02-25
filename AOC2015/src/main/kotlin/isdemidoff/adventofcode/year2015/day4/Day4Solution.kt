@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day4
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 import isdemidoff.utility.strings.md5hex
 
 /**

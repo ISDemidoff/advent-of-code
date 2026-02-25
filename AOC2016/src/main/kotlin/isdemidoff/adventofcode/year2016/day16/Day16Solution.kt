@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2016.day16
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 
 fun invertString(str: String) = str.map { if (it == '0') '1' else '0' }.joinToString("")
 

@@ -5,9 +5,9 @@ import isdemidoff.adventofcode.year2016.day11.entity.Component
 import isdemidoff.adventofcode.year2016.day11.entity.Generator
 import isdemidoff.adventofcode.year2016.day11.entity.LabState
 import isdemidoff.adventofcode.year2016.day11.entity.parseComponents
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import java.util.*
 import kotlin.math.min
 

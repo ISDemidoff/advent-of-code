@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2016.day9
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.parsing.keyValueBy
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 internal fun calculateDecompressedLength(input: String, recursiveDecompress: Boolean): Long {
     if (input.isEmpty()) return 0L

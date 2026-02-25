@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day2
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun moveToNextSmallKeypad(current: Int, direction: Char) = when (current) {
     1 -> when (direction) {

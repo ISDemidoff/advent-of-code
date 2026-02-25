@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day11
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.other.zipTriple
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 internal fun String.isValidPassword(): Boolean =
     this.hasIncreasingStraight() && this.hasNoForbiddenLetters() && this.hasTwoPairsOfLetters()

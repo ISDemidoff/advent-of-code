@@ -114,7 +114,7 @@ fun getLabyrinthAndStartingPosition(fileSystem: FileSystem): Pair<Labyrinth, Pos
         }
     }
 
-    check((0..<fileSystem.xSize).all { cells[it][0] == 0 }) { "Expected to see first row totally empty." }
+    check((0..<fileSystem.xSize).all { cells[it][0] != 1 }) { "Expected to see first row has no walls." }
 
     return Labyrinth(fileSystem.xSize, fileSystem.ySize, cells) to requireNotNull(currentPosition) { "Not found starting position" }
 }

@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2016.day14
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.other.zipTriple
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.md5hex
 import java.util.TreeSet
 import kotlin.collections.ArrayDeque

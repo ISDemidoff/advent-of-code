@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day24
 
+import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.combinationsHavingSum
-import isdemidoff.utility.solution.inputparser.scope.PrimitivesInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 24: It Hangs in the Balance](https://adventofcode.com/2015/day/24).

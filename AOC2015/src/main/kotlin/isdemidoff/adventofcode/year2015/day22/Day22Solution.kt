@@ -5,8 +5,8 @@ import isdemidoff.adventofcode.year2015.day22.entity.InProgressGameState
 import isdemidoff.adventofcode.year2015.day22.entity.Lose
 import isdemidoff.adventofcode.year2015.day22.entity.Victory
 import isdemidoff.adventofcode.year2015.day22.entity.parseInitialGameState
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import java.util.*
 import kotlin.math.min
 

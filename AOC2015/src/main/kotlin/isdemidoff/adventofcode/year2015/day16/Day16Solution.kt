@@ -3,10 +3,10 @@ package isdemidoff.adventofcode.year2015.day16
 import isdemidoff.adventofcode.year2015.day16.entity.AuntSue
 import isdemidoff.adventofcode.year2015.day16.entity.analyseAuntSue
 import isdemidoff.adventofcode.year2015.day16.entity.parseAuntSueFromMemory
-import isdemidoff.utility.solution.inputparser.functions.mapFirst
-import isdemidoff.utility.solution.inputparser.functions.mapSecondLines
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.mapFirst
+import isdemidoff.solution.inputparser.functions.mapSecondLines
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 16: Aunt Sue](https://adventofcode.com/2015/day/16).

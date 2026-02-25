@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day1
 
-import isdemidoff.utility.solution.inputparser.functions.map
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.map
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).

@@ -2,8 +2,8 @@ package isdemidoff.adventofcode.year2015.day7
 
 import isdemidoff.adventofcode.year2015.day7.entity.LogicalCircuit
 import isdemidoff.adventofcode.year2015.day7.entity.createLogicalWire
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 7: Some Assembly Required](https://adventofcode.com/2015/day/7).

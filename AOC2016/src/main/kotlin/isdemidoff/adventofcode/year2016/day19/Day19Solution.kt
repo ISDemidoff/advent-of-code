@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day19
 
-import isdemidoff.utility.solution.inputparser.scope.PrimitivesInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 19: An Elephant Named Joseph](https://adventofcode.com/2016/day/19).

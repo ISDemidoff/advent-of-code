@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2015.day9
 
 import isdemidoff.adventofcode.year2015.day9.entity.Country
-import isdemidoff.utility.solution.inputparser.functions.andThen
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 9: All in a Single Night](https://adventofcode.com/2015/day/9).

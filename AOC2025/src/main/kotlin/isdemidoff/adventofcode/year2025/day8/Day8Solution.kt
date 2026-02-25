@@ -4,13 +4,13 @@ import isdemidoff.adventofcode.year2025.day8.entities.JunctionBox
 import isdemidoff.adventofcode.year2025.day8.entities.JunctionBoxConnection
 import isdemidoff.adventofcode.year2025.day8.entities.createConnection
 import isdemidoff.adventofcode.year2025.day8.entities.junctionBoxConverter
+import isdemidoff.solution.inputparser.functions.mapLines
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.graphs.extractConnectedComponents
 import isdemidoff.utility.parsing.toLongsList
-import isdemidoff.utility.solution.inputparser.functions.mapLines
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
 
 /**
  * [Day 8: Playground](https://adventofcode.com/2025/day/8).

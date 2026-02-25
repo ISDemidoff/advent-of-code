@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2015.day13
 
 import isdemidoff.adventofcode.year2015.day13.entity.TableArrangement
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 13: Knights of the Dinner Table](https://adventofcode.com/2015/day/13).

@@ -2,11 +2,11 @@ package isdemidoff.adventofcode.year2025.day9
 
 import isdemidoff.adventofcode.year2025.day9.entity.Point
 import isdemidoff.adventofcode.year2025.day9.entity.toPoint
+import isdemidoff.solution.inputparser.functions.mapLines
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.parseUnescapedCsvInputLine
-import isdemidoff.utility.solution.inputparser.functions.mapLines
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 fun findMaxRectangleSize(points: List<Point>) = cartesianProduct(points, points) { (first, second) -> first rectangleSizeWith second }.max()
 

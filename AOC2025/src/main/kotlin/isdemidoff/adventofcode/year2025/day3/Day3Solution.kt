@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2025.day3
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun findMaxOutputJoltage(battery: String) =
     (0 ..< battery.lastIndex).maxOf { leftIndex ->

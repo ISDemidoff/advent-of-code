@@ -8,12 +8,12 @@ import isdemidoff.adventofcode.year2015.day21.entity.bossStatsParser
 import isdemidoff.adventofcode.year2015.day21.entity.rings
 import isdemidoff.adventofcode.year2015.day21.entity.weaponChooses
 import isdemidoff.adventofcode.year2015.day21.entity.winsAgainst
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.discretemath.chooseItemsCount
 import isdemidoff.utility.discretemath.createAllCombinations
-import isdemidoff.utility.solution.inputparser.functions.andThen
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
     return cartesianProduct(

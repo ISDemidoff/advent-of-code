@@ -3,9 +3,9 @@ package isdemidoff.adventofcode.year2016.day8
 import isdemidoff.adventofcode.year2016.day8.entity.Command
 import isdemidoff.adventofcode.year2016.day8.entity.Screen
 import isdemidoff.adventofcode.year2016.day8.entity.parseCommand
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 8: Two-Factor Authentication](https://adventofcode.com/2016/day/8).

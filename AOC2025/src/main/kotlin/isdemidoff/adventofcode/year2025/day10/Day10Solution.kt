@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2025.day10
 
 import isdemidoff.adventofcode.year2025.day10.entity.parseMachine
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 10: Factory](https://adventofcode.com/2025/day/10).

@@ -6,10 +6,10 @@ import isdemidoff.adventofcode.year2016.day10.entity.ProcessingField
 import isdemidoff.adventofcode.year2016.day10.entity.ProcessingUnitType
 import isdemidoff.adventofcode.year2016.day10.entity.ReceiveChipOperation
 import isdemidoff.adventofcode.year2016.day10.entity.parseInstruction
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 
 /**
  * [Day 10: Balance Bots](https://adventofcode.com/2016/day/10).

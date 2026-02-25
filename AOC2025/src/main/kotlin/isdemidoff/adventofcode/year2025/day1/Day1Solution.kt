@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2025.day1
 
 import isdemidoff.adventofcode.year2025.day1.entity.Rotation
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun Int.isStartingPosition() = this % 100 == 0
 

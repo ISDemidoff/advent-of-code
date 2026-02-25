@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2015.day8
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun String.inMemorySize(): Int {
     check(this.startsWith("\"") && this.endsWith("\"")) { "String must be a string literal: $this" }

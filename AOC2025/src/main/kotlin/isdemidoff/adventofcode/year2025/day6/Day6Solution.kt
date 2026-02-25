@@ -1,11 +1,11 @@
 package isdemidoff.adventofcode.year2025.day6
 
 import isdemidoff.adventofcode.year2025.day6.entity.makeProblemOf
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.functions.mapLines
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.parsing.toLongsList
-import isdemidoff.utility.solution.inputparser.functions.andThen
-import isdemidoff.utility.solution.inputparser.functions.mapLines
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 6: Trash Compactor](https://adventofcode.com/2025/day/6).

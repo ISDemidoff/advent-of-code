@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2016.day15
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.lcm
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 data class Disk(val index: Int, val totalPositions: Int, val startingPosition: Int) {
     fun positionForTimeStart(seconds: Int): Int = (startingPosition + seconds + index) % totalPositions

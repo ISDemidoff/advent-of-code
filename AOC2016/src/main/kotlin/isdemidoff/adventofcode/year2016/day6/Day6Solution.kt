@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2016.day6
 
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.other.transpose
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.countCharacterStatistics
 
 /**

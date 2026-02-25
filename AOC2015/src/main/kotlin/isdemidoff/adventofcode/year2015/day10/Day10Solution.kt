@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2015.day10
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 internal fun String.nextApply(): String {
     require(this.matches("""[0-9]+""".toRegex())) { "Invalid input: $this" }

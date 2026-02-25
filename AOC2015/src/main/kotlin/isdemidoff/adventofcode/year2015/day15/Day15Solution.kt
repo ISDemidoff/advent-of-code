@@ -3,10 +3,10 @@ package isdemidoff.adventofcode.year2015.day15
 import isdemidoff.adventofcode.year2015.day15.entity.calculateCalories
 import isdemidoff.adventofcode.year2015.day15.entity.calculateScore
 import isdemidoff.adventofcode.year2015.day15.entity.parseIngredient
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.combinationsWithRepetitions
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 15: Science for Hungry People](https://adventofcode.com/2015/day/15).

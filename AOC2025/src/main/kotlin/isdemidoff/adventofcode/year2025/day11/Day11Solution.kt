@@ -4,10 +4,10 @@ import isdemidoff.adventofcode.year2025.day11.Constants.FROM_NODE_ID
 import isdemidoff.adventofcode.year2025.day11.Constants.TO_NODE_ID
 import isdemidoff.adventofcode.year2025.day11.entity.MachineNode
 import isdemidoff.adventofcode.year2025.day11.entity.parseNode
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.graphs.findCountOfPaths
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 @Suppress("SameParameterValue")
 private fun findCountOfPaths(allNodes: Map<String, MachineNode>, fromNodeId: String, toNodeId: String): Int {

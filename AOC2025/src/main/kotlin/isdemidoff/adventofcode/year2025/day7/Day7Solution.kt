@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2025.day7
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.isInvalidPosition
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 7: Laboratories](https://adventofcode.com/2025/day/7).

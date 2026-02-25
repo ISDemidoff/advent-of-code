@@ -5,9 +5,9 @@ import isdemidoff.adventofcode.year2016.day12.entity.ProgramInstruction
 import isdemidoff.adventofcode.year2016.day12.entity.ProgramState
 import isdemidoff.adventofcode.year2016.day12.entity.readInstruction
 import isdemidoff.adventofcode.year2016.day12.entity.runProgram
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 12: Leonardo's Monorail](https://adventofcode.com/2016/day/12).

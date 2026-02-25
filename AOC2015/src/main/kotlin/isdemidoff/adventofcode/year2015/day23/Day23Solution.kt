@@ -4,10 +4,10 @@ import isdemidoff.adventofcode.year2015.day23.entity.Command
 import isdemidoff.adventofcode.year2015.day23.entity.IncRegisterCommand
 import isdemidoff.adventofcode.year2015.day23.entity.ProgramEnvironment
 import isdemidoff.adventofcode.year2015.day23.entity.parseCommand
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 
 /**
  * [Day 23: Opening the Turing Lock](https://adventofcode.com/2015/day/23).

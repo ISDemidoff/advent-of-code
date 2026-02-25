@@ -1,10 +1,10 @@
 package isdemidoff.adventofcode.year2015.day19
 
+import isdemidoff.solution.complexSolution
+import isdemidoff.solution.inputparser.functions.mapFirstLines
+import isdemidoff.solution.inputparser.functions.mapSecond
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.parsing.keyValue
-import isdemidoff.utility.solution.complexSolution
-import isdemidoff.utility.solution.inputparser.functions.mapFirstLines
-import isdemidoff.utility.solution.inputparser.functions.mapSecond
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import java.util.*
 
 /**

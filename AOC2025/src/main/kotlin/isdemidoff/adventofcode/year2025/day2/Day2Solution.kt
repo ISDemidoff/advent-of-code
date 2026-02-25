@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2025.day2
 
-import isdemidoff.utility.solution.inputparser.functions.andThen
-import isdemidoff.utility.solution.inputparser.scope.RangesInputParsers
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.scope.RangesInputParsers
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun LongRange.getSumOfSillyPatterns(onlyTwo: Boolean) =
     filter { it.isRepeatedPattern(onlyTwo) }.sum()

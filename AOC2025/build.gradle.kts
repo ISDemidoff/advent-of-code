@@ -10,6 +10,7 @@ application {
 
 dependencies {
     implementation(projects.common)
+    implementation(projects.solutionFramework)
     testImplementation("io.kotest:kotest-framework-engine-jvm:6.0.7")
     testImplementation("io.kotest:kotest-assertions-core-jvm:6.0.7")
 }

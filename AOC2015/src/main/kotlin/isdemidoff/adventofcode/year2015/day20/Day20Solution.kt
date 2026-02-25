@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2015.day20
 
+import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.getDivisors
 import isdemidoff.utility.discretemath.getSumOfDivisors
-import isdemidoff.utility.solution.inputparser.scope.PrimitivesInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 20: Infinite Elves and Infinite Houses](https://adventofcode.com/2015/day/20).

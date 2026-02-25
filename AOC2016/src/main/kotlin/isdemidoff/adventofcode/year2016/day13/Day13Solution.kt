@@ -2,9 +2,9 @@ package isdemidoff.adventofcode.year2016.day13
 
 import isdemidoff.adventofcode.year2016.day13.entity.Building
 import isdemidoff.adventofcode.year2016.day13.entity.puzzleInputParser
-import isdemidoff.utility.solution.inputparser.functions.map
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.map
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 13: A Maze of Twisty Little Cubicles](https://adventofcode.com/2016/day/13).

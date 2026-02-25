@@ -12,9 +12,9 @@ import isdemidoff.adventofcode.year2025.day6.day6
 import isdemidoff.adventofcode.year2025.day7.day7
 import isdemidoff.adventofcode.year2025.day8.day8
 import isdemidoff.adventofcode.year2025.day9.day9
-import isdemidoff.utility.solution.year.YearSolutionConfig
-import isdemidoff.utility.solution.year.printYearSolution
-import isdemidoff.utility.solution.year.withSameArgs
+import isdemidoff.solution.year.YearSolutionConfig
+import isdemidoff.solution.year.printYearSolution
+import isdemidoff.solution.year.withSameArgs
 
 fun main() = printYearSolution(
     config = YearSolutionConfig(

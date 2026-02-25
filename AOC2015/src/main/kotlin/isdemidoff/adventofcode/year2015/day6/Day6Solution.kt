@@ -5,9 +5,9 @@ import isdemidoff.adventofcode.year2015.day6.entity.Light
 import isdemidoff.adventofcode.year2015.day6.entity.LightGrid
 import isdemidoff.adventofcode.year2015.day6.entity.TogglingLight
 import isdemidoff.adventofcode.year2015.day6.entity.parseInstruction
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 /**
  * [Day 6: Probably a Fire Hazard](https://adventofcode.com/2015/day/6).

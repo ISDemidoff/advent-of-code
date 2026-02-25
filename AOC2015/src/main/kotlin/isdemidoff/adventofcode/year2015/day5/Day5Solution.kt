@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2015.day5
 
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 
 private fun String.containsThreeVowels() =
     """[aeiou]""".toRegex().findAll(this).take(3).toList().size == 3

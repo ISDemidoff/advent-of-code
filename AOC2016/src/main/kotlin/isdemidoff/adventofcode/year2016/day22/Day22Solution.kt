@@ -3,10 +3,10 @@ package isdemidoff.adventofcode.year2016.day22
 import isdemidoff.adventofcode.year2016.day22.entity.createFileSystem
 import isdemidoff.adventofcode.year2016.day22.entity.getFastestWayToMoveData
 import isdemidoff.adventofcode.year2016.day22.entity.nodeParser
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
-import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
 
 /**
  * [Day 22: Grid Computing](https://adventofcode.com/2016/day/22).

@@ -1,9 +1,9 @@
 package isdemidoff.adventofcode.year2016.day18
 
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
+import isdemidoff.solution.solver.solver
 import isdemidoff.utility.other.zipTriple
-import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
-import isdemidoff.utility.solution.solution
-import isdemidoff.utility.solution.solver.solver
 
 fun calculateTile(str: String): Char {
     require(str.length == 3 ) { "Expecting 3 characters, got $str" }
