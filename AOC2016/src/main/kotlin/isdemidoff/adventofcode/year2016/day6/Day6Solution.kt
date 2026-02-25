@@ -1,10 +1,10 @@
 package isdemidoff.adventofcode.year2016.day6
 
+import isdemidoff.utility.other.transpose
 import isdemidoff.utility.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
 import isdemidoff.utility.strings.countCharacterStatistics
-import isdemidoff.utility.transpose
 
 /**
  * [Day 6: Signals and Noise](https://adventofcode.com/2016/day/6).

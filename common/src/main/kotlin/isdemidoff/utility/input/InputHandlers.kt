@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.input
 
 private fun readLines(fileName: String): List<String> = (object {}).javaClass

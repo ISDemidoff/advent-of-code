@@ -1,5 +1,9 @@
 package isdemidoff.utility.solution.inputparser.functions
 
+import isdemidoff.utility.other.mapFirst
+import isdemidoff.utility.other.mapFirstLines
+import isdemidoff.utility.other.mapSecond
+import isdemidoff.utility.other.mapSecondLines
 import isdemidoff.utility.solution.datasupplier.BlocksContent
 import isdemidoff.utility.solution.inputparser.InputParser
 import isdemidoff.utility.solution.inputparser.ReducingToBlocksInputParser
@@ -24,13 +28,13 @@ fun <A, B, R> InputParser<Pair<A, B>>.map(transform: (A, B) -> R): InputParser<R
     this andThen { (l, r) -> transform(l, r) }
 
 fun <A, B, R> InputParser<Pair<A, B>>.mapFirst(transform: (A) -> R): InputParser<Pair<R, B>> =
-    this andThen { (l, r) -> transform(l) to r }
+    this andThen { it.mapFirst(transform) }
 
 fun <A, B, R> InputParser<Pair<List<A>, B>>.mapFirstLines(transform: (A) -> R): InputParser<Pair<List<R>, B>> =
-    this andThen { (l, r) -> l.map(transform) to r }
+    this andThen { it.mapFirstLines(transform) }
 
 fun <A, B, R> InputParser<Pair<A, B>>.mapSecond(transform: (B) -> R): InputParser<Pair<A, R>> =
-    this andThen { (l, r) -> l to transform(r) }
+    this andThen { it.mapSecond(transform) }
 
 fun <A, B, R> InputParser<Pair<A, List<B>>>.mapSecondLines(transform: (B) -> R): InputParser<Pair<A, List<R>>> =
-    this andThen { (l, r) -> l to r.map(transform) }
+    this andThen { it.mapSecondLines(transform) }

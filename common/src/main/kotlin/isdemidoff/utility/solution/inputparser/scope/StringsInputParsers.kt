@@ -1,13 +1,13 @@
 package isdemidoff.utility.solution.inputparser.scope
 
+import isdemidoff.utility.other.transpose
 import isdemidoff.utility.solution.datasupplier.BlocksContent
 import isdemidoff.utility.solution.inputparser.InputParser
 import isdemidoff.utility.solution.inputparser.ReducingToBlocksInputParser
-import isdemidoff.utility.solution.inputparser.functions.bidirectional.single
 import isdemidoff.utility.solution.inputparser.functions.mapLines
 import isdemidoff.utility.solution.inputparser.functions.mapLinesIndexed
+import isdemidoff.utility.solution.inputparser.functions.single
 import isdemidoff.utility.solution.inputparser.functions.withToBlocksFunction
-import isdemidoff.utility.transpose
 
 object StringsInputParsers : InputParserUseScope {
 

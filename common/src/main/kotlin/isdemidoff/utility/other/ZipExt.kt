@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.other
 
 fun <E, R> Iterable<E>.zipTriple(transform: (E, E, E) -> R) =

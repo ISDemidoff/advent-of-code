@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility
 
 /**
@@ -34,9 +36,3 @@ fun <A, B> cartesianProduct(a: List<A>, b: List<B>): List<Pair<A, B>> =
 
 fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -> R): List<R> =
     a.flatMap { aElem -> b.map { bElem -> transform(aElem to bElem) } }
-
-fun <E> List<List<E>>.transpose(): List<List<E>> {
-    if (this.isEmpty()) return this
-    require(all { it.size == this.first().size }) { "Expected all rows to be same size." }
-    return (0..<this.first().size).map { index -> this.map { it[index] } }
-}

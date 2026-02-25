@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.discretemath
 
 internal fun fastPow(base: Int, exponent: Int): Int {

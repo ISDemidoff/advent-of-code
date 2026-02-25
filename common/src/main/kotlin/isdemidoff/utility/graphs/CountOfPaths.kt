@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.graphs
 
 data class NodeWithPathCount<T : Node<T>>(

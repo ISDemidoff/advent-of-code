@@ -1,10 +1,10 @@
 package isdemidoff.adventofcode.year2016.day3
 
+import isdemidoff.utility.other.transpose
 import isdemidoff.utility.parsing.toIntsList
 import isdemidoff.utility.solution.inputparser.functions.mapLines
 import isdemidoff.utility.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.solution.solution
-import isdemidoff.utility.transpose
 
 /**
  * [Day 3: Squares With Three Sides](https://adventofcode.com/2016/day/3).

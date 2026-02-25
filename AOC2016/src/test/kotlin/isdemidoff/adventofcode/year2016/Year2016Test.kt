@@ -22,6 +22,11 @@ import isdemidoff.adventofcode.year2016.day18.calculateNextRow
 import isdemidoff.adventofcode.year2016.day18.day18
 import isdemidoff.adventofcode.year2016.day19.day19
 import isdemidoff.adventofcode.year2016.day2.day2
+import isdemidoff.adventofcode.year2016.day20.day20
+import isdemidoff.adventofcode.year2016.day21.day21
+import isdemidoff.adventofcode.year2016.day22.day22
+import isdemidoff.adventofcode.year2016.day22.entity.FileSystemNode
+import isdemidoff.adventofcode.year2016.day22.entity.nodeParser
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
 import isdemidoff.adventofcode.year2016.day5.day5
@@ -364,6 +369,41 @@ class Year2016Test : FreeSpec({
             ) { (input, result) ->
                 day19.input { line(input) }.solvePart2() shouldBe result
             }
+        }
+    }
+
+    "Day 20: Firewall Rules" - {
+        "Part 1 check" {
+            day20.input { sampleFile() }.solvePart1() shouldBe 3.toULong()
+        }
+
+        "Part 2 check" {
+            day20.input { sampleFile() }.solvePart2(9.toULong()) shouldBe 2.toULong()
+        }
+    }
+
+    "Day 21: Scrambled Letters and Hash" - {
+        "Part 1 check" {
+            day21.input { sampleFile() }.solvePart1("abcde") shouldBe "decab"
+        }
+
+        "Part 2 check" {
+            day21.input { sampleFile() }.solvePart2("decab") shouldBe "abcde"
+        }
+    }
+
+    "Day 22: Grid Computing" - {
+        "Check parsing" {
+            nodeParser("/dev/grid/node-x0-y0     94T   72T    22T   76%") shouldBe FileSystemNode(
+                xCoordinate = 0,
+                yCoordinate = 0,
+                used = 72,
+                available = 22,
+            )
+        }
+
+        "Part 2 check" {
+            day22.input { sampleFile() }.solvePart2() shouldBe 7
         }
     }
 })

@@ -1,5 +1,6 @@
-package isdemidoff.utility.parsing
+@file:Suppress("unused", "RedundantUnitReturnType")
 
+package isdemidoff.utility.parsing
 
 fun String.toIntOrError(): Int = requireNotNull(toIntOrNull()) { "Expected string '$this' to be valid integer value" }
 fun String.toLongOrError(): Long = requireNotNull(toLongOrNull()) { "Expected string '$this' to be valid long value" }

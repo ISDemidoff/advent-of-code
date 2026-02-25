@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.parsing
 
 fun String.keyValue(delimiter: String = ": "): Pair<String, String> =

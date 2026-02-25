@@ -1,9 +1,11 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.parsing
 
-fun longRange(input: String): LongRange = createRange(input, String::toLongOrNull, ::LongRange)
-fun uLongRange(input: String): ULongRange = createRange(input, String::toULongOrNull, ::ULongRange)
-fun intRange(input: String): IntRange = createRange(input, String::toIntOrNull, ::IntRange)
-fun uIntRange(input: String): UIntRange = createRange(input, String::toUIntOrNull, ::UIntRange)
+fun longRange(input: String): LongRange = createRange(input, String::toLongOrError, ::LongRange)
+fun uLongRange(input: String): ULongRange = createRange(input, String::toULongOrError, ::ULongRange)
+fun intRange(input: String): IntRange = createRange(input, String::toIntOrError, ::IntRange)
+fun uIntRange(input: String): UIntRange = createRange(input, String::toUIntOrError, ::UIntRange)
 
 /**
  * Reusable function to reduce repetitions. Parses any form of ranges written as `$left-$right`.
@@ -11,15 +13,14 @@ fun uIntRange(input: String): UIntRange = createRange(input, String::toUIntOrNul
  * @param eParser parser for both ranges
  * @param rangeProducer constructor of range
  */
-@Suppress("RedundantRequireNotNullCall") // Dunno why Idea calls these calls redundant
 private inline fun <E : Comparable<E>, R : ClosedRange<E>> createRange(
     input: String,
-    crossinline eParser: (String) -> E?,
+    crossinline eParser: (String) -> E,
     crossinline rangeProducer: (E, E) -> R,
 ): R = input.keyValueBy(
     delimiter = "-",
-    keyTransformer = { requireNotNull(eParser(it)) { "Incorrect range: $input" } },
-    valueTransformer = { requireNotNull(eParser(it)) { "Incorrect range: $input" } },
+    keyTransformer = { eParser(it) },
+    valueTransformer = { eParser(it) },
 ).let { rangeProducer(it.first, it.second) }
 
 fun toLongRanges(strings: List<String>): List<LongRange> = strings.map { longRange(it) }

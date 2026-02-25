@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.strings
 
 fun countCharacterStatistics(seq: CharSequence): Map<Char, Int> =

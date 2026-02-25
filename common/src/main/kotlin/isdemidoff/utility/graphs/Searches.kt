@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.utility.graphs
 
 import isdemidoff.utility.graphs.VisitedPoint.Companion.toVisitedNode
