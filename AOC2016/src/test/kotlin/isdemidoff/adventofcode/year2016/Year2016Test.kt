@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2016
 
+import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.test.Enabled
 import io.kotest.core.test.EnabledOrReasonIf
@@ -27,6 +28,10 @@ import isdemidoff.adventofcode.year2016.day21.day21
 import isdemidoff.adventofcode.year2016.day22.day22
 import isdemidoff.adventofcode.year2016.day22.entity.FileSystemNode
 import isdemidoff.adventofcode.year2016.day22.entity.nodeParser
+import isdemidoff.adventofcode.year2016.day23.day23
+import isdemidoff.adventofcode.year2016.day23.entity.MapBasedProgramState
+import isdemidoff.adventofcode.year2016.day23.entity.instructionReader
+import isdemidoff.adventofcode.year2016.day24.day24
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.entity.Room
 import isdemidoff.adventofcode.year2016.day5.day5
@@ -36,6 +41,9 @@ import isdemidoff.adventofcode.year2016.day7.supportsTLS
 import isdemidoff.adventofcode.year2016.day8.entity.Screen
 import isdemidoff.adventofcode.year2016.day8.entity.parseCommand
 import isdemidoff.adventofcode.year2016.day9.day9
+import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
+import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.solution
 import isdemidoff.utility.strings.md5hex
 
 class Year2016Test : FreeSpec({
@@ -404,6 +412,119 @@ class Year2016Test : FreeSpec({
 
         "Part 2 check" {
             day22.input { sampleFile() }.solvePart2() shouldBe 7
+        }
+    }
+
+    "Day 23: Safe Cracking" - {
+        "Part 1 check" {
+            day23.input { sampleFile() }.solvePart1().getRegisterValue("a") shouldBe 3
+        }
+    }
+
+    "Day 24: Air Duct Spelunking" - {
+        "Part 1 check" {
+            day24.input { sampleFile() }.solvePart1() shouldBe 14
+        }
+        "Part 2 check" {
+            day24.input { sampleFile() }.solvePart2() shouldBe 20
+        }
+    }
+
+    "Day 25: Clock Signal" - {
+        "Some programs check" - {
+            data class ProgramInputData(
+                val fileSuffix: String,
+                val registers: Map<String, Int>,
+                val expectedRegisters: Map<String, Int>,
+            )
+
+            withData(
+                nameFn = { (program, registers, result) ->
+                    "Program '$program' with predefined registers $registers result $result"
+                },
+                ProgramInputData(
+                    "multiply",
+                    mapOf(
+                        "a" to 7,
+                        "b" to 2,
+                        "c" to 0,
+                        "d" to 8,
+                    ),
+                    mapOf(
+                        "a" to 23,
+                        "b" to 2,
+                        "c" to 0,
+                        "d" to 0,
+                    ),
+                ),
+                ProgramInputData(
+                    "multiply",
+                    mapOf(
+                        "a" to 0,
+                        "b" to 17,
+                        "c" to 154,
+                        "d" to 3,
+                    ),
+                    mapOf(
+                        "a" to 51,
+                        "b" to 17,
+                        "c" to 0,
+                        "d" to 0,
+                    ),
+                ),
+                ProgramInputData(
+                    "sum",
+                    mapOf("a" to 5, "b" to 9),
+                    mapOf("a" to 14, "b" to 0),
+                ),
+                ProgramInputData(
+                    "sum",
+                    mapOf("a" to 45, "b" to 71),
+                    mapOf("a" to 116, "b" to 0),
+                ),
+                ProgramInputData(
+                    "div",
+                    mapOf(
+                        "a" to 71,
+                        "b" to -98746,
+                        "c" to -89,
+                    ),
+                    mapOf(
+                        "a" to 35,
+                        "b" to 0,
+                        "c" to 1,
+                    ),
+                ),
+                ProgramInputData(
+                    "div",
+                    mapOf(
+                        "a" to 150,
+                        "b" to -98746,
+                        "c" to -89,
+                    ),
+                    mapOf(
+                        "a" to 75,
+                        "b" to 0,
+                        "c" to 2,
+                    ),
+                ),
+            ) { (program, registers, result) ->
+                val runResult = solution(42) {
+                    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine instructionReader
+                    part1Solver = solver {
+                        MapBasedProgramState(it).apply {
+                            registers.forEach { (reg, value) -> this.updateRegisterValue(reg) { value } }
+                            runProgram()
+                        }
+                    }
+                }.input { sampleFile(program) }.solvePart1()
+
+                result.forEach { reg, value ->
+                    withClue("Register '$reg' must have value '$value'") {
+                        runResult.getRegisterValue(reg) shouldBe value
+                    }
+                }
+            }
         }
     }
 })

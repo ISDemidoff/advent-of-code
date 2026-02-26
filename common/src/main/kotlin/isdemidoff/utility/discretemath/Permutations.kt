@@ -8,6 +8,7 @@ package isdemidoff.utility.discretemath
  * **NB.** Time complexity is n factorial regarding size of [elements].
  */
 fun <E> permutations(elements: List<E>): List<List<E>> = permutationsInner(elements)
+fun <E> permutations(elements: Iterable<E>): List<List<E>> = permutationsInner(elements.toList())
 
 private fun <E> permutationsInner(leftElements: List<E>, prevSeq: List<E> = listOf()): List<List<E>> =
     if (leftElements.isEmpty()) listOf(prevSeq) else leftElements.flatMap { permutationsInner(leftElements - it, prevSeq + it) }

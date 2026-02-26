@@ -1,4 +1,4 @@
-package isdemidoff.adventofcode.year2016.day12
+package isdemidoff.adventofcode.year2016.day23
 
 import isdemidoff.adventofcode.year2016.day23.entity.MapBasedProgramState
 import isdemidoff.adventofcode.year2016.day23.entity.ProgramInstruction
@@ -9,20 +9,28 @@ import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.solution.solution
 
 /**
- * [Day 12: Leonardo's Monorail](https://adventofcode.com/2016/day/12).
+ * [Day 23: Safe Cracking](https://adventofcode.com/2016/day/23).
+ *
+ * No multiply optimizations on part 2 since it's clearly possible to search such patterns (better do it in runtime).
+ * I got 62 seconds long solution for part 2, enough for me.
  */
-val day12 = solution<List<ProgramInstruction>, ProgramState>(12) {
+val day23 = solution<List<ProgramInstruction>, ProgramState>(23) {
     inputParser = StringsInputParsers.singleBlock andThenOnEveryLine instructionReader
 
     part1Solver = solver({
         "Value at register 'a' is ${it.getRegisterValue("a")}"
-    }) { MapBasedProgramState(it).apply { runProgram() } }
-
-    part2Solver = solver({
-        "With extra update value at register 'a' is ${it.getRegisterValue("a")}"
     }) {
         MapBasedProgramState(it).apply {
-            updateRegisterValue("c") { 1 }
+            updateRegisterValue("a") { 7 }
+            runProgram()
+        }
+    }
+
+    part2Solver = solver({
+        "Value at register 'a' is now ${it.getRegisterValue("a")}"
+    }) {
+        MapBasedProgramState(it).apply {
+            updateRegisterValue("a") { 12 }
             runProgram()
         }
     }

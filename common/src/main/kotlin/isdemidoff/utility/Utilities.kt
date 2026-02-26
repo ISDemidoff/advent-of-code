@@ -34,5 +34,8 @@ fun Int.isInvalidPosition(limit: Int): Boolean = this !in 0..<limit
 fun <A, B> cartesianProduct(a: List<A>, b: List<B>): List<Pair<A, B>> =
     a.flatMap { aElem -> b.map { bElem -> aElem to bElem } }
 
-fun <A, B, R> cartesianProduct(a: List<A>, b: List<B>, transform: (Pair<A, B>) -> R): List<R> =
+fun <A, B> cartesianProduct(a: Iterable<A>, b: Iterable<B>): List<Pair<A, B>> =
+    a.flatMap { aElem -> b.map { bElem -> aElem to bElem } }
+
+fun <A, B, R> cartesianProduct(a: Iterable<A>, b: Iterable<B>, transform: (Pair<A, B>) -> R): List<R> =
     a.flatMap { aElem -> b.map { bElem -> transform(aElem to bElem) } }

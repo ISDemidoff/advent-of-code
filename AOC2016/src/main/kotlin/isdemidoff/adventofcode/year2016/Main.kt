@@ -15,6 +15,9 @@ import isdemidoff.adventofcode.year2016.day2.day2
 import isdemidoff.adventofcode.year2016.day20.day20
 import isdemidoff.adventofcode.year2016.day21.day21
 import isdemidoff.adventofcode.year2016.day22.day22
+import isdemidoff.adventofcode.year2016.day23.day23
+import isdemidoff.adventofcode.year2016.day24.day24
+import isdemidoff.adventofcode.year2016.day25.day25
 import isdemidoff.adventofcode.year2016.day3.day3
 import isdemidoff.adventofcode.year2016.day4.day4
 import isdemidoff.adventofcode.year2016.day5.day5
@@ -57,4 +60,7 @@ fun main() = printYearSolution(
     day20.withArgs(part2Args = listOf(UInt.MAX_VALUE.toULong())),
     day21.withArgs(part1Args = listOf("abcdefgh"), part2Args = listOf("fbgdceah")),
     day22,
+    day23.withNoArgs().disablePart2(DisableReason.LONG_TIME),
+    day24,
+    day25,
 )
