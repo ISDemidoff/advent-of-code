@@ -5,7 +5,7 @@ import isdemidoff.adventofcode.year2016.day10.entity.Instruction
 import isdemidoff.adventofcode.year2016.day10.entity.ProcessingField
 import isdemidoff.adventofcode.year2016.day10.entity.ProcessingUnitType
 import isdemidoff.adventofcode.year2016.day10.entity.ReceiveChipOperation
-import isdemidoff.adventofcode.year2016.day10.entity.parseInstruction
+import isdemidoff.adventofcode.year2016.day10.entity.instructionParser
 import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.solution.solution
@@ -15,7 +15,7 @@ import isdemidoff.solution.solver.solver
  * [Day 10: Balance Bots](https://adventofcode.com/2016/day/10).
  */
 val day10 = solution(10) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::parseInstruction
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine instructionParser
 
     part1Solver = solver<List<Instruction>, Int, Int, Int>({ result, val1, val2 ->
         "Bot which compared $val1 and $val2 has number $result."

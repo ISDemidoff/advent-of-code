@@ -1,7 +1,10 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.solution.inputparser.functions
 
 import isdemidoff.solution.inputparser.ReducingToBlocksInputParser
 import isdemidoff.solution.inputparser.functions.bidirectional.BiDirectionalFunction
+import isdemidoff.solution.inputparser.functions.bidirectional.CollectionsBiDirectionalFunctions
 import isdemidoff.utility.other.mapFirst
 import isdemidoff.utility.other.mapFirstLines
 import isdemidoff.utility.other.mapSecond
@@ -24,10 +27,7 @@ fun <T, R> ReducingToBlocksInputParser<T>.map(fn: BiDirectionalFunction<T, R>): 
 fun <T, R> ReducingToBlocksInputParser<List<T>>.mapLines(fn: BiDirectionalFunction<T, R>): ReducingToBlocksInputParser<List<R>> = this andThenOnEveryLine fn
 
 fun <E> ReducingToBlocksInputParser<List<E>>.single(): ReducingToBlocksFunctionalInputParser<E> =
-    this andThen BiDirectionalFunction(
-        fn = { it.single() },
-        inv = { listOf(it) },
-    )
+    this andThen CollectionsBiDirectionalFunctions.single()
 
 fun <E> ReducingToBlocksFunctionalInputParser<List<List<E>>>.transpose(): ReducingToBlocksFunctionalInputParser<List<List<E>>> =
     this andThen BiDirectionalFunction(

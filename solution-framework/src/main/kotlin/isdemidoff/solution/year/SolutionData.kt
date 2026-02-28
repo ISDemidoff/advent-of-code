@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.solution.year
 
 import isdemidoff.solution.model.PartSolutionConfig

@@ -17,7 +17,7 @@ data class Instruction(
 private fun String.findOperation() =
     Instruction.Operation.entries.first { this.startsWith(it.text) }
 
-fun parseInstruction(input: String): Instruction {
+val instructionParser: (String) -> Instruction = { input ->
     val op = input.findOperation()
     val limits = input.substring(op.text.length).trim()
     val points = limits.split(" through ")
@@ -28,7 +28,7 @@ fun parseInstruction(input: String): Instruction {
                 .map { it.toInt() }
         }
 
-    return Instruction(
+    Instruction(
         operation = op,
         xFrom = points.minOf { it.first() },
         xTo = points.maxOf { it.first() },

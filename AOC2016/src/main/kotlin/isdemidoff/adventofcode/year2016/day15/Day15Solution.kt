@@ -1,5 +1,6 @@
 package isdemidoff.adventofcode.year2016.day15
 
+import isdemidoff.solution.inputparser.functions.mapLinesIndexed
 import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.lcm
@@ -11,17 +12,18 @@ data class Disk(val index: Int, val totalPositions: Int, val startingPosition: I
         (2 * totalPositions - startingPosition - index % totalPositions) % totalPositions
 }
 
-private fun parseDisk(index: Int, str: String): Disk =
+private val diskParser: (Int, String) -> Disk = { index, str ->
     """Disc #\d+ has (\d+) positions; at time=0, it is at position (\d+)\.""".toRegex()
         .matchEntire(str)
         .let { requireNotNull(it?.destructured) { "Must match given regex" } }
         .let { (positions, startingPositions) -> Disk(index + 1, positions.toInt(), startingPositions.toInt()) }
+}
 
 /**
  * [Day 15: Timing is Everything](https://adventofcode.com/2016/day/15).
  */
 val day15 = solution(15) {
-    inputParser = StringsInputParsers.uniformLinesParserIndexed(::parseDisk)
+    inputParser = StringsInputParsers.singleBlock mapLinesIndexed diskParser
 
     fun solveForDisks(disks: List<Disk>): Int {
         val lcm = lcm(disks.map { it.totalPositions })

@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day21.entity
 
-import isdemidoff.utility.matching.matchAny
+import isdemidoff.utility.matching.regexMatch
 import isdemidoff.utility.matching.yields
 import isdemidoff.utility.other.sorted
 import isdemidoff.utility.parsing.toIntOrError
@@ -134,7 +134,7 @@ internal fun String.unscrambleByInstructions(instructions: List<ScrumbleInstruct
     return result
 }
 
-val scrumbleInstructionParser: (String) -> ScrumbleInstruction = matchAny(
+val scrumbleInstructionParser: (String) -> ScrumbleInstruction = regexMatch(
     """move position (\d+) to position (\d+)""".toRegex() yields { (from, to) ->
         MovePositionScrumbleInstruction(from.toIntOrError(), to.toIntOrError())
     },

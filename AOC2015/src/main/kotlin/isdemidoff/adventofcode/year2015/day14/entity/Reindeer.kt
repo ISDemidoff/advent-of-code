@@ -1,5 +1,8 @@
 package isdemidoff.adventofcode.year2015.day14.entity
 
+import isdemidoff.utility.matching.regexMatch
+import isdemidoff.utility.matching.yields
+import isdemidoff.utility.parsing.toIntOrError
 import kotlin.math.min
 
 data class Reindeer(
@@ -14,15 +17,13 @@ data class Reindeer(
         (seconds / cycleTime * flyingTime + min(seconds % cycleTime, flyingTime)) * speed
 }
 
-internal fun readReindeerInfo(string: String) =
-    """(.*) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds\.""".toRegex()
-        .matchEntire(string)
-        .let { requireNotNull(it?.destructured) { "Input string must match regexp" } }
-        .let {
-            Reindeer(
-                name = it.component1(),
-                speed = it.component2().toInt(),
-                flyingTime = it.component3().toInt(),
-                restingTime = it.component4().toInt(),
-            )
-        }
+internal val readReindeer: (String) -> Reindeer = regexMatch(
+    """(.*) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds\.""".toRegex() yields {
+        Reindeer(
+            name = it.component1(),
+            speed = it.component2().toIntOrError(),
+            flyingTime = it.component3().toIntOrError(),
+            restingTime = it.component4().toIntOrError(),
+        )
+    }
+)

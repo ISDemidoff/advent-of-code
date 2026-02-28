@@ -1,19 +1,19 @@
 package isdemidoff.adventofcode.year2015.day19
 
 import isdemidoff.solution.complexSolution
-import isdemidoff.solution.inputparser.functions.mapFirstLines
-import isdemidoff.solution.inputparser.functions.mapSecond
+import isdemidoff.solution.inputparser.functions.bidirectional.CollectionsBiDirectionalFunctions.single
+import isdemidoff.solution.inputparser.functions.mapWith
 import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.utility.parsing.keyValue
 import java.util.*
+
+private val replacementsParser: (List<String>) -> List<Pair<String, String>> = { it.map { it.keyValue(" => ") } }
 
 /**
  * [Day 19: Medicine for Rudolph](https://adventofcode.com/2015/day/19).
  */
 val day19 = complexSolution<Pair<List<Pair<String, String>>, String>, Set<String>, Int>(19) {
-    inputParser = StringsInputParsers.twoBlocks
-        .mapFirstLines { it.keyValue(" => ") }
-        .mapSecond { it.single() }
+    inputParser = StringsInputParsers.twoBlocks mapWith (replacementsParser to single())
 
     part1Solver = solver({
         "There are ${it.size} total unique molecules."

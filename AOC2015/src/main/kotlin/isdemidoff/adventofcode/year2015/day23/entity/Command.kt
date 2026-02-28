@@ -1,6 +1,8 @@
 package isdemidoff.adventofcode.year2015.day23.entity
 
-import isdemidoff.utility.parsing.keyValueWith
+import isdemidoff.utility.matching.regexMatch
+import isdemidoff.utility.matching.yields
+import isdemidoff.utility.parsing.toIntOrError
 
 sealed interface Command {
     /**
@@ -99,14 +101,11 @@ class JioCommand(
     override val description: String = "Jump $offset if register '$registerId' is 1"
 }
 
-fun parseCommand(command: String): Command {
-    return when (command.substringBefore(" ")) {
-        "hlf" -> HlfRegisterCommand(command.substringAfter(" "))
-        "tpl" -> TplRegisterCommand(command.substringAfter(" "))
-        "inc" -> IncRegisterCommand(command.substringAfter(" "))
-        "jmp" -> JmpCommand(command.substringAfter(" ").toInt())
-        "jie" -> command.substringAfter(" ").keyValueWith(", ") { it.toInt() }.let { JieCommand(it.first, it.second) }
-        "jio" -> command.substringAfter(" ").keyValueWith(", ") { it.toInt() }.let { JioCommand(it.first, it.second) }
-        else -> throw IllegalArgumentException("Unknown command: $command")
-    }
-}
+val commandParser: (String) -> Command = regexMatch(
+    """hlf ([a-z]+)""".toRegex() yields { (register) -> HlfRegisterCommand(register) },
+    """tpl ([a-z]+)""".toRegex() yields { (register) -> TplRegisterCommand(register) },
+    """inc ([a-z]+)""".toRegex() yields { (register) -> IncRegisterCommand(register) },
+    """jmp (\d+)""".toRegex() yields { (value) -> JmpCommand(value.toIntOrError()) },
+    """jie ([a-z]+), (\d+)""".toRegex() yields { (register, value) -> JieCommand(register, value.toIntOrError()) },
+    """jio ([a-z]+), (\d+)""".toRegex() yields { (register, value) -> JioCommand(register, value.toIntOrError()) },
+)

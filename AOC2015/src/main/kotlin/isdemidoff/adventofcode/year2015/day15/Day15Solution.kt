@@ -2,7 +2,7 @@ package isdemidoff.adventofcode.year2015.day15
 
 import isdemidoff.adventofcode.year2015.day15.entity.calculateCalories
 import isdemidoff.adventofcode.year2015.day15.entity.calculateScore
-import isdemidoff.adventofcode.year2015.day15.entity.parseIngredient
+import isdemidoff.adventofcode.year2015.day15.entity.readIngredient
 import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.solution.solution
@@ -14,7 +14,7 @@ import isdemidoff.utility.discretemath.combinationsWithRepetitions
  * Helpful note: you must ignore calories when calculating score, as it is unclear in the description, they really kicks into part two.
  */
 val day15 = solution(15) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::parseIngredient
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine readIngredient
 
     val totalSpoons = 100
 

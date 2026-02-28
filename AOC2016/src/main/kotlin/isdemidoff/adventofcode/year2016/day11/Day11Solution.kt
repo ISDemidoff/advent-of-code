@@ -4,7 +4,7 @@ import isdemidoff.adventofcode.year2016.day11.entity.Chip
 import isdemidoff.adventofcode.year2016.day11.entity.Component
 import isdemidoff.adventofcode.year2016.day11.entity.Generator
 import isdemidoff.adventofcode.year2016.day11.entity.LabState
-import isdemidoff.adventofcode.year2016.day11.entity.parseComponents
+import isdemidoff.adventofcode.year2016.day11.entity.componentsParser
 import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.solution.inputparser.scope.StringsInputParsers
 import isdemidoff.solution.solution
@@ -15,7 +15,7 @@ import kotlin.math.min
  * [Day 11: Radioisotope Thermoelectric Generators](https://adventofcode.com/2016/day/11).
  */
 val day11 = solution(11) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::parseComponents
+    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine componentsParser
 
     fun findMinimalMoves(componentsOnFloors: List<Set<Component>>): Int {
         val startingPosition = LabState(floors = componentsOnFloors)

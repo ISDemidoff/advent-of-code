@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day22.entity
 
-import isdemidoff.utility.matching.matchAny
+import isdemidoff.utility.matching.regexMatch
 import isdemidoff.utility.matching.yields
 import isdemidoff.utility.parsing.toIntOrError
 
@@ -16,7 +16,7 @@ data class FileSystemNode(
                 this.used < other.available
 }
 
-val nodeParser = matchAny(
+val nodeParser = regexMatch(
     """/dev/grid/node-x(\d+)-y(\d+)\s+\d+T\s+(\d+)T\s+(\d+)T\s+\d+%""".toRegex() yields {(x, y, used, avail) ->
         FileSystemNode(
             xCoordinate = x.toIntOrError(),

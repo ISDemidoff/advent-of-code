@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.solution.inputparser.functions.bidirectional
 
 import isdemidoff.utility.parsing.intRange
@@ -9,7 +11,7 @@ import isdemidoff.utility.parsing.toULongOrError
 import isdemidoff.utility.parsing.uIntRange
 import isdemidoff.utility.parsing.uLongRange
 
-object BiDirectionalFunctions {
+object SimpleBiDirectionalFunctions {
     val toInt: BiDirectionalFunction<String, Int> = String::toIntOrError.toBiDirectionalFlat()
     val toUInt: BiDirectionalFunction<String, UInt> = String::toUIntOrError.toBiDirectionalFlat()
     val toLong: BiDirectionalFunction<String, Long> = String::toLongOrError.toBiDirectionalFlat()

@@ -17,14 +17,18 @@ data class AuntSue(
     }
 }
 
-internal fun parseAuntSueFromMemory(string: String) =
+internal val auntSueMemoryParser: (String) -> AuntSue = {
     AuntSue(
-        id = string.substringBefore(": ").substringAfter("Sue ").toInt(),
-        properties = string.substringAfter(": ").split(", ").associate { it.keyValueWith { it.toInt() } },
+        id = it.substringBefore(": ").substringAfter("Sue ").toInt(),
+        properties = it.substringAfter(": ").split(", ").associate { it.keyValueWith { it.toInt() } },
     )
+}
 
-internal fun analyseAuntSue(strings: List<String>) =
+internal val auntSueMemoriesParser: (List<String>) -> List<AuntSue> = { it.map(auntSueMemoryParser) }
+
+internal val auntSueAnalyzer: (List<String>) -> AuntSue = {
     AuntSue(
         id = 0,
-        properties = strings.associate { it.keyValueWith { it.toInt() } }
+        properties = it.associate { it.keyValueWith { it.toInt() } }
     )
+}

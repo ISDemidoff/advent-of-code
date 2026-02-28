@@ -7,8 +7,6 @@ data class LabState(
     val currentFloor: Int = 0, // 0-index
     val floors: List<Set<Component>>,
 ) {
-    fun isValidConfiguration(): Boolean = floors.all { isSafeFloor(it) }
-
     fun isSafeFloor(floor: Set<Component>): Boolean =
         floor.filter { it.type == Component.ComponentType.CHIP }
             .all { chip -> floor.contains(Generator(chip.element)) || floor.none { it.type == Component.ComponentType.GENERATOR } }
@@ -74,8 +72,6 @@ data class Chip(
     override val type = Component.ComponentType.CHIP
 }
 
-fun parseComponents(input: String): Set<Component> = getChips(input) + getGenerators(input)
-
 private fun getChips(input: String): Set<Component> =
     """([a-z]+)-compatible microchip""".toRegex()
         .findAll(input)
@@ -87,3 +83,7 @@ private fun getGenerators(input: String): Set<Component> =
         .findAll(input)
         .map { Generator(it.groupValues[1]) }
         .toSet()
+
+val componentsParser: (String) -> Set<Component> = {
+    getChips(it) + getGenerators(it)
+}

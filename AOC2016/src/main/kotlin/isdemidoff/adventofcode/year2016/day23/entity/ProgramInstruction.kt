@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day23.entity
 
-import isdemidoff.utility.matching.matchAny
+import isdemidoff.utility.matching.regexMatch
 import isdemidoff.utility.matching.yields
 
 sealed interface ProgramInstruction {
@@ -53,7 +53,7 @@ data class JumpWhenNotZeroProgramInstruction(val argToCompare: String, val jumpV
     override fun toString() = "jnz $argToCompare $jumpValue"
 }
 
-val instructionReader: (String) -> ProgramInstruction = matchAny(
+val instructionReader: (String) -> ProgramInstruction = regexMatch(
     """inc ([a-z])""".toRegex() yields { (arg) -> IncreaseProgramInstruction(arg) },
     """dec ([a-z])""".toRegex() yields { (arg) -> DecreaseProgramInstruction(arg) },
     """jnz ([a-z0-9\-]+) ([a-z0-9\-]+)""".toRegex() yields { (arg0, arg1) -> JumpWhenNotZeroProgramInstruction(arg0, arg1) },
