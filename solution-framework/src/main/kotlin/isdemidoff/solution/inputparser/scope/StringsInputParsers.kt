@@ -1,3 +1,5 @@
+@file:Suppress("unused", "RedundantUnitReturnType")
+
 package isdemidoff.solution.inputparser.scope
 
 import isdemidoff.solution.datasupplier.BlocksContent

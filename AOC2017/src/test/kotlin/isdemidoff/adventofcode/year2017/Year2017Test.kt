@@ -5,6 +5,9 @@ import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 import isdemidoff.adventofcode.year2017.day1.day1
 import isdemidoff.adventofcode.year2017.day2.day2
+import isdemidoff.adventofcode.year2017.day3.day3
+import isdemidoff.adventofcode.year2017.day4.day4
+import isdemidoff.adventofcode.year2017.day5.day5
 
 class Year2017Test : FreeSpec({
     "Day 1: Inverse Captcha" - {
@@ -45,6 +48,80 @@ class Year2017Test : FreeSpec({
 
         "Part 2 check" {
             day2.input { sampleFile("p2") }.solvePart2() shouldBe 9
+        }
+    }
+
+    "Day 3: Spiral Memory" - {
+        "Part 1 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "From data square $input we need to take $result steps"
+                },
+                1 to 0,
+                12 to 3,
+                23 to 2,
+                1024 to 31,
+            ) { (input, result) ->
+                day3.input { raw(input) }.solvePart1() shouldBe result
+            }
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "First number larger that $input is $result"
+                },
+                1 to 2,
+                2 to 4,
+                3 to 4,
+                4 to 5,
+                5 to 10,
+                6 to 10,
+                7 to 10,
+                15 to 23,
+            ) { (input, result) ->
+                day3.input { raw(input) }.solvePart2() shouldBe result
+            }
+        }
+    }
+
+    "Day 4: High-Entropy Passphrases" - {
+        "Part 1 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Passphrase $input is ${if (result) "" else "not "}valid"
+                },
+                "aa bb cc dd ee" to true,
+                "aa bb cc dd aa" to false,
+                "aa bb cc dd aaa" to true,
+            ) { (input, result) ->
+                day4.input { line(input) }.solvePart1() shouldBe if (result) 1 else 0
+            }
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Passphrase $input is ${if (result) "" else "not "}valid"
+                },
+                "abcde fghij" to true,
+                "abcde xyz ecdab" to false,
+                "a ab abc abd abf abj" to true,
+                "iiii oiii ooii oooi oooo" to true,
+                "oiii ioii iioi iiio" to false,
+            ) { (input, result) ->
+                day4.input { line(input) }.solvePart2() shouldBe if (result) 1 else 0
+            }
+        }
+    }
+
+    "Day 5: A Maze of Twisty Trampolines, All Alike" - {
+        "Part 1 check" {
+            day5.input { sampleFile() }.solvePart1() shouldBe 5
+        }
+
+        "Part 2 check" {
+            day5.input { sampleFile() }.solvePart2() shouldBe 10
         }
     }
 })
