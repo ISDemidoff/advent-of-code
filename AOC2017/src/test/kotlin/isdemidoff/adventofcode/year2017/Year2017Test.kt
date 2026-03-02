@@ -8,6 +8,7 @@ import isdemidoff.adventofcode.year2017.day2.day2
 import isdemidoff.adventofcode.year2017.day3.day3
 import isdemidoff.adventofcode.year2017.day4.day4
 import isdemidoff.adventofcode.year2017.day5.day5
+import isdemidoff.adventofcode.year2017.day6.day6
 
 class Year2017Test : FreeSpec({
     "Day 1: Inverse Captcha" - {
@@ -122,6 +123,16 @@ class Year2017Test : FreeSpec({
 
         "Part 2 check" {
             day5.input { sampleFile() }.solvePart2() shouldBe 10
+        }
+    }
+
+    "Day 6: Memory Reallocation" - {
+        "Part 1 check" {
+            day6.input { raw(listOf(0, 2, 7, 0)) }.solvePart1() shouldBe 5
+        }
+
+        "Part 2 check" {
+            day6.input { raw(listOf(0, 2, 7, 0)) }.solvePart2() shouldBe 4
         }
     }
 })
