@@ -9,6 +9,7 @@ import isdemidoff.adventofcode.year2017.day3.day3
 import isdemidoff.adventofcode.year2017.day4.day4
 import isdemidoff.adventofcode.year2017.day5.day5
 import isdemidoff.adventofcode.year2017.day6.day6
+import isdemidoff.adventofcode.year2017.day7.day7
 
 class Year2017Test : FreeSpec({
     "Day 1: Inverse Captcha" - {
@@ -133,6 +134,16 @@ class Year2017Test : FreeSpec({
 
         "Part 2 check" {
             day6.input { raw(listOf(0, 2, 7, 0)) }.solvePart2() shouldBe 4
+        }
+    }
+
+    "Day 7: Recursive Circus" - {
+        "Part 1 check" {
+            day7.input { sampleFile() }.solvePart1() shouldBe "tknk"
+        }
+
+        "Part 2 check" {
+            day7.input { sampleFile() }.solvePart2() shouldBe 60
         }
     }
 })
