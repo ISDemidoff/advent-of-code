@@ -4,37 +4,36 @@ package isdemidoff.solution.inputparser.scope
 
 import isdemidoff.solution.inputparser.ReducingToBlocksInputParser
 import isdemidoff.solution.inputparser.functions.andThen
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.solution.inputparser.functions.bidirectional.CollectionsBiDirectionalFunctions.mapMatrix
 import isdemidoff.solution.inputparser.functions.bidirectional.SimpleBiDirectionalFunctions.toInt
 import isdemidoff.solution.inputparser.functions.bidirectional.SimpleBiDirectionalFunctions.toLong
 import isdemidoff.solution.inputparser.functions.bidirectional.SimpleBiDirectionalFunctions.toUInt
 import isdemidoff.solution.inputparser.functions.bidirectional.SimpleBiDirectionalFunctions.toULong
 import isdemidoff.solution.inputparser.functions.single
-import isdemidoff.solution.inputparser.scope.StringsInputParsers.singleBlock
-import isdemidoff.solution.inputparser.scope.StringsInputParsers.spaceDelimitedTable
 
-object PrimitivesInputParsers : InputParserUseScope {
-    val intLines: ReducingToBlocksInputParser<List<Int>> =
-        singleBlock andThenOnEveryLine toInt
-    val uIntLines: ReducingToBlocksInputParser<List<UInt>> =
-        singleBlock andThenOnEveryLine toUInt
-    val longLines: ReducingToBlocksInputParser<List<Long>> =
-        singleBlock andThenOnEveryLine toLong
-    val uLongLines: ReducingToBlocksInputParser<List<ULong>> =
-        singleBlock andThenOnEveryLine toULong
+val InputParserUseScope.intLines: ReducingToBlocksInputParser<List<Int>>
+    get() = uniformLinesParser(toInt)
+val InputParserUseScope.uIntLines: ReducingToBlocksInputParser<List<UInt>>
+    get() = uniformLinesParser(toUInt)
+val InputParserUseScope.longLines: ReducingToBlocksInputParser<List<Long>>
+    get() = uniformLinesParser(toLong)
+val InputParserUseScope.uLongLines: ReducingToBlocksInputParser<List<ULong>>
+    get() = uniformLinesParser(toULong)
 
-    val singleInt: ReducingToBlocksInputParser<Int> = intLines.single()
-    val singleUInt: ReducingToBlocksInputParser<UInt> = uIntLines.single()
-    val singleLong: ReducingToBlocksInputParser<Long> = longLines.single()
-    val singleULong: ReducingToBlocksInputParser<ULong> = uLongLines.single()
+val InputParserUseScope.singleInt: ReducingToBlocksInputParser<Int>
+    get() = intLines.single()
+val InputParserUseScope.singleUInt: ReducingToBlocksInputParser<UInt>
+    get() = uIntLines.single()
+val InputParserUseScope.singleLong: ReducingToBlocksInputParser<Long>
+    get() = longLines.single()
+val InputParserUseScope.singleULong: ReducingToBlocksInputParser<ULong>
+    get() = uLongLines.single()
 
-    val intTable: ReducingToBlocksInputParser<List<List<Int>>> =
-        spaceDelimitedTable andThen mapMatrix(toInt)
-    val uIntTable: ReducingToBlocksInputParser<List<List<UInt>>> =
-        spaceDelimitedTable andThen mapMatrix(toUInt)
-    val longTable: ReducingToBlocksInputParser<List<List<Long>>> =
-        spaceDelimitedTable andThen mapMatrix(toLong)
-    val uLongTable: ReducingToBlocksInputParser<List<List<ULong>>> =
-        spaceDelimitedTable andThen mapMatrix(toULong)
-}
+val InputParserUseScope.intTable: ReducingToBlocksInputParser<List<List<Int>>>
+    get() = spaceDelimitedTable andThen mapMatrix(toInt)
+val InputParserUseScope.uIntTable: ReducingToBlocksInputParser<List<List<UInt>>>
+    get() = spaceDelimitedTable andThen mapMatrix(toUInt)
+val InputParserUseScope.longTable: ReducingToBlocksInputParser<List<List<Long>>>
+    get() = spaceDelimitedTable andThen mapMatrix(toLong)
+val InputParserUseScope.uLongTable: ReducingToBlocksInputParser<List<List<ULong>>>
+    get() = spaceDelimitedTable andThen mapMatrix(toULong)

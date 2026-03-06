@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day15
 
 import isdemidoff.solution.inputparser.functions.mapLinesIndexed
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.lcm
 
@@ -23,7 +23,7 @@ private val diskParser: (Int, String) -> Disk = { index, str ->
  * [Day 15: Timing is Everything](https://adventofcode.com/2016/day/15).
  */
 val day15 = solution(15) {
-    inputParser = StringsInputParsers.singleBlock mapLinesIndexed diskParser
+    inputParser = singleBlock mapLinesIndexed diskParser
 
     fun solveForDisks(disks: List<Disk>): Int {
         val lcm = lcm(disks.map { it.totalPositions })

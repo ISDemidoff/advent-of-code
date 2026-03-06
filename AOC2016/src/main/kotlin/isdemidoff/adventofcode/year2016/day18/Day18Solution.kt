@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day18
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
 import isdemidoff.solution.solver.solver
 import isdemidoff.utility.other.zipTriple
@@ -23,7 +23,7 @@ fun calculateNextRow(str: String): String {
  * [Day 18: Like a Rogue](https://adventofcode.com/2016/day/18).
  */
 val day18 = solution(18) {
-    inputParser = StringsInputParsers.singleLine
+    inputParser = singleLine
 
     part1Solver = solver<String, Int, Int>({ res, rows ->
         "There are $res total safe tiles in $rows rows."

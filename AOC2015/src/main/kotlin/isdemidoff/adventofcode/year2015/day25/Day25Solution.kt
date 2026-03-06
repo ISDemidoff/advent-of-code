@@ -1,8 +1,11 @@
 package isdemidoff.adventofcode.year2015.day25
 
-import isdemidoff.solution.inputparser.functions.map
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.functions.andThen
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
+import isdemidoff.utility.matching.regexMatch
+import isdemidoff.utility.matching.yields
+import isdemidoff.utility.parsing.toIntOrError
 
 data class Position(val row: Int, val column: Int)
 
@@ -13,15 +16,17 @@ internal fun findCodeAtPosition(position: Position): Long {
     return result
 }
 
+internal val targetPositionParser: (String) -> Position = regexMatch(
+    """To continue, please consult the code grid in the manual\.\s+Enter the code at row ([0-9]+), column ([0-9]+)\.""".toRegex() yields { (row, column) ->
+        Position(row.toIntOrError(), column.toIntOrError())
+    }
+)
+
 /**
  * [Day 25: Let It Snow](https://adventofcode.com/2015/day/25).
  */
 val day25 = solution(25) {
-    inputParser = StringsInputParsers.singleLine.map { inputLine ->
-        """Enter the code at row ([0-9]+), column ([0-9]+)""".toRegex().find(inputLine)
-            .let { requireNotNull(it?.destructured) { "Incorrect input: $inputLine" } }
-            .let { Position(it.component1().toInt(), it.component2().toInt()) }
-    }
+    inputParser = singleLine andThen targetPositionParser
 
     part1Solver = solver({
         "Code to the machine is $it."

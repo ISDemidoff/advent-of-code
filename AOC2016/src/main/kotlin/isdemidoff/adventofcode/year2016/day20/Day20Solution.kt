@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day20
 
 import isdemidoff.solution.inputparser.functions.andThen
-import isdemidoff.solution.inputparser.scope.RangesInputParsers
+import isdemidoff.solution.inputparser.scope.uLongRanges
 import isdemidoff.solution.solution
 import isdemidoff.solution.solver.solver
 
@@ -9,7 +9,7 @@ import isdemidoff.solution.solver.solver
  * [Day 20: Firewall Rules](https://adventofcode.com/2016/day/20).
  */
 val day20 = solution(20) {
-    inputParser = RangesInputParsers.uLongRanges andThen { it.sortedWith(compareBy<ULongRange> { it.first }.thenComparing { it.endInclusive }) }
+    inputParser = uLongRanges andThen { it.sortedWith(compareBy<ULongRange> { it.first }.thenComparing { it.endInclusive }) }
 
     part1Solver = solver({
         "Lowest-valued accessible IP is $it."

@@ -2,7 +2,7 @@ package isdemidoff.adventofcode.year2017.day6
 
 import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
 import isdemidoff.solution.inputparser.functions.bidirectional.SimpleBiDirectionalFunctions.toInt
-import isdemidoff.solution.inputparser.scope.StringsInputParsers.splitLineBy
+import isdemidoff.solution.inputparser.scope.splitLineBy
 import isdemidoff.solution.solution
 
 /**

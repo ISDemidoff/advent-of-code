@@ -9,7 +9,7 @@ import isdemidoff.adventofcode.year2015.day21.entity.rings
 import isdemidoff.adventofcode.year2015.day21.entity.weaponChooses
 import isdemidoff.adventofcode.year2015.day21.entity.winsAgainst
 import isdemidoff.solution.inputparser.functions.andThen
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
 import isdemidoff.utility.discretemath.chooseItemsCount
@@ -29,7 +29,7 @@ internal fun allSetupsOfItems(counts: Map<ItemType, Int>): List<List<Item>> {
  * [Day 21: RPG Simulator 20XX](https://adventofcode.com/2015/day/21).
  */
 val day21 = solution(21) {
-    inputParser = StringsInputParsers.singleBlock andThen bossStatsParser
+    inputParser = singleBlock andThen bossStatsParser
 
     part1Solver = solver({
         "Least money to spend still winning is $it."

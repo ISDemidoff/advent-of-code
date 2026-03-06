@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2025.day7
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 import isdemidoff.utility.isInvalidPosition
 
@@ -8,7 +8,7 @@ import isdemidoff.utility.isInvalidPosition
  * [Day 7: Laboratories](https://adventofcode.com/2025/day/7).
  */
 val day7 = solution(7) {
-    inputParser = StringsInputParsers.singleBlock
+    inputParser = singleBlock
 
     part1Solver = solver({ "Beam was split $it times." }) { lines ->
         var splitsCount = 0

@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day5
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 
 private fun String.containsThreeVowels() =
@@ -22,7 +22,7 @@ private fun String.containsInfixedDoubleLetter() =
  * [Day 5: Doesn't He Have Intern-Elves For This?](https://adventofcode.com/2015/day/5).
  */
 val day5 = solution(5) {
-    inputParser = StringsInputParsers.singleBlock
+    inputParser = singleBlock
 
     part1Solver = solver({ "There are $it nice strings." }) { lines ->
         lines.count { it.containsThreeVowels() && it.containsDoubleLetter() && !it.containsForbiddenSubstring() }

@@ -5,7 +5,7 @@ import isdemidoff.adventofcode.year2025.day8.entities.JunctionBoxConnection
 import isdemidoff.adventofcode.year2025.day8.entities.createConnection
 import isdemidoff.adventofcode.year2025.day8.entities.junctionBoxConverter
 import isdemidoff.solution.inputparser.functions.mapLines
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.splitLinesBy
 import isdemidoff.solution.solution
 import isdemidoff.solution.solver.solver
 import isdemidoff.utility.cartesianProduct
@@ -27,7 +27,7 @@ private fun connectClosest(connections: Set<JunctionBoxConnection>, numConnectio
 
 
 val day8 = solution(8) {
-    inputParser = StringsInputParsers.splitLinesBy(",")
+    inputParser = splitLinesBy(",")
         .mapLines(::toLongsList)
         .mapLines(junctionBoxConverter)
 

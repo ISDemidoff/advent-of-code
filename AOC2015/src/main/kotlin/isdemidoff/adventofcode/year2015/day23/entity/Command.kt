@@ -105,7 +105,7 @@ val commandParser: (String) -> Command = regexMatch(
     """hlf ([a-z]+)""".toRegex() yields { (register) -> HlfRegisterCommand(register) },
     """tpl ([a-z]+)""".toRegex() yields { (register) -> TplRegisterCommand(register) },
     """inc ([a-z]+)""".toRegex() yields { (register) -> IncRegisterCommand(register) },
-    """jmp (\d+)""".toRegex() yields { (value) -> JmpCommand(value.toIntOrError()) },
-    """jie ([a-z]+), (\d+)""".toRegex() yields { (register, value) -> JieCommand(register, value.toIntOrError()) },
-    """jio ([a-z]+), (\d+)""".toRegex() yields { (register, value) -> JioCommand(register, value.toIntOrError()) },
+    """jmp (([-+])?\d+)""".toRegex() yields { (value) -> JmpCommand(value.toIntOrError()) },
+    """jie ([a-z]+), (([-+])?\d+)""".toRegex() yields { (register, value) -> JieCommand(register, value.toIntOrError()) },
+    """jio ([a-z]+), (([-+])?\d+)""".toRegex() yields { (register, value) -> JioCommand(register, value.toIntOrError()) },
 )

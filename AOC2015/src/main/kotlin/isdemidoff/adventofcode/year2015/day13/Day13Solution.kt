@@ -1,14 +1,14 @@
 package isdemidoff.adventofcode.year2015.day13
 
 import isdemidoff.adventofcode.year2015.day13.entity.TableArrangement
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 
 /**
  * [Day 13: Knights of the Dinner Table](https://adventofcode.com/2015/day/13).
  */
 val day13 = solution(13) {
-    inputParser = StringsInputParsers.singleBlock
+    inputParser = singleBlock
 
     part1Solver = solver({ "Max change of happiness is $it." }) {
         TableArrangement(it, false).findBestSetup()

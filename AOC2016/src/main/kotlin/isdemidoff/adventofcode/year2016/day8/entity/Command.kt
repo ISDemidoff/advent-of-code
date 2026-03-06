@@ -1,6 +1,8 @@
 package isdemidoff.adventofcode.year2016.day8.entity
 
-import isdemidoff.utility.parsing.keyValueBy
+import isdemidoff.utility.matching.regexMatch
+import isdemidoff.utility.matching.yields
+import isdemidoff.utility.parsing.toIntOrError
 
 sealed interface Command
 
@@ -19,15 +21,8 @@ data class ColumnShiftCommand(
     val shift: Int,
 ) : Command
 
-fun parseCommand(command: String): Command = when {
-    command.startsWith("rect") -> command.substringAfterLast(" ")
-        .keyValueBy("x", String::toInt, String::toInt)
-        .let { RectCommand(it.first, it.second) }
-    command.startsWith("rotate row y=") -> command.substringAfterLast("=")
-        .keyValueBy(" by ", String::toInt, String::toInt)
-        .let { RowShiftCommand(it.first, it.second) }
-    command.startsWith("rotate column x=") -> command.substringAfterLast("=")
-        .keyValueBy(" by ", String::toInt, String::toInt)
-        .let { ColumnShiftCommand(it.first, it.second) }
-    else -> throw IllegalArgumentException("Unknown command: $command")
-}
+val commandParser: (String) -> Command = regexMatch(
+    """rect (\d+)x(\d+)""".toRegex() yields { (x, y) -> RectCommand(x.toIntOrError(), y.toIntOrError()) },
+    """rotate row y=(\d+) by (\d+)""".toRegex() yields { (y, shift) -> RowShiftCommand(y.toIntOrError(), shift.toIntOrError()) },
+    """rotate column x=(\d+) by (\d+)""".toRegex() yields { (x, shift) -> ColumnShiftCommand(x.toIntOrError(), shift.toIntOrError()) },
+)

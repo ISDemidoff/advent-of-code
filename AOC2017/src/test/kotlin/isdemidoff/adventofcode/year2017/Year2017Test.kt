@@ -4,12 +4,15 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 import isdemidoff.adventofcode.year2017.day1.day1
+import isdemidoff.adventofcode.year2017.day10.day10
 import isdemidoff.adventofcode.year2017.day2.day2
 import isdemidoff.adventofcode.year2017.day3.day3
 import isdemidoff.adventofcode.year2017.day4.day4
 import isdemidoff.adventofcode.year2017.day5.day5
 import isdemidoff.adventofcode.year2017.day6.day6
 import isdemidoff.adventofcode.year2017.day7.day7
+import isdemidoff.adventofcode.year2017.day8.day8
+import isdemidoff.adventofcode.year2017.day9.day9
 
 class Year2017Test : FreeSpec({
     "Day 1: Inverse Captcha" - {
@@ -144,6 +147,73 @@ class Year2017Test : FreeSpec({
 
         "Part 2 check" {
             day7.input { sampleFile() }.solvePart2() shouldBe 60
+        }
+    }
+
+    "Day 8: I Heard You Like Registers" - {
+        "Part 1 check" {
+            day8.input { sampleFile() }.solvePart1() shouldBe 1
+        }
+
+        "Part 2 check" {
+            day8.input { sampleFile() }.solvePart2() shouldBe 10
+        }
+    }
+
+    "Day 9: Stream Processing" - {
+        "Part 1 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Data '$input' has score $result"
+                },
+                "{}" to 1,
+                "{{{}}}" to 6,
+                "{{},{}}" to 5,
+                "{{{},{},{{}}}}" to 16,
+                "{<a>,<a>,<a>,<a>}" to 1,
+                "{{<ab>},{<ab>},{<ab>},{<ab>}}" to 9,
+                "{{<!!>},{<!!>},{<!!>},{<!!>}}" to 9,
+                "{{<a!>},{<a!>},{<a!>},{<ab>}}" to 3,
+            ) { (input, result) ->
+                day9.input { raw(input) }.solvePart1() shouldBe result
+            }
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Data '$input' has $result garbage characters"
+                },
+                "<>" to 0,
+                "<random characters>" to 17,
+                "<<<<>" to 3,
+                "<{!>}>" to 2,
+                "<!!>" to 0,
+                "<!!!>>" to 0,
+                "<{o\"i!a,<{i<a>" to 10,
+            ) { (input, result) ->
+                day9.input { raw(input) }.solvePart2() shouldBe result
+            }
+        }
+    }
+
+    "Day 10: Knot Hash" - {
+        "Part 1 check" {
+            day10.input { line("3,4,1,5") }.solvePart1(5) shouldBe 12
+        }
+
+        "Part 2 check" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "For string '$input' knot hash is $result"
+                },
+                "" to "a2582a3a0e66e6e86e3812dcb672a272",
+                "AoC 2017" to "33efeb34ea91902bb2f59c9920caa6cd",
+                "1,2,3" to "3efbe78a8d82f29979031a4aa0b16a9d",
+                "1,2,4" to "63960835bcdc130f0b66d7ff4f6a5a8e",
+            ) { (input, result) ->
+                day10.input { line(input) }.solvePart2() shouldBe result
+            }
         }
     }
 })

@@ -2,16 +2,15 @@ package isdemidoff.adventofcode.year2016.day8
 
 import isdemidoff.adventofcode.year2016.day8.entity.Command
 import isdemidoff.adventofcode.year2016.day8.entity.Screen
-import isdemidoff.adventofcode.year2016.day8.entity.parseCommand
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.adventofcode.year2016.day8.entity.commandParser
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 
 /**
  * [Day 8: Two-Factor Authentication](https://adventofcode.com/2016/day/8).
  */
 val day8 = solution(8) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::parseCommand
+    inputParser = uniformLinesParser(commandParser)
 
     val fn = object: (List<Command>) -> Screen {
         override fun invoke(commands: List<Command>) = Screen(50, 6).apply { executeCommands(commands) }

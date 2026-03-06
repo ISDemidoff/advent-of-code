@@ -3,7 +3,7 @@
 package isdemidoff.solution.inputparser.functions.bidirectional
 
 object StringsBiDirectionalFunctions {
-    val toCharArray: BiDirectionalFunction<String, List<Char>> = BiDirectionalFunction(
+    val toCharList: BiDirectionalFunction<String, List<Char>> = BiDirectionalFunction(
         fn = { it.toList() },
         inv = { it.joinToString(separator = "") },
     )
@@ -11,5 +11,5 @@ object StringsBiDirectionalFunctions {
     val charToInt: BiDirectionalFunction<Char, Int> = BiDirectionalFunction({ it.digitToInt() }, { it.digitToChar() })
     val intToChar: BiDirectionalFunction<Int, Char> = charToInt.inverse()
 
-    val digits: BiDirectionalFunction<String, List<Int>> = toCharArray mapWith charToInt
+    val digits: BiDirectionalFunction<String, List<Int>> = toCharList mapWith charToInt
 }

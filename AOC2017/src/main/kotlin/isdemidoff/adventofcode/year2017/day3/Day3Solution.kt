@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2017.day3
 
-import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.inputparser.scope.singleInt
 import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
 import java.lang.Integer.min
@@ -10,7 +10,7 @@ import kotlin.math.abs
  * [Day 3: Spiral Memory](https://adventofcode.com/2017/day/3).
  */
 val day3 = solution(3) {
-    inputParser = PrimitivesInputParsers.singleInt
+    inputParser = singleInt
 
     part1Solver = solver({
         "$it steps needed to carry the data."

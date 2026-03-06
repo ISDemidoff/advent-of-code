@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day8
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleBlock
 import isdemidoff.solution.solution
 
 private fun String.inMemorySize(): Int {
@@ -30,7 +30,7 @@ private fun String.encodedSize(): Int {
  * [Day 8: Matchsticks](https://adventofcode.com/2015/day/8).
  */
 val day8 = solution(8) {
-    inputParser = StringsInputParsers.singleBlock
+    inputParser = singleBlock
 
     part1Solver = solver({ "Size difference is $it" }) {
         it.sumOf { (it.length - it.inMemorySize()) }

@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day24
 
-import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.inputparser.scope.longLines
 import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.combinationsHavingSum
 
@@ -8,7 +8,7 @@ import isdemidoff.utility.discretemath.combinationsHavingSum
  * [Day 24: It Hangs in the Balance](https://adventofcode.com/2015/day/24).
  */
 val day24 = solution(24) {
-    inputParser = PrimitivesInputParsers.longLines
+    inputParser = longLines
 
     fun getSolver(groupsNum: Long) = solver({
         "Quantum entanglement of best setup split by $groupsNum groups is $it."

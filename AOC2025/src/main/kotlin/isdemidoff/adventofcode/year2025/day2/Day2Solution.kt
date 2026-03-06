@@ -1,8 +1,8 @@
 package isdemidoff.adventofcode.year2025.day2
 
 import isdemidoff.solution.inputparser.functions.andThen
-import isdemidoff.solution.inputparser.scope.RangesInputParsers
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.longRanges
+import isdemidoff.solution.inputparser.scope.splitLineBy
 import isdemidoff.solution.solution
 
 private fun LongRange.getSumOfSillyPatterns(onlyTwo: Boolean) =
@@ -34,7 +34,7 @@ private fun ownDividers(int: Int): List<Int> {
  * [Day 2: Gift Shop](https://adventofcode.com/2025/day/2).
  */
 val day2 = solution(2) {
-    inputParser = StringsInputParsers.splitLineBy(",") andThen RangesInputParsers.longRanges
+    inputParser = splitLineBy(",") andThen longRanges
 
     part1Solver = solver({ "Adding all invalid IDs results into $it." }) {
         it.sumOf { it.getSumOfSillyPatterns(true) }

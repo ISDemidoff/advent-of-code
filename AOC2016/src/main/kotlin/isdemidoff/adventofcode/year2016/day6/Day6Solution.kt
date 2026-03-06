@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2016.day6
 
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.functions.bidirectional.StringsBiDirectionalFunctions.toCharList
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 import isdemidoff.utility.other.transpose
 import isdemidoff.utility.strings.countCharacterStatistics
@@ -10,7 +10,7 @@ import isdemidoff.utility.strings.countCharacterStatistics
  * [Day 6: Signals and Noise](https://adventofcode.com/2016/day/6).
  */
 val day6 = solution(6) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine { it.toCharArray().toList() }
+    inputParser = uniformLinesParser(toCharList)
 
     part1Solver = solver({
         "Error-corrected message by repetition code algo is $it."

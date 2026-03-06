@@ -2,15 +2,15 @@ package isdemidoff.adventofcode.year2015.day1
 
 import isdemidoff.solution.inputparser.functions.andThen
 import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.functions.bidirectional.StringsBiDirectionalFunctions
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.functions.bidirectional.StringsBiDirectionalFunctions.toCharList
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
 
 /**
  * [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).
  */
 val day1 = solution(1) {
-    inputParser = StringsInputParsers.singleLine andThen StringsBiDirectionalFunctions.toCharArray andThenOnEveryLine {
+    inputParser = singleLine andThen toCharList andThenOnEveryLine {
         when (it) {
             '(' -> 1
             ')' -> -1

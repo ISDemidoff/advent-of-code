@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day19
 
-import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.inputparser.scope.singleInt
 import isdemidoff.solution.solution
 
 /**
@@ -12,7 +12,7 @@ import isdemidoff.solution.solution
  * Part 2 is harder since I couldn't find easy solution, so I developed "classic" DP solution.
  */
 val day19 = solution(19) {
-    inputParser = PrimitivesInputParsers.singleInt
+    inputParser = singleInt
 
     part1Solver = solver({
         "Elf $it will take all the presents."

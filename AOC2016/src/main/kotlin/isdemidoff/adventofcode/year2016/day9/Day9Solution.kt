@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2016.day9
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
 import isdemidoff.utility.parsing.keyValueBy
 
@@ -30,7 +30,7 @@ internal fun calculateDecompressedLength(input: String, recursiveDecompress: Boo
  * This solution actually rely on foldable "compressing", when any inner markers never interact with sections unaffected by outer marker.
  */
 val day9 = solution(9) {
-    inputParser = StringsInputParsers.singleLine
+    inputParser = singleLine
 
     part1Solver = solver({
         "Length of decompressed file is $it."

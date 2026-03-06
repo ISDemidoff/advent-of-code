@@ -1,7 +1,7 @@
 package isdemidoff.adventofcode.year2015.day12
 
 import isdemidoff.solution.inputparser.functions.andThen
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -36,7 +36,7 @@ fun JsonElement.calculateTotalSumIgnoring(color: String): Int = when (this) {
  * [Day 12: JSAbacusFramework.io](https://adventofcode.com/2015/day/12).
  */
 val day12 = solution(12) {
-    inputParser = StringsInputParsers.singleLine andThen { Json.parseToJsonElement(it) }
+    inputParser = singleLine andThen { Json.parseToJsonElement(it) }
 
     part1Solver = solver({ "Total sum of all numbers is $it" }) { it.calculateTotalSum() }
     part2Solver = solver({ "Total sum of all numbers except objects with 'red' is $it" }) { it.calculateTotalSumIgnoring("red") }

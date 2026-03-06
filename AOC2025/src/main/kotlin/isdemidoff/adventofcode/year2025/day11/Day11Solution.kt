@@ -4,8 +4,7 @@ import isdemidoff.adventofcode.year2025.day11.Constants.FROM_NODE_ID
 import isdemidoff.adventofcode.year2025.day11.Constants.TO_NODE_ID
 import isdemidoff.adventofcode.year2025.day11.entity.MachineNode
 import isdemidoff.adventofcode.year2025.day11.entity.parseNode
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 import isdemidoff.utility.graphs.findCountOfPaths
 
@@ -27,7 +26,7 @@ private object Constants {
  * [Day 11: Reactor](https://adventofcode.com/2025/day/11).
  */
 val day11 = solution(11) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine ::parseNode
+    inputParser = uniformLinesParser(::parseNode)
 
     part1Solver = solver({ "Path count between $FROM_NODE_ID to $TO_NODE_ID is $it." }) {
         it.associateByTo(mutableMapOf()) { it.id }

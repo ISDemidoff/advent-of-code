@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day11
 
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.singleLine
 import isdemidoff.solution.solution
 import isdemidoff.utility.other.zipTriple
 
@@ -36,7 +36,7 @@ fun String.getNextValidPassword() =
  * [Day 11: Corporate Policy](https://adventofcode.com/2015/day/11).
  */
 val day11 = solution(11) {
-    inputParser = StringsInputParsers.singleLine
+    inputParser = singleLine
 
     part1Solver = solver({ "Next password is $it" }) {
         generateSequence(it) { it.getNextValidPassword() }.drop(1).first()

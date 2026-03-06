@@ -3,8 +3,7 @@ package isdemidoff.adventofcode.year2016.day22
 import isdemidoff.adventofcode.year2016.day22.entity.createFileSystem
 import isdemidoff.adventofcode.year2016.day22.entity.getFastestWayToMoveData
 import isdemidoff.adventofcode.year2016.day22.entity.nodeParser
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 import isdemidoff.utility.cartesianProduct
 
@@ -14,7 +13,7 @@ import isdemidoff.utility.cartesianProduct
  * I am totally disappointed with part 2 solution since it has no connection with part 1.
  */
 val day22 = solution(22) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine nodeParser
+    inputParser = uniformLinesParser(nodeParser)
 
     part1Solver = solver({
         "There are $it viable pairs of nodes."

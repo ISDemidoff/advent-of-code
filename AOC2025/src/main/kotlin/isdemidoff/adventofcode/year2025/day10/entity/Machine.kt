@@ -32,10 +32,12 @@ data class Machine(
     }
 }
 
-fun parseMachine(input: String) = Machine(
-    input.subSequence(input.indexOfFirst { it == '[' } + 1..<input.indexOfFirst { it == ']' }).map { it == '#' },
-    input.subSequence(input.indexOfFirst { it == ']' } + 1..<input.indexOfFirst { it == '{' })
-        .trim()
-        .split("""\s+""".toRegex())
-        .map { it.subSequence(1 ..< it.length - 1) }
-        .map { Button(it.parseUnescapedCsvInputLine { it.toString().toInt() }) })
+val machineParser: (String) -> Machine = { input ->
+    Machine(
+        input.subSequence(input.indexOfFirst { it == '[' } + 1..<input.indexOfFirst { it == ']' }).map { it == '#' },
+        input.subSequence(input.indexOfFirst { it == ']' } + 1..<input.indexOfFirst { it == '{' })
+            .trim()
+            .split("""\s+""".toRegex())
+            .map { it.subSequence(1 ..< it.length - 1) }
+            .map { Button(it.parseUnescapedCsvInputLine { it.toString().toInt() }) })
+}

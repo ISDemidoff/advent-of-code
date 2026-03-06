@@ -1,6 +1,6 @@
 package isdemidoff.adventofcode.year2015.day20
 
-import isdemidoff.solution.inputparser.scope.PrimitivesInputParsers
+import isdemidoff.solution.inputparser.scope.singleInt
 import isdemidoff.solution.solution
 import isdemidoff.utility.discretemath.getDivisors
 import isdemidoff.utility.discretemath.getSumOfDivisors
@@ -9,7 +9,7 @@ import isdemidoff.utility.discretemath.getSumOfDivisors
  * [Day 20: Infinite Elves and Infinite Houses](https://adventofcode.com/2015/day/20).
  */
 val day20 = solution(20) {
-    inputParser = PrimitivesInputParsers.singleInt
+    inputParser = singleInt
 
     part1Solver = solver({
         "First house to receive that much of presents is $it."

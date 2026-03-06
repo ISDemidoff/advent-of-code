@@ -39,10 +39,9 @@ import isdemidoff.adventofcode.year2016.day6.day6
 import isdemidoff.adventofcode.year2016.day7.supportsSSL
 import isdemidoff.adventofcode.year2016.day7.supportsTLS
 import isdemidoff.adventofcode.year2016.day8.entity.Screen
-import isdemidoff.adventofcode.year2016.day8.entity.parseCommand
+import isdemidoff.adventofcode.year2016.day8.entity.commandParser
 import isdemidoff.adventofcode.year2016.day9.day9
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 import isdemidoff.utility.strings.md5hex
 
@@ -168,28 +167,28 @@ class Year2016Test : FreeSpec({
         "Part 1 check by sample" {
             val screen = Screen(7, 3)
 
-            screen.apply { executeCommands(listOf(parseCommand("rect 3x2"))) }
+            screen.apply { executeCommands(listOf(commandParser("rect 3x2"))) }
                 .showGrid() shouldBe """
                                         ###....
                                         ###....
                                         .......
                                         """.trimIndent()
 
-            screen.apply { executeCommands(listOf(parseCommand("rotate column x=1 by 1"))) }
+            screen.apply { executeCommands(listOf(commandParser("rotate column x=1 by 1"))) }
                 .showGrid() shouldBe """
                                         #.#....
                                         ###....
                                         .#.....
                                         """.trimIndent()
 
-            screen.apply { executeCommands(listOf(parseCommand("rotate row y=0 by 4"))) }
+            screen.apply { executeCommands(listOf(commandParser("rotate row y=0 by 4"))) }
                 .showGrid() shouldBe """
                                         ....#.#
                                         ###....
                                         .#.....
                                         """.trimIndent()
 
-            screen.apply { executeCommands(listOf(parseCommand("rotate column x=1 by 1"))) }
+            screen.apply { executeCommands(listOf(commandParser("rotate column x=1 by 1"))) }
                 .showGrid() shouldBe """
                                         .#..#.#
                                         #.#....
@@ -510,7 +509,7 @@ class Year2016Test : FreeSpec({
                 ),
             ) { (program, registers, result) ->
                 val runResult = solution(42) {
-                    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine instructionReader
+                    inputParser = uniformLinesParser(instructionReader)
                     part1Solver = solver {
                         MapBasedProgramState(it).apply {
                             registers.forEach { (reg, value) -> this.updateRegisterValue(reg) { value } }

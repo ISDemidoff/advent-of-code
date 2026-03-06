@@ -2,15 +2,14 @@ package isdemidoff.adventofcode.year2016.day25
 
 import isdemidoff.adventofcode.year2016.day23.entity.MapBasedProgramState
 import isdemidoff.adventofcode.year2016.day23.entity.instructionReader
-import isdemidoff.solution.inputparser.functions.andThenOnEveryLine
-import isdemidoff.solution.inputparser.scope.StringsInputParsers
+import isdemidoff.solution.inputparser.scope.uniformLinesParser
 import isdemidoff.solution.solution
 
 /**
  * [Day 25: Clock Signal](https://adventofcode.com/2016/day/25).
  */
 val day25 = solution(25) {
-    inputParser = StringsInputParsers.singleBlock andThenOnEveryLine instructionReader
+    inputParser = uniformLinesParser(instructionReader)
 
     part1Solver = solver({
         "Minimal value passed to 'a' to produce needed sequence is $it."
