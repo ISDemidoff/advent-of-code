@@ -2,6 +2,8 @@
 // `buildSrc` is a Gradle-recognized directory and every plugin there will be easily available in the rest of the build.
 package buildsrc.convention
 
+import buildsrc.convention.libs
+import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
@@ -12,9 +14,14 @@ plugins {
 kotlin {
     // Use a specific Java version to make it easier to work in different environments.
     jvmToolchain(21)
+
+    dependencies {
+        testImplementation(libs.bundles.kotestAlt)
+    }
 }
 
 tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 
     // Log information about all test results, not only the failed ones.
     testLogging {

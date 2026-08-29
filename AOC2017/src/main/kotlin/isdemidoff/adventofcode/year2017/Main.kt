@@ -2,6 +2,7 @@ package isdemidoff.adventofcode.year2017
 
 import isdemidoff.adventofcode.year2017.day1.day1
 import isdemidoff.adventofcode.year2017.day10.day10
+import isdemidoff.adventofcode.year2017.day11.day11
 import isdemidoff.adventofcode.year2017.day2.day2
 import isdemidoff.adventofcode.year2017.day3.day3
 import isdemidoff.adventofcode.year2017.day4.day4
@@ -29,4 +30,5 @@ fun main() = printYearSolution(
     day8,
     day9,
     day10.withArgs(part1Args = listOf(256)),
+    day11,
 )

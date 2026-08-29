@@ -5,6 +5,7 @@ import io.kotest.datatest.withData
 import io.kotest.matchers.shouldBe
 import isdemidoff.adventofcode.year2017.day1.day1
 import isdemidoff.adventofcode.year2017.day10.day10
+import isdemidoff.adventofcode.year2017.day11.day11
 import isdemidoff.adventofcode.year2017.day2.day2
 import isdemidoff.adventofcode.year2017.day3.day3
 import isdemidoff.adventofcode.year2017.day4.day4
@@ -213,6 +214,23 @@ class Year2017Test : FreeSpec({
                 "1,2,4" to "63960835bcdc130f0b66d7ff4f6a5a8e",
             ) { (input, result) ->
                 day10.input { line(input) }.solvePart2() shouldBe result
+            }
+        }
+    }
+
+    "Day 11: Hex Ed" - {
+        "Part 1 checks" - {
+            withData(
+                nameFn = { (input, result) ->
+                    "Path '$input' least to hex $result steps away"
+                },
+                "ne,ne,ne" to 3,
+                "ne,ne,sw,sw" to 0,
+                "ne,ne,s,s" to 2,
+                "se,sw,se,sw,sw" to 3,
+                "ne,se" to 2,
+            ) { (input, result) ->
+                day11.input { line(input) }.solvePart1() shouldBe result
             }
         }
     }

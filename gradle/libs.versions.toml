@@ -15,15 +15,17 @@ kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.r
 kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
 kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 
+kotestJunitRunner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotestFrameworkEngine = { module = "io.kotest:kotest-framework-engine-jvm", version.ref = "kotest" }
 kotestAssertionsCore = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+kotestProperty = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 
 # Libraries can be bundled together for easier import
 [bundles]
 kotlinxEcosystem = ["kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
-kotest = ["kotestFrameworkEngine", "kotestAssertionsCore"]
+kotest = ["kotestFrameworkEngine", "kotestAssertionsCore", "kotestProperty"]
+kotestAlt = ["kotestJunitRunner", "kotestAssertionsCore", "kotestProperty"]
 
 [plugins]
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-
-kotestPlugin = { id = "io.kotest:io.kotest.gradle.plugin", version.ref = "kotest" }
+kotestPlugin = { id = "io.kotest", version.ref = "kotest" }
